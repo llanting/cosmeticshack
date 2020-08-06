@@ -1,6 +1,4 @@
-Test
-
-# Cosmetichack
+# Cosmeticshack
 Ironhack Project 2
 
 # Description
