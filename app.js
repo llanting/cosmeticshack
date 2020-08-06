@@ -8,10 +8,13 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const bcryptjs     = require('bcryptjs');
+
+
 
 
 mongoose
-  .connect('mongodb://localhost/cosmetichack', {useNewUrlParser: true})
+  .connect('mongodb://localhost/cosmetichack', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -44,15 +47,21 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-
-
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Cosmeticshack';
 
+// Require routes general and auhtentication above this one, because of 404 in routes/general.js
+const recipes = require('./routes/recipes');
+app.use('/', recipes)
 
+const profile = require('./routes/profile');
+app.use('/', profile)
 
-const index = require('./routes/index');
-app.use('/', index);
+const authentication = require('./routes/authentication');
+app.use('/', authentication);
 
+const general = require('./routes/general');
+app.use('/', general);
+app.locals.title = 'cosmeticshack';
 
 module.exports = app;
