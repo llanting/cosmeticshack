@@ -8,6 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const bcryptjs     = require('bcryptjs');
+
+
 
 
 mongoose
@@ -54,8 +57,11 @@ app.use('/', recipes)
 const profile = require('./routes/profile');
 app.use('/', profile)
 
+const authentication = require('./routes/authentication');
+app.use('/', authentication);
+
 const general = require('./routes/general');
 app.use('/', general);
-
+app.locals.title = 'cosmeticshack';
 
 module.exports = app;
