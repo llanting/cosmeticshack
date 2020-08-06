@@ -36,17 +36,12 @@ Collaborative platform with library of recipes for natural cosmetics products.
    - renders signup.hbs
     
 - POST /signup
-    - username
-    - email
-    - password
    - redirects to / if user logged in
 
 - GET /login
   - renders login.hbs
 
 - POST /login
-    - email
-    - password
   - redirects to / if user logged in
     
 - GET /my-profile
@@ -77,19 +72,6 @@ Collaborative platform with library of recipes for natural cosmetics products.
     - renders create-recipe.hbs
 
 - POST /create-recipe
-      - name
-      - category
-      - purpose
-      - time
-      - cost
-      - materials
-      - level
-      - conservation
-      - steps
-      - ingedrients
-      - rating
-      - created by
-      - image
     - redirects to /all-recipes/:[id]
 
 - GET /all-recipes
