@@ -8,6 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const bcryptjs     = require('bcryptjs');
+
+
 
 
 mongoose
@@ -47,12 +50,17 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'cosmeticshack';
 
 
+const general = require('./routes/general');
+app.use('/', general);
 
-const index = require('./routes/index');
-app.use('/', index);
+const authentication = require('./routes/authentication');
+app.use('/', authentication);
+
+const profile = require('./routes/profile');
+app.use('/', profile);
 
 
 module.exports = app;
