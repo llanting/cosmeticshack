@@ -24,7 +24,7 @@ Collaborative platform with library of recipes for natural cosmetics products.
 - PDF export of a recipe
 - Share recipes via social media/email
 - User recommendations
-- Admin user
+- Admin user (adding delete button to items)
 - Shopping list
 - View count
 
@@ -63,7 +63,7 @@ Collaborative platform with library of recipes for natural cosmetics products.
     - renders my-shoppinglist.hbs
 
 - POST /my-profile/my-shoppinglist
-      - delete items
+    - delete items
 
 - GET /public-profile
     - renders public-profile.hbs
@@ -88,6 +88,11 @@ Collaborative platform with library of recipes for natural cosmetics products.
     required: true,
     unique: [true, 'username already exists'] 
   }, 
+  usertype: {
+    type: String,
+    required: true,
+    enum: ['user', 'admin'] 
+  },
   email: {
     type: String,
     required: true,
