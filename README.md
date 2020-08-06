@@ -10,7 +10,7 @@ Collaborative platform with library of recipes for natural cosmetics products.
 - LogIn-signup - As a user I want to see a welcome page that gives me the option to either log in as an existing user, or sign up with a new account.
 - Add-signup - As a user I want to sign up with my full information so that I can sadd recipes, see my favorites, etc.
 - Homepage - As a user I want to see some recipes and be able to log in or sign up.
-- User profile - As a user I want to link to my other pages (my favorites, my comments, my recipes), edit my user information and see how many people picked my recipe as favorite.
+- User profile - As a user I want to link to my other pages (my favorites, my comments, my recipes (edit and delete button for recipe), edit my user information and see how many people picked my recipe as favorite.
 - All recipes - As a user I want to be able to see all recipes and look for specific recipes with a filter and sorting.
 - Recipe details - As a user I want to see all the information about a specific recipe, and be able to comment on it and rate it.
 - Create recipe - As a user I want to be able to create a new recipe.
@@ -82,30 +82,6 @@ Collaborative platform with library of recipes for natural cosmetics products.
     
 
 ## Models
-- UserModel: ({
-  username: {
-    type: String,
-    required: true,
-    unique: [true, 'username already exists'] 
-  }, 
-  usertype: {
-    type: String,
-    required: true,
-    enum: ['user', 'admin'] 
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: [true, 'email already exists'] 
-  },  
-  password: {
-    type: String,
-    required: true
-  }}, {
-    timestamps: true
-  })
-  
- 
 - RecipeModel: ({
   name: {
     type: String,
@@ -148,15 +124,16 @@ Collaborative platform with library of recipes for natural cosmetics products.
     type: String,
     required: true,
   },
-  ingedrients: {
-    type: String,
-    required: true,
-  },
+  ingedrients: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ingedrients'
+  }, required: true], 
   rating: {
     type: Number
   },
   created by: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user', 
     required: true
   },
   date added: {
@@ -170,7 +147,32 @@ Collaborative platform with library of recipes for natural cosmetics products.
     timestamps: true
   })
   
+-> Relation between recipe and user, based on usermodel-id
+- UserModel: ({
+  username: {
+    type: String,
+    required: true,
+    unique: [true, 'username already exists'] 
+  }, 
+  usertype: {
+    type: String,
+    required: true,
+    enum: ['user', 'admin'] 
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: [true, 'email already exists'] 
+  },  
+  password: {
+    type: String,
+    required: true
+  }}, {
+    timestamps: true
+  })
   
+  
+-> Relation between recipe and ingredients, based on ingredient-id (so ingredients in recipemodel will be an array of ingredientid's)
 - IngredientModel: ({
     name: {
       type: String,
