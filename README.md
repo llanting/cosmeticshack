@@ -82,30 +82,6 @@ Collaborative platform with library of recipes for natural cosmetics products.
     
 
 ## Models
-- UserModel: ({
-  username: {
-    type: String,
-    required: true,
-    unique: [true, 'username already exists'] 
-  }, 
-  usertype: {
-    type: String,
-    required: true,
-    enum: ['user', 'admin'] 
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: [true, 'email already exists'] 
-  },  
-  password: {
-    type: String,
-    required: true
-  }}, {
-    timestamps: true
-  })
-  
- 
 - RecipeModel: ({
   name: {
     type: String,
@@ -148,15 +124,16 @@ Collaborative platform with library of recipes for natural cosmetics products.
     type: String,
     required: true,
   },
-  ingedrients: {
-    type: String,
-    required: true,
-  },
+  ingedrients: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ingedrients'
+  }, required: true], 
   rating: {
     type: Number
   },
   created by: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user', 
     required: true
   },
   date added: {
@@ -170,7 +147,32 @@ Collaborative platform with library of recipes for natural cosmetics products.
     timestamps: true
   })
   
+-> Relation between recipe and user, based on usermodel-id
+- UserModel: ({
+  username: {
+    type: String,
+    required: true,
+    unique: [true, 'username already exists'] 
+  }, 
+  usertype: {
+    type: String,
+    required: true,
+    enum: ['user', 'admin'] 
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: [true, 'email already exists'] 
+  },  
+  password: {
+    type: String,
+    required: true
+  }}, {
+    timestamps: true
+  })
   
+  
+-> Relation between recipe and ingredients, based on ingredient-id (so ingredients in recipemodel will be an array of ingredientid's)
 - IngredientModel: ({
     name: {
       type: String,
