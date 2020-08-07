@@ -1,0 +1,48 @@
+
+
+
+
+
+
+<div>
+
+    <h4>Hi {{currentUser.username}}, welcome to your profile page!</h4>
+    <h6>You can modify your personal details:</h6>
+
+    
+    <form method="POST" action="/my-profile-edit">
+
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" value={{currentUser.username}}>
+
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" value={{currentUser.email}}>
+
+        <label for="password">Password</label>
+        <figcaption>Min 6 characters, containing at least one letter and one number.</figcaption>
+        <input id="password" type="password" name="password" placeholder="Enter a new password">
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+
+</div>
+
+
+<div>
+
+    <h4>Quick access</h4>
+
+        <a href= "/create-recipe" class="btn btn-sm btn-outline-secondary">Create a new recipe</a>
+
+
+        <a href= "/my-profile/my-favorites" class="btn btn-sm btn-outline-secondary">My Favorites</a>
+        <a href= "/my-profile/my-recipes" class="btn btn-sm btn-outline-secondary">My Recipes</a>
+
+
+
+
+</div>
+
+

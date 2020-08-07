@@ -22,7 +22,7 @@ let RecipeSchema = new mongoose.Schema({
     },
     cost: {
         type: String,
-        enum: ['cheap', 'normal', 'expensive'],
+        enum: ['low', 'medium', 'high'],
         required: true
     },
     materials: {

@@ -10,17 +10,18 @@ const userSchema = new mongoose.Schema({
         usertype: { 
             type: String, 
             required: true, 
-            enum: ['user', 'admin'] 
+            enum: ['user', 'admin'],
+            default: 'user'
         }, 
         email: { 
             type: String, 
             required: true, 
             unique: [true, 'email already exists'] 
         },
-        password: { 
+        passwordHash: { 
             type: String, 
             required: true 
-        }
+        },
     },
     {
         timestamps: true

@@ -1,0 +1,41 @@
+
+
+<div>
+
+    <h4>Hi {{currentUser.username}}, welcome to your profile page!</h4>
+    <h6>You can modify your personal details:</h6>
+
+    <form method="GET" action="/my-profile-edit">
+
+        <label for="username">Username</label>
+        <span>{{currentUser.username}}</span>
+        <label for="email">Email</label>
+        <span>{{currentUser.email}}</span>
+
+        <label for="password">Password</label>
+        <span>**********</span>
+
+        <button type="submit" >Edit my details</button>
+
+    </form>
+
+
+</div>
+
+
+<div>
+
+    <h4>Quick access</h4>
+
+        <a href= "/create-recipe" class="btn btn-sm btn-outline-secondary">Create a new recipe</a>
+
+
+        <a href= "/my-profile/my-favorites" class="btn btn-sm btn-outline-secondary">My Favorites</a>
+        <a href= "/my-profile/my-recipes" class="btn btn-sm btn-outline-secondary">My Recipes</a>
+
+
+
+
+</div>
+
+

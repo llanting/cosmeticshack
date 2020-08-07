@@ -20,19 +20,19 @@ router.post('/signup', (req, res) => {
     const {username, email, password} = req.body
   
     if(!username || !email || !password){
-      res.status(500).render('auth/signup.hbs', {errorMessage: 'Please fill in all fields'})
+      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please fill in all fields'})
       return;
     }
     
     const emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
     if (!emailReg.test(email)){
-      res.status(500).render('auth/signup.hbs', {errorMessage: 'Please enter a valid email address'})
+      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please enter a valid email address'})
       return;
     }
     
     const passReg = new RegExp(/^(?=.*\d).{6,20}$/)
     if (!passReg.test(password)){
-      res.status(500).render('auth/signup.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit.'})
+      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit.'})
       return;
     }
   
@@ -57,37 +57,39 @@ router.post('/signup', (req, res) => {
   //login is comparing with the  DB
   
 router.post('/login', (req, res) => {
-    const {username, email, password} = req.body
+    const {email, password} = req.body
 
     if(!email || !password){
-        res.status(500).render('auth/signup.hbs', {errorMessage: 'Please fill in all fields'})
+        console.log(email, password)
+        res.status(500).render('authentication/login.hbs', {errorMessage: 'Please fill in all fields'})
         return;
     }
 
-    const emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
-    if (!emailReg.test(email)){
-        res.status(500).render('auth/signup.hbs', {errorMessage: 'Please enter a valid email address'})
-        return;
-    }
+    // const emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
+    // if (!emailReg.test(email)){
+    //     res.status(500).render('authentication/login.hbs', {errorMessage: 'Please enter a valid email address'})
+    //     return;
+    // }
 
-    const passReg = new RegExp(/^(?=.*\d).{6,20}$/)
-    if (!passReg.test(password)){
-        res.status(500).render('auth/signup.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit.'})
-        return;
-    }
+    // const passReg = new RegExp(/^(?=.*\d).{6,20}$/)
+    // if (!passReg.test(password)){
+    //     res.status(500).render('authentication/login.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit.'})
+    //     return;
+    // }
 
     UserModel.findOne({email: email})
         .then((userData) => {
             let doesItMatch = bcryptjs.compareSync(password, userData.passwordHash); 
             if (doesItMatch){
                 req.session.loggedInUser = userData
-                res.redirect('/index')      
+                res.redirect('/my-profile')
             } else {
-                res.status(500).render('auth/login.hbs', {errorMessage: 'Password incorrect'})
+                res.status(500).render('authentication/login.hbs', {errorMessage: 'Password incorrect'})
             }
         }) 
         .catch((err) => {
-            console.log('Error ', err)
+            console.log('Error is', err)
+            res.render('general/error.hbs')
         })
 })
   

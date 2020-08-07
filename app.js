@@ -9,7 +9,8 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 const bcryptjs     = require('bcryptjs');
-
+const session      = require('express-session');
+const MongoStore   = require('connect-mongo')(session);
 
 
 
@@ -40,7 +41,19 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
+    
+
+app.use(session({
+  secret: "team-dutchies",
+  cookie: {
+    maxAge: 60*60*24*1000
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}));
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -63,5 +76,6 @@ app.use('/', authentication);
 const general = require('./routes/general');
 app.use('/', general);
 app.locals.title = 'cosmeticshack';
+
 
 module.exports = app;

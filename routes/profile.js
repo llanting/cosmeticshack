@@ -6,26 +6,38 @@ const IngredientModel = require('../models/ingredient.model')
 
 
 router.get('/my-profile', (req, res) => {
-    res.render('my-profile.hbs');
+    let currentUser = req.session.loggedInUser
+    res.render('profile/my-profile.hbs', {currentUser});
     });
+
+
+
+router.get('/my-profile-edit', (req, res) => {
+    let currentUser = req.session.loggedInUser
+    res.render('profile/my-profile-edit.hbs', {currentUser});
+    });
+
+
+
+router.post('/my-profile-edit', (req, res) => {
+    let currentUser = req.session.loggedInUser
+    // res.render('profile/my-profile-edit.hbs', {currentUser});
+    UserModel.findByIdAndUpdate(currentUser._id, {$set: req.body})
+        .then((user) => {
+            console.log(currentUser.email)
+            res.redirect('/my-profile');
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    });
+
 
 
 router.get('/my-profile/my-shoppinglist', (req, res) => {
     res.render('profile/my-shoppinglist.hbs')
 })
-
-// MUST CHECK THIS /!\/!\/!\/!\/!\/!\
-
-// editing profile
-router.post('/my-profile', (req, res) => {
-    res.render('my-profile-edit.hbs');
-    UserModel.findByIdAndUpdate(req.params.id, {$set: {}})
-        .then(() => {
-            res.render('my-profile.hbs');
-        })
-
-    });
-
+    
 
 router.get('/my-profile/my-recipes', (req, res) => {
     res.render('my-recipes.hbs');
