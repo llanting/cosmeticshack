@@ -4,19 +4,13 @@ const bcryptjs = require('bcryptjs');
 
 const UserModel = require('../models/user.model')
 
-
-
 router.get('/signup', (req, res) => {
     res.render('authentication/signup.hbs')
   })
-  
-  
-router.get('/login', (req, res) => {
-    res.render('authentication/login.hbs')
-})
 
 
 router.post('/signup', (req, res) => {
+  console.log(req.body)
     const {username, email, password} = req.body
   
     if(!username || !email || !password){
@@ -36,10 +30,9 @@ router.post('/signup', (req, res) => {
       return;
     }
   
-  
     bcryptjs.genSalt(10)
     .then((salt) => {
-        bcryptjs.hash(password , salt)
+        bcryptjs.hash(password, salt)
           .then((hashPass) => {
               console.log(hashPass)
               // create that user in the db
@@ -48,12 +41,18 @@ router.post('/signup', (req, res) => {
                 .then(() => {
                     res.redirect('/')
                 })
+                .catch((eerr) => {
+                  console.log(eerr)
+                })
           })
     })
   
   })
   
   
+router.get('/login', (req, res) => {
+    res.render('authentication/login.hbs')
+})  
   //login is comparing with the  DB
   
 router.post('/login', (req, res) => {
@@ -92,16 +91,31 @@ router.post('/login', (req, res) => {
             res.render('general/error.hbs')
         })
 })
-  
-  
 
+// Log out & destroying session
+router.get('/logout', (req,res) => {
+  req.session.destroy(() => {
+      res.redirect('/')
+  })
+})
 
+router.get('/my-profile', (req, res) => {
+  if (req.session.loggedInUser) {
+      res.render('profile/my-profile.hbs', {loggedInUser: req.session.loggedInUser});
+  } else {
+      res.redirect('/signin')
+  }
+  });
 
-
-
-
-
-
+// This for making sure the private routes are only available when logged in! Pay attention to order of routes in app.js
+// router.use((req, res, next) => {
+//   if (req.session.loggedInUser) {
+//       next();
+//   }
+//   else {
+//       res.redirect('/signin')
+//   }
+// })
 
 
 module.exports = router;

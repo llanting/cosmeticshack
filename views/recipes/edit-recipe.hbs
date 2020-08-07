@@ -1,0 +1,70 @@
+{{> navbar }}
+
+<h2>Edit {{recipe.name}}</h2>
+
+<div class="edit-form">
+  <form method="POST" action="/my-profile/my-recipes/{{recipe._id}}/edit">
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select class="form-control" id="category" name="category">
+          <option value="face">Face</option>
+          <option value="body">Body</option>
+          <option value="hair">Hair</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="purpose">Purpose</label>
+      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="anti-aging">Anti-Aging
+      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="exfoliating">Exfoliating
+      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="moisturizing">Moisturizing
+      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="perfuming">Perfuming
+      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="purifying">Purifying
+      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="refreshing">Refreshing
+      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="repairing">Repairing
+      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="sunProtection">Sun Protection
+    </div>
+    <div class="form-group">
+      <label for="time">Time</label>
+      <input name="time" type="number" class="form-control" id="time" placeholder="... minutes" value="{{recipe.time}}">
+    </div>
+    <div class="form-group">
+      <label for="cost">Cost</label>
+      <select class="form-control" id="cost" name="cost">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="materials">Materials</label>
+      <input name="materials" type="text" class="form-control" id="materials" placeholder="Bowl, spatula, whisk, etc" value="{{recipe.materials}}">
+    </div>
+    <div class="form-group">
+      <label for="level">Level</label>
+        <select class="form-control" id="level" name="level">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="conservation">Conservation</label>
+      <input name="conservation" type="text" class="form-control" id="conservation" placeholder="For example: three months in freezer" value="{{recipe.conservation}}">
+    </div>
+    {{!-- A form that makes it a list? --}}
+    <div class="form-group">
+      <label for="steps">Steps</label>
+      <input name="steps" type="text" class="form-control" id="steps" placeholder="Describe the process here" value="{{recipe.steps}}">
+    </div>
+    {{!-- Checkboxes, after ingredients are in db --}}
+    {{!-- <div class="form-group">
+      <label for="">Ingredients</label>
+      <input name="" type="text" class="form-control" id="">
+    </div> --}}
+    <div class="form-group">
+      <label for="recipeImage">Image</label>
+      <input name="recipeImage" type="file" class="form-control" id="recipeImage" accept="image/*" value="{{recipe.image}}">
+    </div>
+    <button type="submit" class="btn btn-primary button">Create</button>
+  </form>
+</div>

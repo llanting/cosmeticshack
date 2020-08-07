@@ -41,19 +41,21 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-    
 
+// Session set-up, saved for one day
 app.use(session({
-  secret: "team-dutchies",
+  secret: 'team-dutchies',
   cookie: {
     maxAge: 60*60*24*1000
   },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60
+    ttl: 24 * 60 * 60 
   })
-}));
+}));  
 
+
+hbs.registerPartials(__dirname + "/views/partials")
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -63,19 +65,20 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Cosmeticshack';
 
-// Require routes general and auhtentication above this one, because of 404 in routes/general.js
-const recipes = require('./routes/recipes');
-app.use('/', recipes)
-
-const profile = require('./routes/profile');
-app.use('/', profile)
+const general = require('./routes/general');
+app.use('/', general);
 
 const authentication = require('./routes/authentication');
 app.use('/', authentication);
 
-const general = require('./routes/general');
-app.use('/', general);
-app.locals.title = 'cosmeticshack';
+const recipes = require('./routes/recipes');
+app.use('/', recipes)
+
+
+// Require routes general and auhtentication above this one, because of 404 in routes/general.js
+const profile = require('./routes/profile');
+app.use('/', profile)
+
 
 
 module.exports = app;

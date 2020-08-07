@@ -43,3 +43,15 @@ label {
 
 
 /*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.css.map */
+
+/* Cards all recipes and other pages */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  margin: 10px;
+}
