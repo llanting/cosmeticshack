@@ -4,42 +4,35 @@ const bcryptjs = require('bcryptjs');
 
 const UserModel = require('../models/user.model')
 
-
-
 router.get('/signup', (req, res) => {
     res.render('authentication/signup.hbs')
   })
-  
-  
-router.get('/login', (req, res) => {
-    res.render('authentication/login.hbs')
-})
 
 
 router.post('/signup', (req, res) => {
+  console.log(req.body)
     const {username, email, password} = req.body
   
     if(!username || !email || !password){
-      res.status(500).render('auth/signup.hbs', {errorMessage: 'Please fill in all fields'})
+      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please fill in all fields'})
       return;
     }
     
     const emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
     if (!emailReg.test(email)){
-      res.status(500).render('auth/signup.hbs', {errorMessage: 'Please enter a valid email address'})
+      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please enter a valid email address'})
       return;
     }
     
     const passReg = new RegExp(/^(?=.*\d).{6,20}$/)
     if (!passReg.test(password)){
-      res.status(500).render('auth/signup.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit.'})
+      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit.'})
       return;
     }
   
-  
     bcryptjs.genSalt(10)
     .then((salt) => {
-        bcryptjs.hash(password , salt)
+        bcryptjs.hash(password, salt)
           .then((hashPass) => {
               console.log(hashPass)
               // create that user in the db
@@ -48,31 +41,37 @@ router.post('/signup', (req, res) => {
                 .then(() => {
                     res.redirect('/')
                 })
+                .catch((eerr) => {
+                  console.log(eerr)
+                })
           })
     })
   
   })
   
   
+router.get('/login', (req, res) => {
+    res.render('authentication/login.hbs')
+})  
   //login is comparing with the  DB
   
 router.post('/login', (req, res) => {
     const {username, email, password} = req.body
 
     if(!email || !password){
-        res.status(500).render('auth/signup.hbs', {errorMessage: 'Please fill in all fields'})
+        res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please fill in all fields'})
         return;
     }
 
     const emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
     if (!emailReg.test(email)){
-        res.status(500).render('auth/signup.hbs', {errorMessage: 'Please enter a valid email address'})
+        res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please enter a valid email address'})
         return;
     }
 
     const passReg = new RegExp(/^(?=.*\d).{6,20}$/)
     if (!passReg.test(password)){
-        res.status(500).render('auth/signup.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit.'})
+        res.status(500).render('authentication/signup.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit.'})
         return;
     }
 
@@ -81,25 +80,40 @@ router.post('/login', (req, res) => {
             let doesItMatch = bcryptjs.compareSync(password, userData.passwordHash); 
             if (doesItMatch){
                 req.session.loggedInUser = userData
-                res.redirect('/index')      
+                res.redirect('/')      
             } else {
-                res.status(500).render('auth/login.hbs', {errorMessage: 'Password incorrect'})
+                res.status(500).render('authentication/login.hbs', {errorMessage: 'Password incorrect'})
             }
         }) 
         .catch((err) => {
             console.log('Error ', err)
         })
 })
-  
-  
 
+// Log out & destroying session
+router.get('/logout', (req,res) => {
+  req.session.destroy(() => {
+      res.redirect('/')
+  })
+})
 
+router.get('/my-profile', (req, res) => {
+  if (req.session.loggedInUser) {
+      res.render('my-profile.hbs', {loggedInUser: req.session.loggedInUser});
+  } else {
+      res.redirect('/signin')
+  }
+  });
 
-
-
-
-
-
+// This for making sure the private routes are only available when logged in! Pay attention to order of routes in app.js
+// router.use((req, res, next) => {
+//   if (req.session.loggedInUser) {
+//       next();
+//   }
+//   else {
+//       res.redirect('/signin')
+//   }
+// })
 
 
 module.exports = router;

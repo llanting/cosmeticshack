@@ -7,17 +7,18 @@ const userSchema = new mongoose.Schema({
             required: true, 
             unique: [true, 'username already exists'] 
         }, 
-        usertype: { 
-            type: String, 
-            required: true, 
-            enum: ['user', 'admin'] 
-        }, 
+        // usertype: { 
+        //     type: String, 
+        //     required: true, 
+        //     enum: ['user', 'admin'] 
+           
+        // }, 
         email: { 
             type: String, 
             required: true, 
             unique: [true, 'email already exists'] 
         },
-        password: { 
+        passwordHash: { 
             type: String, 
             required: true 
         }

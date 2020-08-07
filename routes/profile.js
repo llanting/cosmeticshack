@@ -5,11 +5,6 @@ const UserModel = require('../models/user.model')
 const IngredientModel = require('../models/ingredient.model')
 
 
-router.get('/my-profile', (req, res) => {
-    res.render('my-profile.hbs');
-    });
-
-
 router.get('/my-profile/my-shoppinglist', (req, res) => {
     res.render('profile/my-shoppinglist.hbs')
 })
@@ -52,30 +47,11 @@ router.get('/public-profile', (req, res) => {
     res.render('profile/public-profile.hbs')
 })
 
-// ROUTES FOR EDIT AND DELETE RECIPE (on userpage so you know for sure user can only edit/delete his/her own recipes)
-router.get('/my-profile/my-recipes/:id/edit', (req, res) => {
-    RecipesModel.findById(req.params.id)
-        .then((recipe) => {
-            res.render('recipes/edit-recipe.hbs', {recipe})
-        })
-})
 
-router.post('/my-profile/my-recipes/:id/edit', (req, res) => {
-    RecipesModel.findByIdAndUpdate(req.params.id, {$set: req.body})
-        .then(() => {
-            res.redirect('/all-recipes/:id')
-        }).catch(() => {
-            res.render('recipes/edit-recipe.hbs')
-        });
-})
-
-router.post('/my-profile/my-recipes/:id/delete', (req, res) => {
-    RecipesModel.findByIdAndDelete(req.params.id)
-        .then(() => {
-            res.redirect('/my-profile/my-recipes')
-        })
-})
-
+router.get('*', (req, res) => {
+    res.render('general/404.hbs')
+  })
+  
 
 module.exports = router;
 
