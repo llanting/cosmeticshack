@@ -16,24 +16,24 @@ router.post('/my-profile', (req, res) => {
     res.render('my-profile-edit.hbs');
     UserModel.findByIdAndUpdate(req.params.id, {$set: {}})
         .then(() => {
-            res.render('my-profile.hbs');
+            res.render('profile/my-profile.hbs');
         })
 
     });
 
 
 router.get('/my-profile/my-recipes', (req, res) => {
-    res.render('my-recipes.hbs');
+    res.render('profile/my-recipes.hbs');
     });
 
 
 router.get('/my-profile/my-favorites', (req, res) => {
-    res.render('my-favorites.hbs');
+    res.render('profile/my-favorites.hbs');
     });
 
 
 router.get('/my-profile/my-comments', (req, res) => {
-    res.render('my-comments.hbs');
+    res.render('profile/my-comments.hbs');
     });
 
     

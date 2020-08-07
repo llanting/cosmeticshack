@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const RecipesModel = require('../models/recipe.model')
+const UserModel = require('../models/user.model')
 
 // All recipes
 router.get('/all-recipes', (req, res) => {
@@ -71,10 +72,16 @@ router.post('/my-profile/my-recipes/:id/delete', (req, res) => {
 // Test for adding favorite button
 router.post('/my-recipes/my-favorites/:id', (req, res) => {
     RecipesModel.findById(req.params.id)
-        .then((result) => {
-            
+        .then((recipe) => {
+            let currentuser = req.session.loggedInUser;
+            UserModel.findByIdAndUpdate(currentuser._id, {$set: {favorites: [recipe]}})
+                .then((result) => {
+                    res.redirect('/all-recipes')
+                }).catch((err) => {
+                    console.log(err)
+                });
         }).catch((err) => {
-            
+            console.log(err)
         });
 })
 

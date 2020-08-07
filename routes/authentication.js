@@ -99,7 +99,7 @@ router.get('/logout', (req,res) => {
 
 router.get('/my-profile', (req, res) => {
   if (req.session.loggedInUser) {
-      res.render('my-profile.hbs', {loggedInUser: req.session.loggedInUser});
+      res.render('profile/my-profile.hbs', {loggedInUser: req.session.loggedInUser});
   } else {
       res.redirect('/signin')
   }
