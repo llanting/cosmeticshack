@@ -11,8 +11,13 @@ const path         = require('path');
 const bcryptjs     = require('bcryptjs');
 const session      = require('express-session');
 const MongoStore   = require('connect-mongo')(session);
+// const cloudinary   = require('cloudinary').v2;
 
-
+// cloudinary.config({ 
+//   cloud_name: 'dumj6yt5u', 
+//   api_key: '315933327229168', 
+//   api_secret: process.env.API_SECRET
+// });
 
 mongoose
   .connect('mongodb://localhost/cosmetichack', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -54,6 +59,11 @@ app.use(session({
   })
 }));  
 
+// This doesn't seem to work. In the right place?
+app.use((req,res,next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 hbs.registerPartials(__dirname + "/views/partials")
 
@@ -62,8 +72,10 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+
 // default value for title local
 app.locals.title = 'Cosmeticshack';
+
 
 const general = require('./routes/general');
 app.use('/', general);

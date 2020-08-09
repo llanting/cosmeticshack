@@ -1,4 +1,3 @@
-
 <div id="index-intro" class="index-odd">
 
     <h1>Welcome to {{title}}</h1>
@@ -6,14 +5,31 @@
 
 </div>
 
-
-<div id="index-recipes" class="index-even">
-
-    <h2>Recipes</h2>
-    <div>Add some recipes</div>
-
+<div class="discover">
+    <h4>DISCOVER THE RECIPES</h4>
 
 </div>
 
+<div id="index-recipes" class="index-even">
+    
+  <div class="card-container">
+  {{#each recipe}}
+    <div class="card card-small">
+      <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{this.name}}</h5>
+      </div>
+    </div>
+  {{/each}}
+  </div>
 
+</div>
 
+{{#if currentUser}}
+
+{{else}}
+<div id = "log-sign-bar">
+        <a href= "/signup" class="btn btn-sm btn-outline-secondary sign">Sign Up</a>
+        <a href= "/login" class="btn btn-sm btn-outline-secondary log">Log In</a>
+{{/if}} 
+</div>

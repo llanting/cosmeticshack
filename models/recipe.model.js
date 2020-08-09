@@ -53,11 +53,10 @@ let RecipeSchema = new mongoose.Schema({
             type: Number,
             default: 0
         },
-        // created: {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: 'user', 
-        //     required: true
-        // },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
         date: {
             type: Date, 
             default: Date.now

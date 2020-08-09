@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const RecipesModel = require('../models/recipe.model')
 const UserModel = require('../models/user.model')
+const cloudinary   = require('cloudinary').v2;
 
 // All recipes
 router.get('/all-recipes', (req, res) => {
@@ -15,11 +16,15 @@ router.get('/all-recipes', (req, res) => {
 router.get('/all-recipes/:recipeId', (req, res) => {
     RecipesModel.findById(req.params.recipeId)
         .then((recipe) => {
-            res.render('recipes/recipe-details.hbs', {recipe})
-        })
-        .catch((err) => {
-            console.log(err)
-    })
+            RecipesModel.findById(recipe._id)
+                // To insert user-info, next to id
+                .populate('user')
+                .then((recipe) => {
+                    res.render('recipes/recipe-details.hbs', {recipe})
+                })
+                .catch((err) => console.log(err))
+            })
+        .catch((err) => console.log(err))
 })
 
 // Creating recipe
@@ -36,12 +41,16 @@ router.post('/create-recipe', (req, res) => {
     }
 
     RecipesModel.create(req.body)
-        .then((recipe) => {
-            res.redirect('/all-recipes/' + recipe._id)
-        }).catch((err) => {
-            console.log(err)
-            res.render('recipes/create-recipe.hbs')
-        });
+        .then((createdRecipe) => {
+            cloudinary.uploader.upload(image, function(error, result) {console.log(result, error)})
+            // We could pass the userid if that is included in the url
+            RecipesModel.findByIdAndUpdate(createdRecipe._id, {$push: {user: req.session.loggedInUser._id}})
+            .then((recipe) => {
+                res.redirect('/all-recipes/' + recipe._id)
+                })
+            .catch((err) => console.log(err))
+        })
+        .catch((err) => console.log(err));
 })
 
 // Edit and delete recipe
@@ -67,22 +76,21 @@ router.post('/my-profile/my-recipes/:id/delete', (req, res) => {
         .then(() => {
             res.redirect('/my-profile/my-recipes')
         })
+        .catch((err) => console.log(err))
 })
 
-// Test for adding favorite button
+// Favorite button route
 router.post('/my-recipes/my-favorites/:id', (req, res) => {
+    console.log(req.params.id)
     RecipesModel.findById(req.params.id)
         .then((recipe) => {
             let currentuser = req.session.loggedInUser;
-            UserModel.findByIdAndUpdate(currentuser._id, {$set: {favorites: [recipe]}})
-                .then((result) => {
+            //Pushes new recipe into favorites. But doesn't check for duplicates!
+            UserModel.findByIdAndUpdate(currentuser._id, {$push: {favorites: [recipe]}})
+                .then(() => {
                     res.redirect('/all-recipes')
-                }).catch((err) => {
-                    console.log(err)
-                });
-        }).catch((err) => {
-            console.log(err)
-        });
+                }).catch((err) =>  console.log(err));
+        }).catch((err) =>  console.log(err));
 })
 
 module.exports = router;
