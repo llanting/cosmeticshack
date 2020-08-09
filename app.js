@@ -54,6 +54,11 @@ app.use(session({
   })
 }));  
 
+// This doesn't seem to work. In the right place?
+app.use((req,res,next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 hbs.registerPartials(__dirname + "/views/partials")
 
@@ -62,8 +67,10 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+
 // default value for title local
 app.locals.title = 'Cosmeticshack';
+
 
 const general = require('./routes/general');
 app.use('/', general);

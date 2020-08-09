@@ -1,16 +1,10 @@
-
-
-
-
-
-
 <div>
 
     <h4>Hi {{currentUser.username}}, welcome to your profile page!</h4>
     <h6>You can modify your personal details:</h6>
 
     
-    <form method="POST" action="/my-profile-edit">
+    <form method="POST" action="/my-profile/{{currentUser._id}}/edit">
 
         <label for="username">Username</label>
         <input id="username" type="text" name="username" value={{currentUser.username}}>

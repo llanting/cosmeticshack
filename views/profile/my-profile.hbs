@@ -1,11 +1,9 @@
-
-
 <div>
 
     <h4>Hi {{currentUser.username}}, welcome to your profile page!</h4>
     <h6>You can modify your personal details:</h6>
 
-    <form method="GET" action="/my-profile-edit">
+    <form method="GET" action="/my-profile/{{currentUser._id}}/edit">
 
         <label for="username">Username</label>
         <span>{{currentUser.username}}</span>
@@ -37,5 +35,4 @@
 
 
 </div>
-
 

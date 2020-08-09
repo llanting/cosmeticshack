@@ -1,71 +1,123 @@
-{{> navbar }}
-<h2 class="index-header">Create a new recipe</h2>
 
-<div class="edit-form">
+
+<div class="discover">
+    <h4>Create a new recipe</h4>
+
+</div>
+
+<div class="edit-form create-form">
   <form method="POST" action="/create-recipe" >
     <div class="form-group">
-      <label for="recipeName">Recipe name</label>
+      <label for="recipeName" class="form-label">Recipe name</label>
       <input name="name" type="text" class="form-control" id="recipeName">
     </div>
     <div class="form-group">
-      <label for="category">Category</label>
+      <label for="category" class="form-label">Category</label>
       <select class="form-control" id="category" name="category">
           <option value="face">Face</option>
           <option value="body">Body</option>
           <option value="hair">Hair</option>
         </select>
     </div>
-    <div class="form-group">
-      <label for="purpose">Purpose</label>
-      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="anti-aging">Anti-Aging
-      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="exfoliating">Exfoliating
-      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="moisturizing">Moisturizing
-      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="perfuming">Perfuming
-      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="purifying">Purifying
-      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="refreshing">Refreshing
-      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="repairing">Repairing
-      <input name="purpose" type="checkbox" class="form-control" id="purpose" value="sunProtection">Sun Protection
+    <div class="form-group ">
+      <label for="purpose" class="form-label">Purpose</label>
+      <div "check-list">
+        <div class="form-check">
+          <input class="form-check-input" name="purpose" type="checkbox" value="anti-aging" id="purpose">
+          <label class="form-check-label" for="purpose">
+            Anti-aging
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" name="purpose" type="checkbox" value="exfoliating" id="purpose">
+          <label class="form-check-label" for="purpose">
+            Exfoliating
+          </label>
+        </div>
+         <div class="form-check">
+          <input class="form-check-input" name="purpose" type="checkbox" value="moisturizing" id="purpose">
+          <label class="form-check-label" for="purpose">
+            Moisturizing
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" name="purpose" type="checkbox" value="perfuming" id="purpose">
+          <label class="form-check-label" for="purpose">
+            Perfuming
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" name="purpose" type="checkbox" value="purifying" id="purpose">
+          <label class="form-check-label" for="purpose">
+            Purifying
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" name="purpose" type="checkbox" value="refreshing" id="purpose">
+          <label class="form-check-label" for="purpose">
+            Refreshing
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" name="purpose" type="checkbox" value="repairing" id="purpose">
+          <label class="form-check-label" for="purpose">
+            Repairing
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" name="purpose" type="checkbox" value="sun-protection" id="purpose">
+          <label class="form-check-label" for="purpose">
+            Sun-Protection
+          </label>
+        </div>
+      </div>
     </div>
+     {{!-- A form that makes it a list? --}}
     <div class="form-group">
-      <label for="time">Time</label>
-      <input name="time" type="number" class="form-control" id="time" placeholder="... minutes">
-    </div>
-    <div class="form-group">
-      <label for="cost">Cost</label>
-      <select class="form-control" id="cost" name="cost">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-    </div>
-    <div class="form-group">
-      <label for="materials">Materials</label>
-      <input name="materials" type="text" class="form-control" id="materials" placeholder="Bowl, spatula, whisk, etc">
-    </div>
-    <div class="form-group">
-      <label for="level">Level</label>
-        <select class="form-control" id="level" name="level">
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-    </div>
-    <div class="form-group">
-      <label for="conservation">Conservation</label>
-      <input name="conservation" type="text" class="form-control" id="conservation" placeholder="For example: three months in freezer">
-    </div>
-    {{!-- A form that makes it a list? --}}
-    <div class="form-group">
-      <label for="steps">Steps</label>
+      <label for="steps" class="form-label">Steps</label>
       <input name="steps" type="text" class="form-control" id="steps" placeholder="Describe the process here">
     </div>
+    <div class="form-group">
+      <label for="time" class="form-label">Time</label>
+      <input name="time" type="number" class="form-control" id="time" placeholder="... minutes">
+    </div>
+
+    <div class="form-group">
+      <label for="materials" class="form-label">Materials</label>
+      <input name="materials" type="text" class="form-control" id="materials" placeholder="Bowl, spatula, whisk, etc">
+    </div>
+   
+    <div class="form-group">
+      <label for="conservation" class="form-label">Conservation</label>
+      <input name="conservation" type="text" class="form-control" id="conservation" placeholder="For example: three months in freezer">
+    </div>
+   
     {{!-- Checkboxes, after ingredients are in db --}}
     {{!-- <div class="form-group">
       <label for="">Ingredients</label>
       <input name="" type="text" class="form-control" id="">
     </div> --}}
+     
+    <div class="form-row">
+      <div class="col-md-6 mb-3 cost">
+        <label for="cost" class="form-label">Cost</label>
+        <select class="form-control" id="cost" name="cost">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3 cost">
+        <label for="level" class="form-label">Level</label>
+        <select class="form-control" id="level" name="level">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+    </div>
     <div class="form-group">
-      <label for="recipeImage">Image</label>
+      <label for="recipeImage" class="form-label">Image</label>
       <input name="recipeImage" type="file" class="form-control" id="recipeImage" accept="image/*">
     </div>
     <button type="submit" class="btn btn-primary button">Create</button>
