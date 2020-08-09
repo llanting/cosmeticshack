@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const RecipesModel = require('../models/recipe.model')
 const UserModel = require('../models/user.model')
+const cloudinary   = require('cloudinary').v2;
 
 // All recipes
 router.get('/all-recipes', (req, res) => {
@@ -41,6 +42,7 @@ router.post('/create-recipe', (req, res) => {
 
     RecipesModel.create(req.body)
         .then((createdRecipe) => {
+            cloudinary.uploader.upload(image, function(error, result) {console.log(result, error)})
             // We could pass the userid if that is included in the url
             RecipesModel.findByIdAndUpdate(createdRecipe._id, {$push: {user: req.session.loggedInUser._id}})
             .then((recipe) => {

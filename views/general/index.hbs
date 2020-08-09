@@ -25,9 +25,11 @@
 
 </div>
 
+{{#if currentUser}}
 
+{{else}}
 <div id = "log-sign-bar">
         <a href= "/signup" class="btn btn-sm btn-outline-secondary sign">Sign Up</a>
         <a href= "/login" class="btn btn-sm btn-outline-secondary log">Log In</a>
-      
+{{/if}} 
 </div>
