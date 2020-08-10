@@ -1,0 +1,65 @@
+{
+  "name": "sellect.js",
+  "version": "1.0.1",
+  "description": "sellect.js scaffolded with generator-microjs v0.1.2.",
+  "author": {
+    "name": "Lidia Freitas",
+    "email": "lidiafreitas.me@gmail.com",
+    "url": "https://github.com/lidia-freitas"
+  },
+  "homepage": "https://github.com/lidia-freitas/sellect.js",
+  "bugs": {
+    "url": "https://github.com/lidia-freitas/sellect.js/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://lidia-freitas.mit-license.org"
+    }
+  ],
+  "maintainers": [],
+  "contributors": [
+    {
+      "name": "Daniel Lamb",
+      "email": "dlamb.open.source@gmail.com",
+      "url": "https://github.com/daniellmb"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lidia-freitas/sellect.js.git"
+  },
+  "main": "sellect.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "keywords": [
+    "micro",
+    "framework",
+    "library",
+    "select",
+    "dropdown",
+    "autocomplete"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-complexity": "*",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^2.2.0",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-karma": "*",
+    "jasmine-core": "^2.5.2",
+    "jit-grunt": "^0.10.0",
+    "karma": "*",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "*",
+    "karma-jasmine": "*",
+    "karma-phantomjs-launcher": "*"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

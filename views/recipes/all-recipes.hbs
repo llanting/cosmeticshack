@@ -21,7 +21,7 @@
       {{!-- Image of cost --}}
       <li class="list-group-item">Cost: {{this.cost}}</li>
     </ul>
-    <div class="card-body card-btns">
+    <div class="card-body card-btns" id="recipe-favorite-btn">
       <a href="/all-recipes/{{this._id}}" class="card-link btn">See recipe</a>
       {{!-- Image of star --}}
       <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" class="form-links">

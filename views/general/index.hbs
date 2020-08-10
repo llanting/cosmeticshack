@@ -14,14 +14,18 @@
     
   <div class="card-container">
   {{#each recipe}}
-    <div class="card card-small">
-      <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{this.name}}</h5>
-      </div>
-    </div>
+    <a href="/all-recipes/{{this._id}}" class="card-link btn">
+      <div class="card card-small">
+        <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{this.name}}</h5>
+        </div>
+      </div>     
+    </a>    
   {{/each}}
   </div>
+
+  <a href= "/all-recipes" class="btn btn-sm btn-outline-secondary sign">See more recipes</a>
 
 </div>
 

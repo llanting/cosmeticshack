@@ -1,16 +1,22 @@
 
 <h2>{{recipe.name}}</h2>
 <img src="{{recipe.image}}">
-
-{{!-- <p>{{recipe.ingredients}}</p> --}}
-<p>Steps: {{recipe.steps}}</p>
-<p>Materials: {{recipe.materials}}</p>
 <p>Category: {{recipe.category}}</p>
 <p>Purpose: {{recipe.purpose}}</p>
-<p>Difficulty: {{recipe.level}}</p>
+
+
+<p>Difficulty: <img src={{difficulty}} alt="level"></p>
+
+
 <p>Time: {{recipe.time}}</p>
 <p>Cost: {{recipe.cost}}</p>
 <p>Conservation: {{recipe.conservation}}</p>
+<p>{{recipe.ingredients}}</p>
+<p>Steps: {{recipe.steps}}</p>
+<p>Materials: {{recipe.materials}}</p>
+
 {{!-- <p>Rating: {{recipe.rating}}</p> --}}
 <p>Created by: {{recipe.user.username}}</p>
-<p>Date: {{recipe.date}}</p>
+
+{{!-- must change date format
+<p>Created on: {{recipe.date}}</p> --}}

@@ -23,6 +23,7 @@ router.get('/my-profile/:userId/edit', (req, res) => {
         });
 });
 
+
 router.post('/my-profile/:userId/edit', (req, res) => {
     UserModel.findByIdAndUpdate(req.params.userId, {$set: req.body})
         .then(() => {
