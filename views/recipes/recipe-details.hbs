@@ -12,5 +12,5 @@
 <p>Cost: {{recipe.cost}}</p>
 <p>Conservation: {{recipe.conservation}}</p>
 {{!-- <p>Rating: {{recipe.rating}}</p> --}}
-<p>Created by: {{recipe.user.username}}</p>
-<p>Date: {{recipe.date}}</p>
+<p>Created by: <a href="/public-profile/{{recipe.user._id}}">{{recipe.user.username}}</a></p>
+<p>Date: {{date}}</p>

@@ -11,6 +11,9 @@ const path         = require('path');
 const bcryptjs     = require('bcryptjs');
 const session      = require('express-session');
 const MongoStore   = require('connect-mongo')(session);
+const moment       = require('moment');
+
+moment().format(); 
 // const cloudinary   = require('cloudinary').v2;
 
 // cloudinary.config({ 

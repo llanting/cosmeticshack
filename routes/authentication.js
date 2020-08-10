@@ -40,8 +40,8 @@ router.post('/signup', (req, res) => {
                 .then(() => {
                     res.redirect('/')
                 })
-                .catch((eerr) => {
-                  console.log(eerr)
+                .catch((err) => {
+                  console.log(err)
                 })
           })
     })
@@ -79,7 +79,7 @@ router.post('/login', (req, res) => {
             let doesItMatch = bcryptjs.compareSync(password, userData.passwordHash); 
             if (doesItMatch){
                 req.session.loggedInUser = userData
-                res.redirect('/my-profile')
+                res.redirect('/my-profile/' + req.session.loggedInUser._id)
             } else {
                 res.status(500).render('authentication/login.hbs', {errorMessage: 'Password incorrect'})
             }

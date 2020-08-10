@@ -22,14 +22,19 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
           <a class="nav-link nav-text" href="/">Home</a>
+          {{#if currentUser}}
           <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
-          <a class="nav-link nav-text" href="/my-profile">My Profile</a>
-          <a class="nav-link nav-text" href="/my-profile/my-favorites">My Favorites</a>
-          <a class="nav-link nav-text" href="/my-profile/my-recipes">My Recipes</a>
+          <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
+          <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
+          <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
           <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
+          {{/if}}
       </div>
       {{#if currentUser}}
       <a href="/logout" class="btn btn-sm btn-outline-secondary">Log Out</a>
+      {{else}}
+      <a href="/signup" class="btn btn-sm btn-outline-secondary">Sign Up</a>
+      <a href="/login" class="btn btn-sm btn-outline-secondary">Log In</a>
       {{/if}}
       </div>
     </nav>
