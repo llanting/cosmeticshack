@@ -7,7 +7,7 @@
 </div>
 
 <div class="edit-form create-form">
-  <form method="POST" action="/create-recipe" enctype="multipart/form-data">
+  <form method="POST" action="/create-recipe">
     <div class="form-group">
       <label for="recipeName" class="form-label">Recipe name</label>
       <input name="name" type="text" class="form-control" id="recipeName">
@@ -93,7 +93,7 @@
 
 
 
-    <input type="text" id="my-element">
+    {{!-- <input type="text" id="my-element"> --}}
 
   </div>
 
@@ -141,8 +141,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="recipeImage" class="form-label">Image</label>
-      <input name="recipeImage" type="file" class="form-control" id="recipeImage" accept="image/*">
+      <label for="imageUrl" class="form-label">Image</label>
+      <input name="imageUrl" type="file" class="form-control" id="imageUrl" >
     </div>
     <button type="submit" class="btn btn-primary button">Create</button>
   </form>

@@ -1,12 +1,12 @@
 
 <div class="discover">
-    <h4>ALL RECIPES</h4>
+    <h4 class="h4-all">ALL RECIPES</h4>
 
 </div>
 
 {{!-- Add the filter to search --}}
 
-<div class="card-container">
+<div class="card-container color-all">
   {{#each recipe}}
   <div class="card" >
     <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
@@ -21,11 +21,11 @@
       {{!-- Image of cost --}}
       <li class="list-group-item">Cost: {{this.cost}}</li>
     </ul>
-    <div class="card-body card-btns" id="recipe-favorite-btn">
-      <a href="/all-recipes/{{this._id}}" class="card-link btn">See recipe</a>
+    <div class="card-body card-btns" id="card-btns">
+      <a href="/all-recipes/{{this._id}}" class="card-link btn sign btn-recipes">See recipe</a>
       {{!-- Image of star --}}
-      <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" class="form-links">
-          <button type="submit" class="card-link fav-btn btn">Favorite</button>
+      <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" class="form-links ">
+          <button type="submit" class="card-link fav-btn btn sign btn-recipes">Favorite</button>
       </form>
     </div>
   </div>

@@ -10,9 +10,9 @@ body {
   width: 175px;
 }
 
-a {
-  color: #00B7FF; }
-
+a:hover {
+  color: #8E6C63; 
+}
 
 
 form {
@@ -77,6 +77,12 @@ label {
   color: #fff2e4;
 }
 
+.sign:hover {
+  background-color: #8E6C63;
+  border-color: #8E6C63;
+  color:  #fff2e4;
+}
+
 .log {
   background-color: #8E6C63;
   padding: 5px 20px;
@@ -93,11 +99,7 @@ label {
   
 }
 
-.discover > h4 {
-  color: #e3ad9f;
-  display: flex;
-  align-items: center;
-}
+
 
 /* Navbar */
 .navbar-class {
@@ -117,8 +119,19 @@ label {
   color: black;
 }
 
+/* All recipes */
+.color-all {
+  background-color: #fff2e4;
+}
 
-
+.h4-all {
+  color: #e3ad9f;
+  display: flex;
+  align-items: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 45px;
+  margin: 50px;
+}
 
 /* Cards all recipes and other pages */
 .card-container {
@@ -129,8 +142,13 @@ label {
 }
 
 .card {
-  margin: 10px;
+  margin: 30px;
   width: 18rem;
+  color: #8E6C63;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .fav-btn {
@@ -140,11 +158,17 @@ label {
 .btn {
   color: #8E6C63;
   background-color: #fff2e4;
+  border-color: #8E6C63;
 }
 
 .card-btns {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+
+}
+
+.btn-recipes {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 
@@ -167,19 +191,84 @@ label {
 }
 
 
-/* Sign up */
+/* Sign up & Log in */
 #sign-up {
-  background-color: black;
+  background-image: url('/images/cetteup-d3ci37Gcgxg-unsplash.jpg');
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-/* #recipe-favorite-btn {
+
+.logo-signup {
+  margin-bottom: 50px;
+  width: 20em;
+}
+
+#sign-up h2 {
+  margin-bottom: 25px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.btn-signup {
+  margin: 20px;
+  padding: 5px 50px;
+  font-size: 23px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  border-color: #8E6C63;
+}
+
+#sign-up form {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-} */
+}
+
+#sign-up form label {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+}
+
+.input-signup {
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px;
+  width: 80%;
+}
+
+.btn-login {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: transparent;
+  border-color: #8E6C63;
+}
+
+.password-info {
+  text-align: center;
+  width: 70%;
+}
+
+.error-signup {
+  margin-top: 15px;
+  
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 
 
+
+/* Media query for laptop */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+  /* Add styles here */
+
+  /* Sign up & Log In */
+  .logo-signup {
+    margin-top: 30px;
+    margin-bottom: 90px;
+    width: 29em;
+  }
+
+}
 
 /*# sourceMappingURL=style.css.map */
