@@ -31,7 +31,7 @@ let RecipeSchema = new mongoose.Schema({
         },
         level: {
             type: String,
-            enum: ['easy', 'medium', 'difficult'],
+            enum: ['easy', 'medium', 'hard'],
             required: true
         },
         conservation: {
@@ -44,7 +44,7 @@ let RecipeSchema = new mongoose.Schema({
         },
         // ingedrients: [{
         //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: 'ingedrients', 
+        //     ref: 'ingedrient', 
         //     required: true
         // }],
 

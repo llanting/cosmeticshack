@@ -23,6 +23,7 @@ router.get('/my-profile/:userId/edit', (req, res) => {
     });
 
 router.post('/my-profile/:userId/edit', (req, res) => {
+    const {username, email, password} = req.body
     UserModel.findByIdAndUpdate(req.params.userId, {$set: req.body})
         .then((user) => {
             res.redirect('/my-profile/' + user._id);

@@ -1,9 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const RecipesModel = require('../models/recipe.model');
-const UserModel = require('../models/user.model');
-//const cloudinary   = require('cloudinary').v2;
-const moment       = require('moment');
+const express       = require('express');
+const router        = express.Router();
+const RecipesModel  = require('../models/recipe.model');
+const UserModel     = require('../models/user.model');
+const moment        = require('moment');
+//const multer        = require('multer');
+
+// const upload        = multer({ dest: '../public/uploads' });
+//const uploadCloud   = require('../config/cloudinary.js');
 
 // All recipes
 router.get('/all-recipes', (req, res) => {
@@ -13,7 +16,7 @@ router.get('/all-recipes', (req, res) => {
             res.render('recipes/all-recipes.hbs', {recipe, currentUser})
         })
         .catch((err) => console.log(err));
-})
+    });
 
 // Recipe-details
 router.get('/all-recipes/:recipeId', (req, res) => {
@@ -27,13 +30,13 @@ router.get('/all-recipes/:recipeId', (req, res) => {
             res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser})
         })
         .catch((err) => console.log(err))
-})
+    });
 
 // Creating recipe
 router.get('/create-recipe', (req, res) => {
     let currentUser = req.session.loggedInUser
     res.render('recipes/create-recipe.hbs', {currentUser})
-})
+    });
 
 router.post('/create-recipe', (req, res) => {
     const {name, category, time, cost, materials, level, conservation, steps, image, ingredients} = req.body
@@ -45,15 +48,14 @@ router.post('/create-recipe', (req, res) => {
 
     RecipesModel.create(req.body)
         .then((createdRecipe) => {
-            // cloudinary.uploader.upload(image, function(error, result) {console.log(result, error)})
             RecipesModel.findByIdAndUpdate(createdRecipe._id, {$push: {user: req.session.loggedInUser._id}})
-            .then((recipe) => {
-                res.redirect('/all-recipes/' + recipe._id);
-                UserModel.findByIdAndUpdate(req.session.loggedInUser._id, {$push: {recipes: [recipe]}})
-                .then(() => console.log('succes'))
-                .catch((err) =>  console.log(err));
+                .then((recipe) => {
+                    res.redirect('/all-recipes/' + recipe._id);
+                    UserModel.findByIdAndUpdate(req.session.loggedInUser._id, {$push: {recipes: [recipe]}})
+                        .then(() => console.log('succes'))
+                        .catch((err) =>  console.log(err));
                 })
-            .catch((err) => console.log(err))
+                .catch((err) => console.log(err))
         })
         .catch((err) => console.log(err));
     });

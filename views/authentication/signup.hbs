@@ -1,27 +1,31 @@
- <h2>SIGN UP</h2>
+<div id="sign-up">
+
+  <h2>SIGN UP</h2>
 
 
-<form method="POST" action="/signup">
+  <form method="POST" action="/signup">
 
-    <label for="username">Username</label>
-    <input id="username" type="text" name="username" placeholder="Enter a username">
+      <label for="username">Username</label>
+      <input id="username" type="text" name="username" placeholder="Enter a username">
 
-    <label for="email">Email</label>
-    <input id="email" type="email" name="email" placeholder="Enter your email">
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" placeholder="Enter your email">
 
-    <label for="password">Password</label>
-    <figcaption>Min 6 characters, containing at least one letter and one number.</figcaption>
-    <input id="password" type="password" name="password" placeholder="Enter password">
+      <label for="password">Password</label>
+      <figcaption>Min 6 characters, containing at least one letter and one number.</figcaption>
+      <input id="password" type="password" name="password" placeholder="Enter password">
 
-    <button type="submit" >Sign Up</button>
+      <button type="submit" >Sign Up</button>
 
-</form>
+  </form>
 
 
-{{#if errorMessage}}
-  <div class="error">{{errorMessage}}</div>
-{{/if}}
+  {{#if errorMessage}}
+    <div class="error">{{errorMessage}}</div>
+  {{/if}}
 
-{{#if successMessage}}
-  <div>{{successMessage}}</div>
-{{/if}}
+  {{#if successMessage}}
+    <div>{{successMessage}}</div>
+  {{/if}}
+
+</div>
