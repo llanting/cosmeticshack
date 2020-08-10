@@ -124,9 +124,9 @@ Collaborative platform with library of recipes for natural cosmetics products.
     type: String,
     required: true,
   },
-  ingedrients: [{
+  ingredients: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'ingedrients'
+    ref: 'ingredients'
   }, required: true], 
   rating: {
     type: Number

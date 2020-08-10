@@ -2,11 +2,14 @@ const express       = require('express');
 const router        = express.Router();
 const RecipesModel  = require('../models/recipe.model');
 const UserModel     = require('../models/user.model');
+const IngredientModel = require('../models/ingredient.model');
 const moment        = require('moment');
 //const multer        = require('multer');
 
 // const upload        = multer({ dest: '../public/uploads' });
 //const uploadCloud   = require('../config/cloudinary.js');
+
+
 
 // All recipes
 router.get('/all-recipes', (req, res) => {
@@ -28,20 +31,37 @@ router.get('/all-recipes/:recipeId', (req, res) => {
             // Changes recipe.date to a readable format
             let newDate = moment(recipe.date).format("MMMM DD, YYYY");
             res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser})
-        })
+    
+            if (recipe.level == "easy"){
+            res.render('recipes/recipe-details.hbs', {recipe, difficulty: '/images/1-round.jpg'})
+            } else if (recipe.level == "medium"){
+            res.render('recipes/recipe-details.hbs', {recipe, difficulty: '/images/2-round.jpg'})
+            } else if (recipe.level == "hard"){
+            res.render('recipes/recipe-details.hbs', {recipe, difficulty: '/images/3-round.jpg'})
+            }           
+            })
+            .catch((err) => console.log(err))  
         .catch((err) => console.log(err))
     });
 
+
+
+
 // Creating recipe
 router.get('/create-recipe', (req, res) => {
-    let currentUser = req.session.loggedInUser
-    res.render('recipes/create-recipe.hbs', {currentUser})
-    });
+    IngredientModel.find()
+    .then((ingredients) => {
+        res.render('recipes/create-recipe.hbs', {ingredients})
+    })
+    .catch((err)=>{
+        console.log("error is", err)
+    })
+})
 
 router.post('/create-recipe', (req, res) => {
     const {name, category, time, cost, materials, level, conservation, steps, image, ingredients} = req.body
     
-    if(!name || !category || !time || !cost || !materials || !level || !conservation || !steps){
+    if(!name || !category || !time || !cost || !materials || !level || !conservation || !steps || !ingredients){
       res.status(500).render('recipes/create-recipe.hbs', {errorMessage: 'Please fill in all fields'})
       return;
     }

@@ -23,9 +23,11 @@
     "morgan": "^1.9.0",
     "multer": "^1.4.2",
     "node-sass-middleware": "^0.11.0",
+    "sellect.js": "^1.0.0",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
   }
+
 }

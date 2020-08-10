@@ -14,18 +14,16 @@
       <label for="password">Password</label>
       <figcaption>Min 6 characters, containing at least one letter and one number.</figcaption>
       <input id="password" type="password" name="password" placeholder="Enter password">
-
+ 
       <button type="submit" >Sign Up</button>
+
+      <a href= "/login" class="btn btn-sm btn-outline-secondary sign">Already have an account? Then Log in!</a>
 
   </form>
 
 
   {{#if errorMessage}}
     <div class="error">{{errorMessage}}</div>
-  {{/if}}
-
-  {{#if successMessage}}
-    <div>{{successMessage}}</div>
   {{/if}}
 
 </div>

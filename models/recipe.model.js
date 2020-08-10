@@ -42,11 +42,10 @@ let RecipeSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-        // ingedrients: [{
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: 'ingedrient', 
-        //     required: true
-        // }],
+        ingredients: [{
+            type: mongoose.Schema.Types.String,
+            required: true
+        }],
 
         //Number of favorites? Can we count that?
         rating: {
@@ -71,6 +70,15 @@ let RecipeSchema = new mongoose.Schema({
         timestamps: true
     }
 )
+
+
+
+
+
+
+
+
+
 
 module.exports = mongoose.model('Recipe', RecipeSchema);
 
