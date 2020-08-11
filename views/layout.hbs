@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <script src="Select7/select7.js"></script>
@@ -18,30 +18,43 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-class">
-    <a class="navbar-brand nav-text" href="/"><img src="/images/logo.png" alt="logo" id="header-logo"></a>
-      <button class="navbar-toggler hamburger" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-          <a class="nav-link nav-text" href="/">Home</a>
+    <header>
+
+      <nav class="navbar navbar-expand-lg navbar-class">
+
+        <a class="navbar-brand nav-text" href="/"><img src="/images/logo.png" alt="logo" id="header-logo"></a>
+
+        <button class="navbar-toggler hamburger" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+          <div class="navbar-nav">
+
+            <a class="nav-link nav-text" href="/">Home</a>
+            {{#if currentUser}}
+            <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
+            <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
+            {{/if}}
+
+          </div>
+
           {{#if currentUser}}
-          <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
-          <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
-          <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
-          <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
-          <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
+            <a href="/logout" class="btn btn-sm btn-outline-secondary">Log Out</a>
+          {{else}}
+            <a href="/signup" class="btn btn-sm btn-outline-secondary">Sign Up</a>
+            <a href="/login" class="btn btn-sm btn-outline-secondary">Log In</a>
           {{/if}}
-      </div>
-      {{#if currentUser}}
-      <a href="/logout" class="btn btn-sm btn-outline-secondary">Log Out</a>
-      {{else}}
-      <a href="/signup" class="btn btn-sm btn-outline-secondary">Sign Up</a>
-      <a href="/login" class="btn btn-sm btn-outline-secondary">Log In</a>
-      {{/if}}
-      </div>
-    </nav>
+
+        </div>
+      </nav>
+      
+    </header>
+    
 
     {{{body}}}
 

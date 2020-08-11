@@ -59,9 +59,9 @@ router.get('/create-recipe', (req, res) => {
 })
 
 router.post('/create-recipe', (req, res) => {
-    const {name, category, time, cost, materials, level, conservation, steps, image, ingredients} = req.body
+    const {name, category, time, cost, materials, level, purpose, conservation, steps, image, ingredients} = req.body
     
-    if(!name || !category || !time || !cost || !materials || !level || !conservation || !steps || !ingredients){
+    if(!name || !category || !purpose || !time || !cost || !materials || !level || !conservation || !steps || !ingredients){
       res.status(500).render('recipes/create-recipe.hbs', {errorMessage: 'Please fill in all fields'})
       return;
     }
