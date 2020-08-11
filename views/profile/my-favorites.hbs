@@ -1,0 +1,23 @@
+<div class="content-page">
+
+
+  <h4>My favorite recipes</h4>
+  <div class="card-container">
+    {{#each currentUser.favorites}}        
+      <a href="/all-recipes/{{this._id}}" class="card-link">    
+        <div class="card" style="width: 14rem;">
+          <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+          <h5 class="card-title">{{this.name}}</h5>
+        </div>
+      </a>
+    {{/each}}
+  </div>
+
+
+</div>
+
+
+
+
+
+

@@ -1,1 +1,94 @@
+<div class="content-page">
+
+    <h2>{{recipe.name}}</h2>
+    <img src="{{recipe.image}}" alt="image">
+
+    <div class="recipe-fields">
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Cost:</p>
+            <img src={{cost}} alt="cost">
+        </div>
+        
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Difficulty: </p>
+            <img src={{level}} alt="level">
+        </div>        
+
+    </div>
+
+
+    <div class="recipe-fields">
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Category:</p>
+            <p>{{recipe.category}}</p>
+        </div>
+        
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Purpose(s):</p>
+            <ul>
+                {{#each recipe.purpose}}          
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>        
+
+    </div>
+  
+
+
+    <div class="recipe-fields">
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Preparation time:</p>
+            <p> {{recipe.time}} min</p>
+        </div>
+        
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Conservation: </p>
+            <p> {{recipe.conservation}}</p>
+        </div>        
+
+    </div>
+
+    <p class="recipe-field-name">Materials:</p> 
+    <p>{{recipe.materials}}  </p>
+
+    <p class="recipe-field-name">Ingredients:</p>
+    <ul>
+        {{#each recipe.ingredients}}          
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+
+    <p class="recipe-field-name">Steps: {{recipe.steps}}</p>
+
+
+
+    <div class="recipe-fields">
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Created by: </p>
+            <a href="/public-profile/{{recipe.user._id}}">{{recipe.user.username}}</a>
+        </div>
+        
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">On: </p>
+            {{date}}
+        </div>        
+
+    </div>
+
+
+
+
+
+</div>
+
+
 
