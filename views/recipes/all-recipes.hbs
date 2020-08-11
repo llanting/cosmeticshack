@@ -5,6 +5,32 @@
 </div>
 
 {{!-- Add the filter to search --}}
+<form method="GET" action="/all-recipes/search">
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select class="form-control" name="category">
+      <option value="empty"></option>
+      <option value="hair">Hair</option>
+      <option value="face">Face</option>
+      <option value="body">Body</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="purpose">Purpose</label>
+    <select class="form-control" name="purpose">
+     
+      {{#each purpose}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <button type="submit">Search</button>
+</form>
+
+{{#if errorMessage}}
+  <p>{{errorMessage}}</p>
+{{/if}}
+
 
 <div class="card-container color-all">
   {{#each recipe}}
@@ -25,7 +51,11 @@
       <a href="/all-recipes/{{this._id}}" class="card-link btn sign">See recipe</a>
       {{!-- Image of star --}}
       <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" >
+        {{#if this.alreadyFav}}
+          <button type="submit" class="card-link btn sign fav-btn">Already Favorite</button>
+        {{else}}
           <button type="submit" class="card-link btn sign fav-btn">Favorite</button>
+          {{/if}}
       </form>
     </div>
   </div>

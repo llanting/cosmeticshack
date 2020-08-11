@@ -339,3 +339,8 @@ label {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.recipe-image {
+  width: 200px;
+  height: auto;
+}

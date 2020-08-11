@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const RecipesModel = require('../models/recipe.model')
 const UserModel = require('../models/user.model')
-const IngredientModel = require('../models/ingredient.model')
+const IngredientModel = require('../models/ingredient.model');
+
 
 // My-profile page
 router.get('/my-profile/:userId', (req, res) => {
@@ -38,9 +39,10 @@ router.get('/my-profile/:userId/my-shoppinglist', (req, res) => {
     
 // My recipes
 router.get('/my-profile/:userId/my-recipes', (req, res) => {
-    UserModel.findById(req.params.userId)
-        .then((currentUser) => {
-            res.render('profile/my-recipes.hbs', {currentUser});
+    let currentUser = req.session.loggedInUser
+    RecipesModel.find({user: req.params.userId})
+        .then((recipes) => {
+            res.render('profile/my-recipes.hbs', {recipes, currentUser});
         })
         .catch((err) => console.log(err));
     });

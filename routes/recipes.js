@@ -4,17 +4,54 @@ const RecipesModel  = require('../models/recipe.model');
 const UserModel     = require('../models/user.model');
 const IngredientModel = require('../models/ingredient.model');
 const moment        = require('moment');
-const uploader      = require('../config/cloudinary');
+const uploader      = require('../config/cloudinary.js');
 
 // All recipes
 router.get('/all-recipes', (req, res) => {
     let currentUser = req.session.loggedInUser;
     RecipesModel.find()
         .then((recipe) => {
-            res.render('recipes/all-recipes.hbs', {recipe, currentUser})
+            UserModel.findById(currentUser._id)
+                .then((result) => {
+                    let newRecipes = recipe.map((elem) => {
+                        if (result.favorites.includes(elem._id)) {
+                            let newElem = JSON.parse(JSON.stringify(elem))
+                            newElem.alreadyFav = true;
+                            return newElem;
+                        } else {
+                            return elem;
+                        }
+                    })
+                    let purpose = ['', 'Moisturizing', 'Repairing', 'Sun protection', 'Refreshing', 'Anti-aging', 'Purifying', 'Perfuming', 'Exfoliating'];
+                    res.render('recipes/all-recipes.hbs', {recipe: newRecipes, currentUser, purpose})
+                })
+                .catch((err) => console.log(err));
         })
         .catch((err) => console.log(err));
-    });
+});
+
+
+// Search 
+router.get('/all-recipes/search', (req,res) => {
+    let {category, purpose} = req.query;
+    let search = {}
+    if (purpose != undefined) {
+        search.purpose = purpose;
+    }
+    if (category != undefined) {
+        search.category = category;
+    }
+
+    RecipesModel.find({$or: [{category: search.category}, {purpose: search.purpose}]})
+        .then((recipe) => {
+            if (recipe.length === 0) {
+                res.render('recipes/all-recipes.hbs', {recipe, errorMessage: 'No matches found'})
+            } else {
+                res.render('recipes/all-recipes.hbs', {recipe})
+            }
+        })
+        .catch((err) => console.log(err));
+});
 
 // Recipe-details
 router.get('/all-recipes/:recipeId', (req, res) => {
@@ -58,16 +95,16 @@ router.post('/create-recipe', uploader.single("imageUrl"), (req, res) => {
       return;
     }
 
-    // Pics don't load onto cloudinary
-    console.log('file is: ', imageUrl)
-    //This should come after. Doesn't work
-    //res.json({image: req.file.path })
+    console.log('file is: ', req.file)
+    if (!req.body.imageUrl) {
+        console.log('Image not found')
+    }
 
     RecipesModel.create(req.body)
         .then((createdRecipe) => {
-            //Here we have to update the .image to the value of the imageUrl!
-            RecipesModel.findByIdAndUpdate(createdRecipe._id, {$push: {user: req.session.loggedInUser._id}})
+            RecipesModel.findByIdAndUpdate(createdRecipe._id, {$set: {image: req.file.path, user: req.session.loggedInUser._id}})
                 .then((recipe) => {
+                    console.log(recipe)
                     res.redirect('/all-recipes/' + recipe._id);
                     UserModel.findByIdAndUpdate(req.session.loggedInUser._id, {$push: {recipes: [recipe]}})
                         .then(() => console.log('succes'))
@@ -93,7 +130,6 @@ router.post('/my-profile/my-recipes/:recipeId/edit', (req, res) => {
             res.redirect('/all-recipes/' + recipe._id)
         }).catch((err) => {
             console.log(err)
-            // res.render('recipes/edit-recipe.hbs')
         });
     });
 
@@ -107,14 +143,12 @@ router.post('/my-profile/my-recipes/:recipeId/delete', (req, res) => {
 
 // Favorite button route
 router.post('/my-recipes/my-favorites/:recipeId', (req, res) => {
-    RecipesModel.findById(req.params.recipeId)
-        .then((recipe) => {
-            //Pushes new recipe into favorites. But doesn't check for duplicates!
-            UserModel.findByIdAndUpdate(req.session.loggedInUser._id, {$push: {favorites: [recipe]}})
-                .then(() => {
-                    res.redirect('/all-recipes')
-                }).catch((err) =>  console.log(err));
-        }).catch((err) =>  console.log(err));
-    });
+    UserModel.update({ _id: req.session.loggedInUser._id }, { $push: { favorites: req.params.recipeId } }) 
+        .then(() => {
+            res.redirect('/all-recipes')
+        }).catch((err) => {
+            console.log(err)    
+        });
+});
 
 module.exports = router;

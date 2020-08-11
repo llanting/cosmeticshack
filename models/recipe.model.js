@@ -62,7 +62,6 @@ let RecipeSchema = new mongoose.Schema({
         },
         image: {
             type: String,
-            required: true,
             default: '/images/defaultimg.jpeg'
         }
     }, 
