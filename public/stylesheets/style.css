@@ -1,3 +1,8 @@
+a {
+  color: inherit; /* blue colors for links */
+  text-decoration: inherit; /* no underline */
+}
+
 .content-page {
   display: flex;
   flex-direction: column;
@@ -5,22 +10,41 @@
   align-items: center;
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;  */
   font-family: 'Montserrat', sans-serif;
-  margin-top: 100px;
+  margin-top: 90px;
   padding: 0;
+  font-size: 15px;
+  background: linear-gradient(rgb(227, 218, 219, 0.3), rgb(227, 218, 219, 1) 100%);
 }
-
 
 
 header {
+  display: flex;
   position: fixed;
   top: 0px;
-  height: 100px;
   width: 100%;
-  display: flex;
   justify-content: space-between;
+  align-items: baseline;
   background-color: #8E6C63;
 
 }
+
+
+h4 {
+  margin-top: 15px;
+  margin-bottom: 0;
+  text-align: center;
+  color: #e3ad9f;
+}
+
+h6 {
+  margin-top: 10px;
+  text-align: center;
+  color: #e3ad9f;
+  /* font-size: 18px; */
+}
+
+
+
 
 #index-recipes {
   display: flex;
@@ -30,6 +54,8 @@ header {
 }
 
 
+
+
 #header-logo {
   width: 175px;
 }
@@ -37,6 +63,7 @@ header {
 a:hover {
   color: #8E6C63; 
 }
+
 
 
 form {
@@ -63,12 +90,18 @@ label {
 /* Index */
 #index-intro {
   background-image: url('/images/index-img.jpg');
-    background-size: 100%;
-  color: #8E6C63;
+  background-size: 100%;
   padding: 10px;
   padding-top: 40px;
   text-align: center;
   height: 250px;
+}
+
+#index-intro > h4, h6 {
+  font-weight: bold;
+  color: #8E6C63;
+  text-shadow: #8e6c634d 1px;
+  
 }
 
 /* .index-even {
@@ -118,13 +151,7 @@ label {
   justify-content: center;
 } */
 
-h4 {
-  align-items: center;
-  margin-top: 30px;
-  text-align: center;
-  color: #e3ad9f;
-  display: flex;
-}
+
 
 /* Navbar */
 .navbar-class {
@@ -145,55 +172,45 @@ h4 {
 }
 
 /* All recipes */
-.color-all {
-  background-color: #fff2e4;
 
-}
 
-.h4-all {
+/* .h4-all {
   color: #e3ad9f;
   display: flex;
   align-items: center;
   /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
-  font-size: 45px;
-  margin: 50px;
-}
-
-/* Cards all recipes and other pages */
-.card-container {
-  display: flex;
-  justify-content: space-evenly ;
-}
-
-/* Cards all recipes and other pages */
+  /* font-size: 45px;
+  margin: 50px; */
 
 
-.card {
+
+
+/* .card {
   margin: 30px;
   width: 18rem;
   color: #8E6C63;
  
-}
+} */
 
-.card ul {
+/* .card ul {
   line-height: 35px;
   list-style: none;
-}
+} */
 
-.card-title, .card-text {
+/* .card-title, .card-text {
   display: flex;
   justify-content: center;
   margin: 8px;
-}
+} */
 
 
 .card:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.card-container:hover {
+/* .recipes-container:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+} */
 
 
 .fav-btn {
@@ -203,13 +220,25 @@ h4 {
 }
 
 .btn {
-  margin-top: 15px ;
+  margin: 15px 0px ;
   color: #8E6C63;
   background-color: #fff2e4;
   border-color: #8E6C63;
 }
 
-#card-btns {
+.recipe-fav-btn > img{
+  width: 80px;
+}
+
+.recipe-fav-btn {
+  margin: 5px;
+  align-self: center;
+  border: none;
+  background: transparent;
+  width: auto;
+}
+
+/* #card-btns {
   display: flex;
   flex-direction: column;
   margin-left: 120px;
@@ -218,14 +247,15 @@ h4 {
   /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
   font-family: 'Montserrat', sans-serif;
   width: 50px;
-}
+} */
+
 
 #card-btns a {
   width: 13rem;
 }
 
 
-/* Create Recipe */
+/* Create Recipe
 .discover-create {
   padding-top: 20px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -233,14 +263,15 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-.create-form {
+/* .create-form {
   background: linear-gradient(rgb(227, 218, 219, 0.3), rgb(227, 218, 219, 1) 60%);
   padding: 10px;
   display: flex;
   justify-content: center;
-}
+} */
+
 
 .form-label {
   margin-top: 20px;
@@ -281,7 +312,6 @@ h4 {
   background-color: rgb(227, 218, 219, 1);
   margin: 0;
   padding: 20px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 16px;
 }
 
@@ -308,14 +338,12 @@ h4 {
 
 #sign-up h2 {
   margin-bottom: 25px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .btn-signup {
   margin: 20px;
   padding: 5px 50px;
   font-size: 23px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   border-color: #8E6C63;
 }
 
@@ -325,7 +353,6 @@ h4 {
 }
 
 #sign-up form label {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 20px;
 }
 
@@ -337,7 +364,6 @@ h4 {
 }
 
 .btn-login {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background-color: transparent;
   border-color: #8E6C63;
 }
@@ -349,9 +375,7 @@ h4 {
 
 .error-signup {
   margin-top: 15px;
-  
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
+  }
 
 
 
@@ -377,15 +401,31 @@ h4 {
 } */
 
 
-.card-container {
+
+/* Element containing several recipe cards */
+
+.recipes-container {
   display: flex;
+  align-self: center;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
 
+.recipe-card {
+  margin: 10px;
+  background-color: #fff2e4;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+}
 
+
+.recipe-card-img{
+  width: 300px;
+
+}
 
 
 
@@ -399,19 +439,14 @@ h4 {
 
 
 .label-profile-detail {
-  background-color: #e4c0b7;
-  width: 250px;
+  font-weight: bold;
+  width: 100%;
   text-align: center;
 }
 
 
-h4 {
-  display: flex;
-  margin-top: 30px;
-  text-align: center;
-  color: #e3ad9f;
-}
 
+/* Recipe details page */
 
 .recipe-fields {
   margin: 10px;
@@ -421,22 +456,81 @@ h4 {
 }
 
 
-
 .recipe-field-inside {
   display: flex;
+  align-items: center;
   flex-direction: column;
+  text-align: justify;
 
+  width: 40%;
+
+}
+
+.recipe-field-inside > img {
+  width: 50px;
+  margin-bottom: 10px;
 }
 
 
 .recipe-field-name {
   font-weight: bold ;
+  line-height: 1;
 }
+
+
+#recipe-steps-text {
+  margin: 0px 20px;;
+  text-align: justify;
+}
+
+.recipe-img {
+  margin: 10px 0px;
+  width: 350px;
+  border-radius: 5%;
+}
+
+
+
+
+/* favorite and my recipes btns */
+#profile-bottom-elem {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+
+
+/* hovers */
+
+a:hover {
+  font-weight: bold;
+  color: #8E6C63; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*# sourceMappingURL=style.css.map */
 /*# sourceMappingURL=style.css.map */
-
-.recipe-image {
-  width: 200px;
-  height: auto;
-}

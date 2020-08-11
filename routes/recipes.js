@@ -70,30 +70,30 @@ router.get('/all-recipes/:recipeId', (req, res) => {
                 if (recipe.level == "easy"){  
 
                     if (recipe.cost == "low"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg'})
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.png', level: '/images/1-round.png'})
                     } else if (recipe.cost == "medium"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg'})
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.png', level: '/images/1-round.png'})
                     } else if (recipe.cost == "high"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg'})
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.png', level: '/images/1-round.png'})
                     }
 
                 } else if (recipe.level == "medium"){
                     if (recipe.cost == "low"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg'})
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.png', level: '/images/2-round.png'})
                     } else if (recipe.cost == "medium"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg'})
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.png', level: '/images/2-round.png'})
                     } else if (recipe.cost == "high"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg'})
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.png', level: '/images/2-round.png'})
                     }
 
 
                 } else if (recipe.level == "hard"){
                     if (recipe.cost == "low"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg'})
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.png', level: '/images/3-round.png'})
                     } else if (recipe.cost == "medium"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg'})
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.png', level: '/images/3-round.png'})
                     } else if (recipe.cost == "high"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg'})
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.png', level: '/images/3-round.png'})
                     }
 
                 }  
@@ -122,8 +122,8 @@ router.post('/create-recipe', uploader.single("imageUrl"), (req, res) => {
     const {name, category, time, cost, materials, level, purpose, conservation, steps, imageUrl, ingredients} = req.body;
     
     if(!name || !category || !purpose || !time || !cost || !materials || !level || !conservation || !steps || !ingredients){
-      res.status(500).render('recipes/create-recipe.hbs', {errorMessage: 'Please fill in all fields'})
-      return;
+        res.status(500).render('recipes/create-recipe.hbs', {errorMessage: 'Please fill in all fields'})
+        return;
     }
 
     console.log('file is: ', req.file)

@@ -8,6 +8,7 @@
     <title>{{title}}</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
 
     <script src="Select7/select7.js"></script>
 
@@ -30,9 +31,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
           <div class="navbar-nav">
-
-            <a class="nav-link nav-text" href="/">Home</a>
             {{#if currentUser}}
+            <a class="nav-link nav-text" href="/">Home</a>
             <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
             <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
             <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
@@ -42,12 +42,20 @@
 
           </div>
 
-         {{#if currentUser}}
-        <a href="/logout" class="card-link btn sign create-button">Log Out</a>
-        {{else}}
-        <a href="/signup" class="card-link btn sign create-button">Sign Up</a>
-        <a href="/login" class="card-link btn sign">Log In</a>
-        {{/if}}
+          {{!-- {{#if currentUser}}
+          <a href="/logout" class="card-link btn sign create-button">Log Out</a>
+          {{else}}
+          <a href="/signup" class="card-link btn sign create-button">Sign Up</a>
+          <a href="/login" class="card-link btn sign">Log In</a>
+          {{/if}} --}}
+
+          {{#if currentUser}}
+          <a href="/logout" class="btn">Log Out</a>
+          {{else}}
+          <a href="/signup" class="btn">Sign Up</a>
+          <a href="/login" class="btn">Log In</a>
+          {{/if}}
+
         </div>
 
       </div>

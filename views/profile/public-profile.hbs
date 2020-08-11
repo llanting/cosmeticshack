@@ -9,12 +9,12 @@
 
     <h4>These are my recipes</h4>
         
-    <div class="card-container">
+    <div class="recipes-container">
 {{#each currentUser.recipes}}
-    <div class="card">
-    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{this.name}}</h5>
+    <div class="recipe-card">
+    <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
+    <div>
+      <h6>{{this.name}}</h6>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Category: {{this.category}}</li>
@@ -24,7 +24,7 @@
       {{!-- Image of cost --}}
       <li class="list-group-item">Cost: {{this.cost}}</li>
     </ul>
-    <div class="card-body">
+    <div>
       <a href="/all-recipes/{{this._id}}" class="card-link">See recipe</a>
     </div>
   </div>

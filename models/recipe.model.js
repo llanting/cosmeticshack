@@ -27,6 +27,7 @@ let RecipeSchema = new mongoose.Schema({
         },
         materials: {
             type: String,
+            enum: ["whisk", "bowl", "measuring spoon/cup", "container", "spatula", "scale", "funnel", "mesh strainer", "pipette droppers"],
             required: true
         },
         level: {

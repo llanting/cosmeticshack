@@ -20,11 +20,7 @@
 
 
 
-<div id="sign-up">
-
-  <a href="/"><img src="/images/logo.png" alt="logo" class="logo-signup"></a>
-
-
+<div class="content-page">
 
   <form method="POST" action="/login">
 
@@ -37,11 +33,15 @@
     {{#if errorMessage}}
       <div class="error error-signup">{{errorMessage}}</div>
     {{/if}}
-    <button type="submit"class='btn btn-sm btn-outline-secondary sign btn-signup' >Log In</button>
+    <button type="submit"class='btn' >Log In</button>
 
-    <a href= "/signup" class="btn btn-sm btn-outline-secondary sign btn-login">No account yet? Sign up here!</a>
+    <a href= "/signup" class="btn">No account? Sign up here!</a>
 
   </form>
+
+
+
+
 
 
 </div>

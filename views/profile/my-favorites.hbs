@@ -2,12 +2,13 @@
 
 
   <h4>My favorite recipes</h4>
-  <div class="card-container">
+
+  <div class="recipes-container">
     {{#each currentUser.favorites}}        
       <a href="/all-recipes/{{this._id}}" class="card-link">    
-        <div class="card" style="width: 14rem;">
-          <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-          <h5 class="card-title">{{this.name}}</h5>
+        <div class="recipe-card" style="width: 14rem;">
+          <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
+          <h6>{{this.name}}</h6>
         </div>
       </a>
     {{/each}}

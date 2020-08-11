@@ -3,8 +3,8 @@
   {{!-- <article id="index-intro" class="index-odd content-page"> --}}
   <article id="index-intro">
 
-      <h1>Welcome to {{title}}</h1>
-      <div>On CosmeticsHack, you will find many recipes to create yourself your cosmetics products with natural and organic products.</div>
+      <h4>Welcome</h4>
+      <h6>Find, create and save many recipes to create your own natural cosmetic and beauty products.</h6>
 
   </article>
 
@@ -12,27 +12,36 @@
   <article id="index-recipes">
 
     <h4>Discover the recipes</h4>
+       
 
-    {{!-- <div id="index-recipes" class="index-even"> --}}
-        
-      {{!-- <div class="card-container"> --}}
-      <div class="card-container">
-        {{#each currentUser.favorites}}          
+
+    <div class="recipes-container">
+      {{#each recipe}}          
+        {{!-- <div class="recipe-card" style="width: 14rem;"> --}}
+        <div class="recipe-card">
           <a href="/all-recipes/{{this._id}}" class="card-link">        
-            <div class="card" style="width: 14rem;">
-              <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-              <h5 class="card-title">{{this.name}}</h5>              
-            </div>
+            <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
+            <h6>{{this.name}}</h6>    
           </a>
-        {{/each}}
-      
-        <a href= "/all-recipes" class="btn btn-sm btn-outline-secondary">See more recipes</a>
-
-      </div>
-      {{!-- </div> --}}
+        </div>
+      {{/each}}
+    
 
 
-    {{!-- </div> --}}
+    {{!-- <div class="recipes-container">
+      {{#each currentUser.favorites}}          
+        <a href="/all-recipes/{{this._id}}" class="card-link">        
+          <div class="recipe-card" style="width: 14rem;">
+            <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
+            <h6>{{this.name}}</h6>              
+          </div>
+        </a>
+      {{/each}} --}}
+    
+      <a href= "/all-recipes" class="btn">See more recipes</a>
+
+    </div>
+  
 
   </article>
 
@@ -41,8 +50,10 @@
 
   {{else}}
   <div id = "log-sign-bar">
-          <a href= "/signup" class="btn btn-sm btn-outline-secondary">Sign Up</a>
-          <a href= "/login" class="btn btn-sm btn-outline-secondary">Log In</a>
+          {{!-- <a href= "/signup" class="btn  ">Sign Up</a> --}}
+
+          <a href= "/signup" class="btn">Sign Up</a>
+          <a href= "/login" class="btn  ">Log In</a>
   {{/if}} 
   </div>
 

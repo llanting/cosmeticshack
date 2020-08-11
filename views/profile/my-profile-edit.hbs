@@ -25,15 +25,15 @@
     </div>
 
 
-    <div>
+    {{!-- <div>
 
         <h4>Quick access</h4>
 
-            <a href= "/create-recipe" class="btn btn-sm btn-outline-secondary">Create a new recipe</a>
+            <a href= "/create-recipe" class="btn  ">Create a new recipe</a>
 
 
-            <a href= "/my-profile/my-favorites" class="btn btn-sm btn-outline-secondary">My Favorites</a>
-            <a href= "/my-profile/my-recipes" class="btn btn-sm btn-outline-secondary">My Recipes</a>
+            <a href= "/my-profile/my-favorites" class="btn  ">My Favorites</a>
+            <a href= "/my-profile/my-recipes" class="btn  ">My Recipes</a>
 
 
 
@@ -82,6 +82,7 @@
             <label for="email" class="label-profile-detail">Email</label>
             <span>{{currentUser.email}}</span>
 
+            {{!-- maybe to remove --}}
             <label for="password" class="label-profile-detail">Password</label>
             <span>**********</span>
             
@@ -89,22 +90,22 @@
             <span>{{currentUser.usertype}}</span>
 
 
-            <button type="submit" class="btn btn-sm btn-outline-secondary" >Edit my details</button>
+            <button type="submit" class="btn  " >Edit my details</button>
 
         </form>
 
 
         <h4>Quick access</h4>
 
-            <a href= "/create-recipe" class="btn btn-sm btn-outline-secondary">Create a new recipe</a>
+            <a href= "/create-recipe" class="btn  ">Create a new recipe</a>
 
 
-            <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn btn-sm btn-outline-secondary">My Favorites</a>
-            <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn btn-sm btn-outline-secondary">My Recipes</a>
+            <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn  ">My Favorites</a>
+            <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn  ">My Recipes</a>
 
 
 
 
-    </div>
+    </div> --}}
 
 </div>
