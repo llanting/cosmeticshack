@@ -205,7 +205,7 @@ Collaborative platform with library of recipes for natural cosmetics products.
 ### Git
 [Repository Link](https://github.com/llanting/cosmeticshack)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://cosmeticshack.herokuapp.com/)
 
 ### Slides
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/1DZyQxbV996NQpF5sjxJAqxnKjfPPqi1QTj5NKP_pAgE/edit#slide=id.g5969a55d39_0_2022)

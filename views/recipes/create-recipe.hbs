@@ -1,10 +1,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   <link rel="stylesheet" href="dist/sellect.js-master/dist/sellect.css">
 
-<div class="discover-create">
-    <h2><b>Create a new recipe</b></h2>
+<div class="content-page">
 
-</div>
+  
+  
+  <h4><b>Create a new recipe</b></h4>
+
+
 
 <div class="edit-form create-form">
   <form method="POST" action="/create-recipe" enctype="multipart/form-data">
@@ -77,27 +80,46 @@
     </div>
 
 
-<div class="form-group ">
-    <label for="ingredients" class="form-label">Ingredients</label>
+    {{!-- <div class="form-group ">
+      <label for="ingredients" class="form-label">Purpose</label>
 
-    {{#each ingredients}}   
-      <div "check-list">
-        <div class="form-check">
-          <input class="form-check-input" name="ingredients" type="checkbox" value="{{this.name}}" id="purpose">
-          <label class="form-check-label" for="ingredients">
-            {{this.name}}
-          </label>
-        </div>      
-      </div>
-    {{/each}}
+      {{#each purpose}}   
+        <div "check-list">
+          <div class="form-check">
+            <input class="form-check-input" name="purpose" type="checkbox" value="{{this}}" id="purpose">
+            <label class="form-check-label" for="purpose">
+              {{this}}
+            </label>
+          </div>      
+        </div>
+      {{/each}}
+
+    </div> --}}
 
 
 
     {{!-- <input type="text" id="my-element"> --}}
 
-  </div>
+
+    <div class="form-group ">
+      <label for="ingredients" class="form-label">Ingredients</label>
+
+      {{#each ingredients}}   
+        <div "check-list">
+          <div class="form-check">
+            <input class="form-check-input" name="ingredients" type="checkbox" value="{{this.name}}" id="purpose">
+            <label class="form-check-label" for="ingredients">
+              {{this.name}}
+            </label>
+          </div>      
+        </div>
+      {{/each}}
+
+    </div>
 
 
+  {{!-- ingredients list with "search bar" --}}
+  {{!-- <input type="text" id="my-element"> --}}
 
 
     <div class="form-group">
@@ -107,7 +129,7 @@
     
     <div class="form-group">
       <label for="time" class="form-label">Time</label>
-      <input name="time" type="number" class="form-control" id="time" placeholder="... minutes">
+      <input name="time" type="number" class="form-control" id="time" placeholder="in minutes">
     </div>
 
     <div class="form-group">
@@ -159,6 +181,7 @@
 
 <script src="dist/sellect.js-master/dist/sellect.js"></script>
 <script src="javascripts/myInput.js"></script>
+
 
 
 

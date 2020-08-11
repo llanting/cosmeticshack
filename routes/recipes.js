@@ -66,14 +66,41 @@ router.get('/all-recipes/:recipeId', (req, res) => {
             // Changes recipe.date to a readable format
             let newDate = moment(recipe.date).format("MMMM DD, YYYY");
     
-            if (recipe.level == "easy"){
-            res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, difficulty: '/images/1-round.jpg'})
-            } else if (recipe.level == "medium"){
-            res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, difficulty: '/images/2-round.jpg'})
-            } else if (recipe.level == "hard"){
-            res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, difficulty: '/images/3-round.jpg'})
-            }           
+
+                if (recipe.level == "easy"){  
+
+                    if (recipe.cost == "low"){
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg'})
+                    } else if (recipe.cost == "medium"){
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg'})
+                    } else if (recipe.cost == "high"){
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg'})
+                    }
+
+                } else if (recipe.level == "medium"){
+                    if (recipe.cost == "low"){
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg'})
+                    } else if (recipe.cost == "medium"){
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg'})
+                    } else if (recipe.cost == "high"){
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg'})
+                    }
+
+
+                } else if (recipe.level == "hard"){
+                    if (recipe.cost == "low"){
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg'})
+                    } else if (recipe.cost == "medium"){
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg'})
+                    } else if (recipe.cost == "high"){
+                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg'})
+                    }
+
+                }  
+
             })
+
+             
             .catch((err) => console.log(err))  
         .catch((err) => console.log(err))
     });
@@ -90,10 +117,11 @@ router.get('/create-recipe', (req, res) => {
     })
 })
 
+
 router.post('/create-recipe', uploader.single("imageUrl"), (req, res) => {
-    const {name, category, time, cost, materials, level, conservation, steps, imageUrl, ingredients} = req.body;
+    const {name, category, time, cost, materials, level, purpose, conservation, steps, imageUrl, ingredients} = req.body;
     
-    if(!name || !category || !time || !cost || !materials || !level || !conservation || !steps || !ingredients){
+    if(!name || !category || !purpose || !time || !cost || !materials || !level || !conservation || !steps || !ingredients){
       res.status(500).render('recipes/create-recipe.hbs', {errorMessage: 'Please fill in all fields'})
       return;
     }
