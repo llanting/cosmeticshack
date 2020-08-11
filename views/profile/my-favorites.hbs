@@ -1,16 +1,23 @@
+<div class="content-page">
 
-<div class="card-container">
-{{#each currentUser.favorites}}
-    <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{this.name}}</h5>
-    </div>
 
-    <div class="card-body">
-      <a href="/all-recipes/{{this._id}}" class="card-link">See recipe</a>
-    </div>
+  <h4>My favorite recipes</h4>
+  <div class="card-container">
+    {{#each currentUser.favorites}}        
+      <a href="/all-recipes/{{this._id}}" class="card-link">    
+        <div class="card" style="width: 14rem;">
+          <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+          <h5 class="card-title">{{this.name}}</h5>
+        </div>
+      </a>
+    {{/each}}
   </div>
 
-{{/each}}
+
 </div>
+
+
+
+
+
+

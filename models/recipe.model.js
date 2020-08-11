@@ -47,7 +47,6 @@ let RecipeSchema = new mongoose.Schema({
             required: true
         }],
 
-        //Number of favorites? Can we count that?
         rating: {
             type: Number,
             default: 0

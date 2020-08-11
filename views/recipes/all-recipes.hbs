@@ -1,33 +1,49 @@
+<div class="content-page">
 
-<div class="discover">
-    <h4 class="h4-all">ALL RECIPES</h4>
+  <div class="discover">
+      <h4>All recipes</h4>
 
-</div>
-
-{{!-- Add the filter to search --}}
-
-<div class="card-container color-all">
-  {{#each recipe}}
-  <div class="card" >
-    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{this.name}}</h5>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="card-text">Category: {{this.category}}</li>
-      <li class="card-text">Purpose: {{this.purpose}}</li>
-      {{!-- Image of level --}}
-      <li class="card-text">Difficulty: {{this.level}}</li>
-      {{!-- Image of cost --}}
-      <li class="card-text">Cost: {{this.cost}}</li>
-    </ul>
-    <div class="card-body" id="card-btns">
-      <a href="/all-recipes/{{this._id}}" class="card-link btn sign">See recipe</a>
-      {{!-- Image of star --}}
-      <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" >
-          <button type="submit" class="card-link btn sign fav-btn">Favorite</button>
-      </form>
-    </div>
   </div>
-  {{/each}}
+
+  {{!-- Add the filter to search --}}
+  
+  
+  {{!-- <div class="card-container color-all"> --}}
+
+  <div></div>
+    {{#each recipe}}
+
+    <div class="card" >
+
+      <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+      <div class="card-body">
+
+        <h5 class="card-title">{{this.name}}</h5>
+
+      </div>
+    
+      <div class="card-body" id="card-btns">
+
+        <a href="/all-recipes/{{this._id}}" class="card-link btn sign">See recipe</a>
+        
+        {{!-- Image of star --}}
+        <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" >
+
+            <button type="submit" class="card-link btn sign fav-btn">Add to Favorites</button>
+
+        </form>
+
+      </div>
+
+    </div>
+    {{/each}}
+
+
+    
 </div>
+
+
+</div>
+
+
+
