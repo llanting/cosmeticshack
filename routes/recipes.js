@@ -33,21 +33,24 @@ router.get('/all-recipes', (req, res) => {
 
 // Search 
 router.get('/all-recipes/search', (req,res) => {
-    let {category, purpose} = req.query;
+    let {category, purposeQ} = req.query;
     let search = {}
-    if (purpose != undefined) {
-        search.purpose = purpose;
+    if (purposeQ != undefined) {
+        search.purpose = purposeQ;
     }
     if (category != undefined) {
         search.category = category;
     }
 
-    RecipesModel.find({$or: [{category: search.category}, {purpose: search.purpose}]})
+    let currentUser = req.session.loggedInUser;
+    let purpose = ['', 'Moisturizing', 'Repairing', 'Sun protection', 'Refreshing', 'Anti-aging', 'Purifying', 'Perfuming', 'Exfoliating'];
+
+    RecipesModel.find({$or: [{category: search.category}, {purpose: search.purposeQ}]})
         .then((recipe) => {
             if (recipe.length === 0) {
-                res.render('recipes/all-recipes.hbs', {recipe, errorMessage: 'No matches found'})
+                res.render('recipes/all-recipes.hbs', {recipe, purpose, errorMessage: 'No matches found', currentUser})
             } else {
-                res.render('recipes/all-recipes.hbs', {recipe})
+                res.render('recipes/all-recipes.hbs', {recipe, purpose, currentUser})
             }
         })
         .catch((err) => console.log(err));
