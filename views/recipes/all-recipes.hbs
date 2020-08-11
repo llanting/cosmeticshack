@@ -14,18 +14,18 @@
       <h5 class="card-title">{{this.name}}</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Category: {{this.category}}</li>
-      <li class="list-group-item">Purpose: {{this.purpose}}</li>
+      <li class="card-text">Category: {{this.category}}</li>
+      <li class="card-text">Purpose: {{this.purpose}}</li>
       {{!-- Image of level --}}
-      <li class="list-group-item">Difficulty: {{this.level}}</li>
+      <li class="card-text">Difficulty: {{this.level}}</li>
       {{!-- Image of cost --}}
-      <li class="list-group-item">Cost: {{this.cost}}</li>
+      <li class="card-text">Cost: {{this.cost}}</li>
     </ul>
-    <div class="card-body card-btns" id="card-btns">
-      <a href="/all-recipes/{{this._id}}" class="card-link btn sign btn-recipes">See recipe</a>
+    <div class="card-body" id="card-btns">
+      <a href="/all-recipes/{{this._id}}" class="card-link btn sign">See recipe</a>
       {{!-- Image of star --}}
-      <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" class="form-links ">
-          <button type="submit" class="card-link fav-btn btn sign btn-recipes">Favorite</button>
+      <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" >
+          <button type="submit" class="card-link btn sign fav-btn">Favorite</button>
       </form>
     </div>
   </div>
