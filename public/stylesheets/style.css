@@ -11,9 +11,9 @@ body {
   width: 175px;
 }
 
-a {
-  color: #00B7FF; }
-
+a:hover {
+  color: #8E6C63; 
+}
 
 
 form {
@@ -79,6 +79,12 @@ label {
   color: #fff2e4;
 }
 
+.sign:hover {
+  background-color: #8E6C63;
+  border-color: #8E6C63;
+  color:  #fff2e4;
+}
+
 .log {
   background-color: #8E6C63;
   padding: 5px 20px;
@@ -120,8 +126,23 @@ h4 {
   color: black;
 }
 
+/* All recipes */
+.color-all {
+  background-color: #fff2e4;
 
-#nav-bar {
+}
+
+.h4-all {
+  color: #e3ad9f;
+  display: flex;
+  align-items: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 45px;
+  margin: 50px;
+}
+
+/* Cards all recipes and other pages */
+.card-container {
   display: flex;
   justify-content: space-evenly ;
 }
@@ -130,33 +151,79 @@ h4 {
 
 
 .card {
-  margin: 10px;
+  margin: 30px;
   width: 18rem;
+  color: #8E6C63;
+ 
+}
+
+.card ul {
+  line-height: 35px;
+  list-style: none;
+}
+
+.card-title, .card-text {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .fav-btn {
-  width: 100px;
+  width: 13rem;
+  margin-top: 10px;
+  margin-left: 46px;
 }
 
 .btn {
   margin-top: 15px ;
   color: #8E6C63;
   background-color: #fff2e4;
+  border-color: #8E6C63;
 }
 
-.card-btns {
+#card-btns {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  margin-left: 120px;
+  display: flex;
+  align-items: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  width: 50px;
+}
+
+#card-btns a {
+  width: 13rem;
 }
 
 
 /* Create Recipe */
+.discover-create {
+  background: linear-gradient(rgb(227, 218, 219, 0.2), rgb(227, 218, 219, 0.3));
+ 
+  padding-top: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #8E6C63;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .create-form {
+  background: linear-gradient(rgb(227, 218, 219, 0.3), rgb(227, 218, 219, 1) 60%);
   padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .form-label {
+  margin-top: 20px;
   font-size: 18px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #8E6C63;
 }
 
 .form-check {
@@ -165,24 +232,120 @@ h4 {
 }
 
 .cost {
-  width: 150px;
+  width: 130px;
 }
 
+.form-control {
+  font-size: 13px;
+  margin: 0;
+}
 
-/* Sign up */
+.form-group {
+  margin: 0;
+}
+
+.mb-3 {
+  margin: 0!important ;
+}
+
+.create-button {
+  margin-bottom: 20px;
+  margin-top: 10px!important;
+}
+
+.error-create {
+  background-color: rgb(227, 218, 219, 1);
+  margin: 0;
+  padding: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 16px;
+}
+
+::-webkit-file-upload-button {
+  font: inherit;
+  background-color: rgb(227, 218, 219, 1);
+  border: 1px solid #8E6C63;
+}
+
+/* Sign up & Log in */
 #sign-up {
-  background-color: black;
+  background-image: url('/images/cetteup-d3ci37Gcgxg-unsplash.jpg');
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-/* #recipe-favorite-btn {
+
+.logo-signup {
+  margin-bottom: 50px;
+  width: 20em;
+}
+
+#sign-up h2 {
+  margin-bottom: 25px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.btn-signup {
+  margin: 20px;
+  padding: 5px 50px;
+  font-size: 23px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  border-color: #8E6C63;
+}
+
+#sign-up form {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-} */
+}
+
+#sign-up form label {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+}
+
+.input-signup {
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px;
+  width: 80%;
+}
+
+.btn-login {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: transparent;
+  border-color: #8E6C63;
+}
+
+.password-info {
+  text-align: center;
+  width: 70%;
+}
+
+.error-signup {
+  margin-top: 15px;
+  
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 
 
+
+/* Media query for laptop */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+  /* Add styles here */
+
+  /* Sign up & Log In */
+  .logo-signup {
+    margin-top: 30px;
+    margin-bottom: 90px;
+    width: 29em;
+  }
+
+}
 
 /* .recipe-add: hover {
   opacity: 0.5;

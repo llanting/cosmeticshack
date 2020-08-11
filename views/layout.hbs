@@ -11,9 +11,8 @@
 
     <script src="Select7/select7.js"></script>
 
-
-
-     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+   
   </head>
 
   <body>
@@ -43,18 +42,22 @@
 
           </div>
 
-          {{#if currentUser}}
-            <a href="/logout" class="btn btn-sm btn-outline-secondary">Log Out</a>
-          {{else}}
-            <a href="/signup" class="btn btn-sm btn-outline-secondary">Sign Up</a>
-            <a href="/login" class="btn btn-sm btn-outline-secondary">Log In</a>
-          {{/if}}
-
+         {{#if currentUser}}
+        <a href="/logout" class="card-link btn sign create-button">Log Out</a>
+        {{else}}
+        <a href="/signup" class="card-link btn sign create-button">Sign Up</a>
+        <a href="/login" class="card-link btn sign">Log In</a>
+        {{/if}}
         </div>
+
+      </div>
+
       </nav>
       
     </header>
     
+      
+    </nav>
 
     {{{body}}}
 
