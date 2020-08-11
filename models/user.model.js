@@ -22,8 +22,10 @@ const userSchema = new mongoose.Schema({
             type: String, 
             required: true 
         },
-        favorites: Array,
-        recipes: Array
+        favorites: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Recipe'
+        }]
     },
     {
         timestamps: true
