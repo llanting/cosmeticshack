@@ -99,25 +99,35 @@
         <div class="recipe-field-inside">
             <p class="recipe-field-name">On </p>
             {{date}}
-        </div>        
+        </div>     
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Rating </p>
+            {{recipe.rating}}
+        </div>     
 
     </div>
 
     <div>
-        <h2>Comment-section</h2>
+        <h4>Comment-section</h4>
         {{#each comment}}
-            <p>{{this.user.username}}:</p>
+            <p>{{this.user.username}}</p>
             <p><em>{{this.text}}</em></p>
         {{/each}}
+        
+            <p>{{currentDate}}</p>
 
         <form method="POST" action="/all-recipes/{{recipe._id}}/comment">
             <label for="user">Username</label>
             <input type="text" id="user" name="user" disabled value="{{currentUser.username}}">
 
-            <label for="text" class="form-label">Text</label>
-            <input name="text" type="text" id="text">
+            <label for="text" class="form-label">Your comment</label>
+            <input name="text" type="text" id="text" required>
+
+            <label for="rating" class="form-label">Your rating</label>
+            <input name="rating" type="number" id="rating" max="5" min="1" required placeholder="Min is 1, max is 5">
             
-            <button type="sumbit">Post comment</button>
+            <button type="sumbit" class="btn">Post comment</button>
         </form>
     </div>
 

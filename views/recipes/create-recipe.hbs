@@ -26,65 +26,6 @@
 
       <div class="form-group ">
         <label for="purpose" class="form-label">Purpose</label>
-        <div "check-list">
-          <div class="form-check">
-            <input class="form-check-input" name="purpose" type="checkbox" value="anti-aging" id="purpose">
-            <label class="form-check-label" for="purpose">
-              Anti-aging
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" name="purpose" type="checkbox" value="exfoliating" id="purpose">
-            <label class="form-check-label" for="purpose">
-              Exfoliating
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" name="purpose" type="checkbox" value="moisturizing" id="purpose">
-            <label class="form-check-label" for="purpose">
-              Moisturizing
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" name="purpose" type="checkbox" value="perfuming" id="purpose">
-            <label class="form-check-label" for="purpose">
-              Perfuming
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" name="purpose" type="checkbox" value="purifying" id="purpose">
-            <label class="form-check-label" for="purpose">
-              Purifying
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" name="purpose" type="checkbox" value="refreshing" id="purpose">
-            <label class="form-check-label" for="purpose">
-              Refreshing
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" name="purpose" type="checkbox" value="repairing" id="purpose">
-            <label class="form-check-label" for="purpose">
-              Repairing
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" name="purpose" type="checkbox" value="sun-protection" id="purpose">
-            <label class="form-check-label" for="purpose">
-              Sun-Protection
-            </label>
-          </div>
-        </div>
-      </div>
-
-
-
-      {{!-- to be finished --}}
-
-      {{!-- <div class="form-group ">
-        <label for="purpose" class="form-label">Purpose</label>
-
         {{#each purpose}}   
           <div "check-list">
             <div class="form-check">
@@ -95,15 +36,10 @@
             </div>      
           </div>
         {{/each}}
-
-      </div> --}}
-
-
-
+      </div>
 
       <div class="form-group">
         <label for="ingredients" class="form-label">Ingredients</label>
-
         {{#each ingredients}}   
           <div "check-list">
             <div class="form-check">
@@ -114,13 +50,10 @@
             </div>      
           </div>
         {{/each}}
-
       </div>
-
 
     {{!-- ingredients list with "search bar" --}}
     {{!-- <input type="text" id="my-element"> --}}
-
 
       <div class="form-group">
         <label for="steps" class="form-label">Steps</label>
@@ -134,15 +67,22 @@
 
       <div class="form-group">
         <label for="materials" class="form-label">Materials</label>
-        <input name="materials" type="text" class="form-complete-field" id="materials" placeholder="Material needed">
+        {{#each materials}}   
+          <div "check-list">
+            <div class="form-check">
+              <input class="form-check-input" name="materials" type="checkbox" value="{{this}}" id="purpose">
+              <label class="form-check-label" for="materials">
+                {{this}}
+              </label>
+            </div>      
+          </div>
+        {{/each}}
       </div>
     
       <div class="form-group">
         <label for="conservation" class="form-label">Conservation</label>
         <input name="conservation" type="text" class="form-complete-field" id="conservation" placeholder="In months">
       </div>
-    
-
       
       <div class="form-row">
         <div class="col-md-6 mb-3 ">
@@ -175,14 +115,7 @@
     </form>
   </div>
 
-
-
 </div>
-
-
-
-
-
 
 <script src="dist/sellect.js-master/dist/sellect.js"></script>
 <script src="javascripts/myInput.js"></script>
