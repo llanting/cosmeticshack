@@ -13,19 +13,19 @@ router.post('/signup', (req, res) => {
     const {username, email, password} = req.body
   
     if(!username || !email || !password){
-      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please fill in all fields', layout: false})
+      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please fill in all fields'})
       return;
     }
     
     const emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
     if (!emailReg.test(email)){
-      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please enter a valid email address', layout: false})
+      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Please enter a valid email address'})
       return;
     }
     
     const passReg = new RegExp(/^(?=.*\d).{6,20}$/)
     if (!passReg.test(password)){
-      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit', layout: false})
+      res.status(500).render('authentication/signup.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit'})
       return;
     }
   
@@ -36,7 +36,7 @@ router.post('/signup', (req, res) => {
               // create that user in the db
                         UserModel.findOne({$or: [{username, email}]})
               .then((result) => {
-                  res.status(500).render('authentication/signup.hbs', {errorMessage: 'Username or email already exists', layout: false})
+                  res.status(500).render('authentication/signup.hbs', {errorMessage: 'Username or email already exists'})
               }).catch((err) => {
                 UserModel.create({username, email, passwordHash: hashPass })
                   .then(() => {
@@ -60,19 +60,19 @@ router.post('/login', (req, res) => {
     const {email, password} = req.body
 
     if(!email || !password){
-        res.status(500).render('authentication/login.hbs', {errorMessage: 'Please fill in all fields', layout: false})
+        res.status(500).render('authentication/login.hbs', {errorMessage: 'Please fill in all fields'})
         return;
     }
 
     const emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
     if (!emailReg.test(email)){
-        res.status(500).render('authentication/login.hbs', {errorMessage: 'Please enter a valid email address', layout: false})
+        res.status(500).render('authentication/login.hbs', {errorMessage: 'Please enter a valid email address'})
         return;
     }
 
     const passReg = new RegExp(/^(?=.*\d).{6,20}$/)
     if (!passReg.test(password)){
-        res.status(500).render('authentication/login.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit', layout: false})
+        res.status(500).render('authentication/login.hbs', {errorMessage: 'Password must have a minimum of 6 characters and must include at least one number digit'})
         return;
     }
 
@@ -83,7 +83,7 @@ router.post('/login', (req, res) => {
                 req.session.loggedInUser = userData
                 res.redirect('/my-profile/' + req.session.loggedInUser._id)
             } else {
-                res.status(500).render('authentication/login.hbs', {errorMessage: 'Password incorrect', layout: false})
+                res.status(500).render('authentication/login.hbs', {errorMessage: 'Password incorrect'})
             }
         }) 
         .catch((err) => {

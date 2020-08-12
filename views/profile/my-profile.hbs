@@ -3,7 +3,7 @@
     <h4>Welcome {{currentUser.username}}</h4>
 
 
-    <form method="GET" action="/my-profile/{{currentUser._id}}/edit" id="profile-detail">
+    <form method="GET" action="/my-profile/{{currentUser._id}}/edit" id="profile-detail" class="perso-details">
         <h6>Personal details:</h6>
 
         <label for="username" class="label-profile-detail">Username</label>
@@ -15,19 +15,20 @@
         {{!-- <label for="password" class="label-profile-detail">Password</label>
         <span>**********</span> --}}
         
+        <div class="profile-del-edit-btns">
+            <button type="submit" class="btn prof-edit-btn" >Edit</button>
+            <form method="GET" action="/my-profile/{{currentUser._id}}/delete">
+            <button type="submit" class="btn prof-del-btn">Delete user</button>
+        </div>
 
-        <button type="submit" class="btn" >Edit</button>
+        
+    </form>
 
     </form>
     
-    <form method="GET" action="/my-profile/{{currentUser._id}}/delete">
-        <button type="submit" class="btn btn-sm btn-outline-secondary">Delete user</button>
-    </form>
+   
 
     <h6>Quick access</h6>
-
- 
-
 
     
     <div id="profile-bottom-elem">

@@ -10,9 +10,11 @@ a {
   align-self: center;
   align-items: center;
   font-family: 'Montserrat', sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 60px;
   max-height: 60px;
-  font-size: 15px;
+  font-size: 13px;
   /* background: linear-gradient(rgb(227, 218, 219, 0.3), rgb(227, 218, 219, 1) 100%); */
 }
 
@@ -35,8 +37,9 @@ header {
 
 
 h4 {
-  margin-top:10px;
-  margin-bottom: 0;
+  margin-top:14px;
+  margin-bottom: 10px;
+  font-size: 19px;
   text-align: center;
   color: #e3ad9f;
 }
@@ -87,6 +90,7 @@ figcaption {
   font-size: 11px;
   font-style: italic;
   margin-bottom: 10px;
+  min-width: 100%;
 }
 
 label {
@@ -99,9 +103,15 @@ label {
   background-size: 100%;
   padding: 10px;
   padding-top: 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
   text-align: center;
   min-height: 250px;
 }
+
+
+
+
 
 #index-intro > h4, h6 {
   font-weight: bold;
@@ -161,11 +171,21 @@ label {
 
 /* Navbar */
 
+/* .hamburger {
+  width: 40px;
+  height: 30px;
+  align-content: center;
+}
+*/
+
 .navbar-toggler-icon {
   color: black;
-  font-size: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  padding:3px 0px 0px 0px;
   justify-content: center;
-}
+  transform: rotate(90deg);
+} 
 
 .navbar-class {
   width: 100%;
@@ -198,7 +218,7 @@ label {
 
 
 .btn {
-  font-size: 15px;
+  font-size: 13px;
   margin: 10px 0px;
   min-width: 80px;
   color: #8E6C63;
@@ -278,6 +298,7 @@ label {
   display: flex;
   flex-direction: column;
   align-items: right;
+  margin-top: ;
 }
 
 .form-group {
@@ -299,10 +320,7 @@ label {
   font-size: 12px;
 }
 
-.form-check {
-  padding: 5px;
-  margin-left: 40px;
-}
+
 
 .cost {
   width: 130px;
@@ -310,10 +328,6 @@ label {
 
 
 
-.form-complete-field {
-  font-size: 13px;
-  margin: 0;
-}
 
 .mb-3 {
   margin: 0!important ;
@@ -323,6 +337,18 @@ label {
   margin-bottom: 20px;
   margin-top: 10px!important;
 } */
+
+/* 
+.form-check {
+} */
+
+
+
+.form-complete-field {
+  font-size: 13px;
+}
+
+
 
 .error-create {
   background-color: rgb(227, 218, 219, 1);
@@ -370,13 +396,6 @@ label {
 
 #sign-up form label {
   font-size: 20px;
-}
-
-.input-signup {
-  background-color: transparent;
-  border-radius: 5px;
-  padding: 5px;
-  width: 80%;
 }
 
 .btn-login {
@@ -432,11 +451,15 @@ label {
 
 .label-profile-detail {
   font-weight: bold;
+  font-size: 13px;
   width: 100%;
   text-align: center;
 }
 
-
+.perso-details > span{
+  font-size: 13px;
+  margin-bottom: 10px;
+}
 
 /* Recipe details page */
 
@@ -475,10 +498,11 @@ label {
   text-align: justify;
 }
 
+
 .recipe-img {
-  margin: 10px 0px;
-  width: 350px;
-  border-radius: 5%;
+  width: 300px;
+  height: 200px;
+  border-radius: 10%;
 }
 
 
@@ -538,7 +562,7 @@ a:hover {
   /* position: relative; */
   top: 0px;
   left: 0px;
-  margin: 0px;
+  margin-bottom: 10px;
   /* z-index: 1; */
   border: none;
   background: transparent;
@@ -550,24 +574,150 @@ a:hover {
 }
 
 .profile-btn {
-  font-size: 13px;
-  width: 160px;
+  font-size: 12px;
+  width: 150px;
   height: auto;
 }
 
 
 
+/* Comment section */
+
+
+.comment-section {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  max-width: 85%;
+  margin: 25px;
+  border-color: #8E6C63;
+  border-width: 5px;
+  font-size: 14px;
+}
+
+.comment-section > h4 {
+  margin-bottom: 25px;
+}
+
+.line-com {
+  margin-top: -12px;
+  margin-bottom: 5px;
+}
+
+.comments-list {
+  width: 100%;
+}
+
+.comments-list > p {
+  display: flex ;
+  justify-content: flex-start;
+
+}
+
+.add-comment-field {
+  height: 50px;
+  border-color: #e3ad9f;
+}
+
+.my-rec-btns-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
 
 
+.my-rec-btns {
+  display: flex;
+  flex-grow: 1;
+  align-self: center;
+  justify-content: center;
+  width: 50px;
+  border-color: transparent;
+}
+
+.my-rec-btns-container > img {
+  /* width: 20px ; */
+}
+
+
+.log-sign-form {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  margin: 10px;
+  align-items: center;
+}
 
 
 
+.input-signup {
+  background-color: transparent;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+}
 
 
 
+/* My comments page */
+
+.my-comments-section {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.com-details {
+  display: flex;
+  align-self: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #fff2e4;
+  align-items: flex-start;
+  width: 320px;
+  margin-bottom: 15px;
+}
+
+.my-com-img-name {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+}
+
+.my-com-img {
+  height: auto;
+  width: 100px;
+}
+
+.my-com-img-name > h6 {
+  font-size: 13px;
+}
+
+.comment-all-except-icon > p {
+  font-size: 13px;
+}
 
 
+
+/* Profile page btns */
+
+.profile-del-edit-btns > .btn {
+  font-size: 12px;
+  width: 100px;
+}
+
+.prof-del-btn {
+  background-color: #fd7759cc;
+  color: white;
+}
+
+.prof-edit-btn {
+
+}
 
 
 /*# sourceMappingURL=style.css.map */
