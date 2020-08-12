@@ -35,6 +35,11 @@ router.post('/my-profile/:userId/edit', (req, res) => {
 
 
 // Delete user
+router.get('/delete-user', (req, res) => {
+    let currentUser = req.session.loggedInUser
+    res.render('profile/sure-delete.hbs', {currentUser})
+})
+
 router.get('/my-profile/:userId/delete', (req, res) => {
     UserModel.findByIdAndDelete(req.params.userId)
       .then(() => {
@@ -42,7 +47,8 @@ router.get('/my-profile/:userId/delete', (req, res) => {
       })
       .catch((err) => console.log(err));
   })
-    
+
+  
 // My recipes
 router.get('/my-profile/:userId/my-recipes', (req, res) => {
     let currentUser = req.session.loggedInUser
@@ -59,15 +65,9 @@ router.get('/my-profile/:userId/my-favorites', (req, res) => {
         .populate('favorites')
         .then((currentUser) => {
             res.render('profile/my-favorites.hbs', {currentUser});
-            console.log(currentUser)
         })
         .catch((err) => console.log(err));
     });
-
-
-
-
-
 
 // // Unavorite button route (my-favorite page)
 // router.post('/my-profile/:userId/my-favorites/:recipeId/unfavorite', (req, res) => {
@@ -80,21 +80,12 @@ router.get('/my-profile/:userId/my-favorites', (req, res) => {
 //         });
 // });
 
-
-
-
-
-
-
-
-
 // My comments
 router.get('/my-profile/:userId/my-comments', (req, res) => {
     let currentUser = req.params.userId
     CommentModel.find({user: req.params.userId}) 
         .populate('recipe')
         .then((comment) => {
-            console.log(comment)
             res.render('profile/my-comments.hbs', {comment, currentUser});
         })
         .catch((err) => console.log(err));

@@ -168,17 +168,22 @@ router.post('/create-recipe', uploader.single("imageUrl"), (req, res, next) => {
     }
 
     console.log('file is: ', req.file)
-    if (!req.body.imageUrl) {
+    if (typeof req.file === "undefined") {
         next(new Error("No image uploaded!"));
-        // req.file = 'https://res.cloudinary.com/dumj6yt5u/image/upload/v1597163060/defaultimg_wzf1v5.jpg'
-        // req.file.path = 'https://res.cloudinary.com/dumj6yt5u/image/upload/v1597163060/defaultimg_wzf1v5.jpg'
-    }
-
-    RecipesModel.create(req.body)
+        req.file = {
+            fieldname: 'imageUrl',
+            originalname: 'defaultimg.jpg',
+            encoding: '7bit',
+            mimetype: 'image/jpeg',
+            path: 'https://res.cloudinary.com/dumj6yt5u/image/upload/v1597163060/defaultimg_wzf1v5.jpg',
+            size: 125913,
+            filename: 'defaultimg'
+          }
+    
+        RecipesModel.create(req.body)
         .then((createdRecipe) => {
             RecipesModel.findByIdAndUpdate(createdRecipe._id, {$set: {image: req.file.path, user: req.session.loggedInUser._id}})
                 .then((recipe) => {
-                    console.log(recipe)
                     res.redirect('/all-recipes/' + recipe._id);
                     UserModel.findByIdAndUpdate(req.session.loggedInUser._id, {$push: {recipes: [recipe]}})
                         .then(() => console.log('succes'))
@@ -187,6 +192,21 @@ router.post('/create-recipe', uploader.single("imageUrl"), (req, res, next) => {
                 .catch((err) => console.log(err))
         })
         .catch((err) => console.log(err));
+
+    } else {
+        RecipesModel.create(req.body)
+        .then((createdRecipe) => {
+            RecipesModel.findByIdAndUpdate(createdRecipe._id, {$set: {image: req.file.path, user: req.session.loggedInUser._id}})
+                .then((recipe) => {
+                    res.redirect('/all-recipes/' + recipe._id);
+                    UserModel.findByIdAndUpdate(req.session.loggedInUser._id, {$push: {recipes: [recipe]}})
+                        .then(() => console.log('succes'))
+                        .catch((err) =>  console.log(err));
+                })
+                .catch((err) => console.log(err))
+        })
+        .catch((err) => console.log(err));
+    }
 });
 
 // Edit and delete my recipes

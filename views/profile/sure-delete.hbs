@@ -1,0 +1,12 @@
+<div class="content-page">
+    
+    <h4>Are you sure you want to delete your profile?</h4>
+
+    <form method="GET" action="/my-profile/{{currentUser._id}}/delete" id="profile-detail">
+
+        <button type="submit" class="btn" >Yes, delete</button>
+        
+    </form>
+        <a href="/my-profile/{{currentUser._id}}" class="btn">No, take me back</a>
+
+</div>

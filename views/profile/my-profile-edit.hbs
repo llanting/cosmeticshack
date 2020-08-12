@@ -14,9 +14,9 @@
             <label for="email">Email</label>
             <input id="email" type="email" name="email" value={{currentUser.email}}>
 
-            <label for="password">Password</label>
+            {{!-- <label for="password">Password</label>
             <figcaption>Min 6 characters, containing at least one letter and one number.</figcaption>
-            <input id="password" type="password" name="password" placeholder="Enter a new password">
+            <input id="password" type="password" name="password" placeholder="Enter a new password"> --}}
 
             <button type="submit">Submit</button>
 
@@ -24,88 +24,5 @@
 
     </div>
 
-
-    {{!-- <div>
-
-        <h4>Quick access</h4>
-
-            <a href= "/create-recipe" class="btn  ">Create a new recipe</a>
-
-
-            <a href= "/my-profile/my-favorites" class="btn  ">My Favorites</a>
-            <a href= "/my-profile/my-recipes" class="btn  ">My Recipes</a>
-
-
-
-
-    </div>
-
-
-
-    <div class="content-page">
-
-        <h4>Hi {{currentUser.username}}, welcome to your profile page!</h4>
-
-
-    <div>
-
-        <h4>Hey {{currentUser.username}}, welcome to your profile page!</h4>
-        <h6>You can modify your personal details:</h6>
-
-        
-        <form method="POST" action="/my-profile/{{currentUser._id}}/edit">
-
-            <label for="username">Username</label>
-            <input id="username" type="text" name="username" value={{currentUser.username}}>
-
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" value={{currentUser.email}}>
-
-            <label for="password">Password</label>
-            <figcaption>Min 6 characters, containing at least one letter and one number.</figcaption>
-            <input id="password" type="password" name="password" placeholder="Enter a new password">
-
-            <button type="submit">Edit</button>
-
-        </form>
-
-
-    </div>
-
-
-        <form method="POST" action="/my-profile/{{currentUser._id}}/edit" id="profile-detail">
-            <label>Personal details:</label>
-
-            <label for="username" class="label-profile-detail">Username</label>
-            <span>{{currentUser.username}}</span>
-
-            <label for="email" class="label-profile-detail">Email</label>
-            <span>{{currentUser.email}}</span>
-
-            {{!-- maybe to remove --}}
-            <label for="password" class="label-profile-detail">Password</label>
-            <span>**********</span>
-            
-            <label for="usertype" class="label-profile-detail">User type</label>
-            <span>{{currentUser.usertype}}</span>
-
-
-            <button type="submit" class="btn  " >Edit my details</button>
-
-        </form>
-
-
-        <h4>Quick access</h4>
-
-            <a href= "/create-recipe" class="btn  ">Create a new recipe</a>
-
-
-            <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn  ">My Favorites</a>
-            <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn  ">My Recipes</a>
-
-
-
-
-    </div> --}}
 
 </div>

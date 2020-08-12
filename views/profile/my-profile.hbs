@@ -20,16 +20,13 @@
 
     </form>
     
-    <form method="GET" action="/my-profile/{{currentUser._id}}/delete">
-        <button type="submit" class="btn btn-sm btn-outline-secondary">Delete user</button>
-    </form>
+    
+    <a href="/delete-user" class="btn">Delete user</a>
+   
 
     <h6>Quick access</h6>
 
  
-
-
-    
     <div id="profile-bottom-elem">
         <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn profile-btn">My Favorites</a>
         <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn profile-btn">My Recipes</a>

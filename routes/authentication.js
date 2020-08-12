@@ -42,9 +42,7 @@ router.post('/signup', (req, res) => {
                   .then(() => {
                       res.redirect('/')
                   })
-                  .catch((err) => {
-                    console.log(err)
-                  })
+                  .catch((err) => console.log(err))
               });
           })
     })
