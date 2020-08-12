@@ -1,42 +1,75 @@
+a {
+  color: inherit; /* blue colors for links */
+  text-decoration: inherit; /* no underline */
+}
+
+
 .content-page {
   display: flex;
   flex-direction: column;
   align-self: center;
   align-items: center;
-  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;  */
   font-family: 'Montserrat', sans-serif;
-  margin-top: 100px;
-  padding: 0;
+  margin-top: 60px;
+  max-height: 60px;
+  font-size: 15px;
+  /* background: linear-gradient(rgb(227, 218, 219, 0.3), rgb(227, 218, 219, 1) 100%); */
 }
 
-
+.pdf {
+  margin-top: 100px;
+  width: 100px;
+  height: 100px;
+}
 
 header {
+  display: flex;
   position: fixed;
   top: 0px;
-  height: 100px;
   width: 100%;
-  display: flex;
   justify-content: space-between;
+  align-items: baseline;
   background-color: #8E6C63;
 
 }
+
+
+h4 {
+  margin-top:10px;
+  margin-bottom: 0;
+  text-align: center;
+  color: #e3ad9f;
+}
+
+h6 {
+  margin: 12px;
+  text-align: center;
+  color: #e3ad9f;
+  /* font-size: 18px; */
+}
+
+
+
 
 #index-recipes {
   display: flex;
   flex-direction: column;
   align-self: center;
   align-items: center;
+  margin-bottom: 60px;
+
 }
 
 
+
 #header-logo {
-  width: 175px;
+  width: 150px;
 }
 
 a:hover {
   color: #8E6C63; 
 }
+
 
 
 form {
@@ -63,12 +96,18 @@ label {
 /* Index */
 #index-intro {
   background-image: url('/images/index-img.jpg');
-    background-size: 100%;
-  color: #8E6C63;
+  background-size: 100%;
   padding: 10px;
   padding-top: 40px;
   text-align: center;
-  height: 250px;
+  min-height: 250px;
+}
+
+#index-intro > h4, h6 {
+  font-weight: bold;
+  color: #8E6C63;
+  text-shadow: #8e6c634d 1px;
+  
 }
 
 /* .index-even {
@@ -89,7 +128,7 @@ label {
   bottom: 0px;
   background-color:#e3ad9f;
   width: 100%;
-  padding: 10px;
+  padding: 0px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -118,21 +157,33 @@ label {
   justify-content: center;
 } */
 
-h4 {
-  align-items: center;
-  margin-top: 30px;
-  text-align: center;
-  color: #e3ad9f;
-  display: flex;
-}
+
 
 /* Navbar */
+
+.navbar-toggler-icon {
+  color: black;
+  font-size: 10px;
+  justify-content: center;
+}
+
 .navbar-class {
   width: 100%;
   margin: 0px;
-  padding: 15px;
+  padding: 10px 15px;
   background-color: #e3ad9f;
   border: #8E6C63;
+}
+
+.navbar-nav{
+  margin-top: 8px;
+}
+
+
+.nav-link {
+  margin: 0px;
+  padding: 3px;
+
 }
 
 .nav-text {
@@ -144,110 +195,108 @@ h4 {
   color: black;
 }
 
-/* All recipes */
-.color-all {
-  background-color: #fff2e4;
 
+
+.btn {
+  font-size: 15px;
+  margin: 10px 0px;
+  min-width: 80px;
+  color: #8E6C63;
+  background-color: #fff2e4;
+  border-color: #8E6C63;
 }
 
-.h4-all {
+
+
+/* All recipes */
+
+
+/* .h4-all {
   color: #e3ad9f;
   display: flex;
   align-items: center;
   /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
-  font-size: 45px;
-  margin: 50px;
-}
-
-/* Cards all recipes and other pages */
-.card-container {
-  display: flex;
-  justify-content: space-evenly ;
-}
-
-/* Cards all recipes and other pages */
+  /* font-size: 45px;
+  margin: 50px; */
 
 
-.card {
+
+
+/* .card {
   margin: 30px;
   width: 18rem;
   color: #8E6C63;
  
-}
+} */
 
-.card ul {
+/* .card ul {
   line-height: 35px;
   list-style: none;
-}
+} */
 
-.card-title, .card-text {
+/* .card-title, .card-text {
   display: flex;
   justify-content: center;
   margin: 8px;
-}
+} */
 
 
 .card:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.card-container:hover {
+/* .recipes-container:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+} */
 
 
-.fav-btn {
-  width: 13rem;
-  margin-top: 10px;
-  margin-left: 46px;
-}
 
-.btn {
-  margin-top: 15px ;
-  color: #8E6C63;
-  background-color: #fff2e4;
-  border-color: #8E6C63;
-}
 
-#card-btns {
+/* #card-btns {
   display: flex;
   flex-direction: column;
   margin-left: 120px;
   display: flex;
   align-items: center;
-  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
   font-family: 'Montserrat', sans-serif;
   width: 50px;
-}
+} 
+*/
+
 
 #card-btns a {
   width: 13rem;
 }
 
 
+
+
 /* Create Recipe */
-.discover-create {
-  padding-top: 20px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: #8E6C63;
+
+#create-recipe-element {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: right;
 }
 
-.create-form {
-  background: linear-gradient(rgb(227, 218, 219, 0.3), rgb(227, 218, 219, 1) 60%);
-  padding: 10px;
+.form-group {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: right;
+  margin: 0px;
+  min-height: 90px;
+  
 }
 
 .form-label {
-  margin-top: 20px;
-  font-size: 18px;
-  font-family: 'Montserrat', sans-serif;
-  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
-  color: #8E6C63;
+  align-self: right;
+
+}
+
+/* 
+.form-check-label {
+  font-size: 12px;
 }
 
 .form-check {
@@ -259,12 +308,10 @@ h4 {
   width: 130px;
 }
 
-.form-control {
-  font-size: 13px;
-  margin: 0;
-}
 
-.form-group {
+
+.form-complete-field {
+  font-size: 13px;
   margin: 0;
 }
 
@@ -275,13 +322,12 @@ h4 {
 .create-button {
   margin-bottom: 20px;
   margin-top: 10px!important;
-}
+} */
 
 .error-create {
   background-color: rgb(227, 218, 219, 1);
   margin: 0;
   padding: 20px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 16px;
 }
 
@@ -308,14 +354,12 @@ h4 {
 
 #sign-up h2 {
   margin-bottom: 25px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .btn-signup {
   margin: 20px;
   padding: 5px 50px;
   font-size: 23px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   border-color: #8E6C63;
 }
 
@@ -325,7 +369,6 @@ h4 {
 }
 
 #sign-up form label {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 20px;
 }
 
@@ -337,7 +380,6 @@ h4 {
 }
 
 .btn-login {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background-color: transparent;
   border-color: #8E6C63;
 }
@@ -349,9 +391,7 @@ h4 {
 
 .error-signup {
   margin-top: 15px;
-  
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
+  }
 
 
 
@@ -377,14 +417,6 @@ h4 {
 } */
 
 
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-
 
 
 
@@ -399,19 +431,14 @@ h4 {
 
 
 .label-profile-detail {
-  background-color: #e4c0b7;
-  width: 250px;
+  font-weight: bold;
+  width: 100%;
   text-align: center;
 }
 
 
-h4 {
-  display: flex;
-  margin-top: 30px;
-  text-align: center;
-  color: #e3ad9f;
-}
 
+/* Recipe details page */
 
 .recipe-fields {
   margin: 10px;
@@ -421,22 +448,127 @@ h4 {
 }
 
 
-
 .recipe-field-inside {
   display: flex;
+  align-items: center;
   flex-direction: column;
+  text-align: justify;
 
+  width: 40%;
+
+}
+
+.recipe-field-inside > img {
+  width: 50px;
+  margin-bottom: 10px;
 }
 
 
 .recipe-field-name {
   font-weight: bold ;
+  line-height: 1;
 }
 
-/*# sourceMappingURL=style.css.map */
-/*# sourceMappingURL=style.css.map */
 
-.recipe-image {
-  width: 200px;
+#recipe-steps-text {
+  margin: 0px 20px;;
+  text-align: justify;
+}
+
+.recipe-img {
+  margin: 10px 0px;
+  width: 350px;
+  border-radius: 5%;
+}
+
+
+
+
+/* favorite and my recipes btns */
+#profile-bottom-elem {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+
+
+/* hovers */
+
+a:hover {
+  font-weight: bold;
+  color: #8E6C63; 
+}
+
+
+/* Recipe and recipes container */
+
+
+.recipes-container {
+  display: flex;
+  align-self: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.recipe-card {
+  margin: 10px;
+  background-color: #fff2e4;
+  align-items: center;
+  width: 300px;
+}
+
+
+.recipe-card-img{
+  /* position: relative;
+  top: 10px;
+  left: 10px;
+  z-index: 2; */
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 200px;
+  min-height: 200px;
+}
+
+
+.fav-btn {
+  /* position: relative; */
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  /* z-index: 1; */
+  border: none;
+  background: transparent;
+}
+
+
+.fav-btn > img {
+  width: 30px;
+}
+
+.profile-btn {
+  font-size: 13px;
+  width: 160px;
   height: auto;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.css.map */

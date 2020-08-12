@@ -5,6 +5,8 @@ const UserModel     = require('../models/user.model');
 const IngredientModel = require('../models/ingredient.model');
 const moment        = require('moment');
 const uploader      = require('../config/cloudinary.js');
+const app           = require('../app');
+const CommentModel = require('../models/comment-model');
 
 // All recipes
 router.get('/all-recipes', (req, res) => {
@@ -65,42 +67,83 @@ router.get('/all-recipes/:recipeId', (req, res) => {
         .then((recipe) => {
             // Changes recipe.date to a readable format
             let newDate = moment(recipe.date).format("MMMM DD, YYYY");
-    
 
                 if (recipe.level == "easy"){  
 
                     if (recipe.cost == "low"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg'})
-                    } else if (recipe.cost == "medium"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg'})
+                        CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg'})
+                            })
+                            .catch((err) => console.log(err))  
+                    } 
+                    else if (recipe.cost == "medium"){
+                        CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg'})
+                            })
+                            .catch((err) => console.log(err))                     
                     } else if (recipe.cost == "high"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg'})
+                        CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg'})
+                            })
+                            .catch((err) => console.log(err))  
                     }
 
                 } else if (recipe.level == "medium"){
                     if (recipe.cost == "low"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg'})
+                        CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg'})
+                            })
+                            .catch((err) => console.log(err))                   
                     } else if (recipe.cost == "medium"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg'})
+                        CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg'})
+                            })
+                            .catch((err) => console.log(err))                     
                     } else if (recipe.cost == "high"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg'})
+                        CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg'})
+                            })
+                            .catch((err) => console.log(err))  
                     }
 
 
                 } else if (recipe.level == "hard"){
                     if (recipe.cost == "low"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg'})
+                        CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg'})
+                            })
+                            .catch((err) => console.log(err))                      
                     } else if (recipe.cost == "medium"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg'})
+                        CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg'})
+                            })
+                            .catch((err) => console.log(err))                      
                     } else if (recipe.cost == "high"){
-                        res.render('recipes/recipe-details.hbs', {recipe, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg'})
+                        CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg'})
+                            })
+                            .catch((err) => console.log(err))  
                     }
-
                 }  
-
             })
-
-             
             .catch((err) => console.log(err))  
         .catch((err) => console.log(err))
     });
@@ -112,23 +155,23 @@ router.get('/create-recipe', (req, res) => {
     .then((ingredients) => {
         res.render('recipes/create-recipe.hbs', {ingredients, currentUser})
     })
-    .catch((err)=>{
-        console.log("error is", err)
-    })
+    .catch((err) => console.log(err))  
 })
 
 
-router.post('/create-recipe', uploader.single("imageUrl"), (req, res) => {
+router.post('/create-recipe', uploader.single("imageUrl"), (req, res, next) => {
     const {name, category, time, cost, materials, level, purpose, conservation, steps, imageUrl, ingredients} = req.body;
     
     if(!name || !category || !purpose || !time || !cost || !materials || !level || !conservation || !steps || !ingredients){
-      res.status(500).render('recipes/create-recipe.hbs', {errorMessage: 'Please fill in all fields'})
-      return;
+        res.status(500).render('recipes/create-recipe.hbs', {errorMessage: 'Please fill in all fields'})
+        return;
     }
 
     console.log('file is: ', req.file)
     if (!req.body.imageUrl) {
-        console.log('Image not found')
+        next(new Error("No image uploaded!"));
+        // req.file = 'https://res.cloudinary.com/dumj6yt5u/image/upload/v1597163060/defaultimg_wzf1v5.jpg'
+        // req.file.path = 'https://res.cloudinary.com/dumj6yt5u/image/upload/v1597163060/defaultimg_wzf1v5.jpg'
     }
 
     RecipesModel.create(req.body)
@@ -159,9 +202,8 @@ router.post('/my-profile/my-recipes/:recipeId/edit', (req, res) => {
     RecipesModel.findByIdAndUpdate(req.params.recipeId, {$set: req.body})
         .then((recipe) => {
             res.redirect('/all-recipes/' + recipe._id)
-        }).catch((err) => {
-            console.log(err)
-        });
+        })
+        .catch((err) => console.log(err))  
     });
 
 router.post('/my-profile/my-recipes/:recipeId/delete', (req, res) => {
@@ -172,14 +214,36 @@ router.post('/my-profile/my-recipes/:recipeId/delete', (req, res) => {
         .catch((err) => console.log(err))
     });
 
-// Favorite button route
-router.post('/my-recipes/my-favorites/:recipeId', (req, res) => {
+
+
+
+// Favorite button route (all-recipes page)
+router.post('/all-recipes/:recipeId/favorite', (req, res) => {
     UserModel.update({ _id: req.session.loggedInUser._id }, { $push: { favorites: req.params.recipeId } }) 
+        .then(() => {
+            res.redirect('/all-recipes')
+        })
+        .catch((err) => console.log(err))  
+});
+
+// Unavorite button route (all-recipes page)
+router.post('/all-recipes/:recipeId/unfavorite', (req, res) => {
+    UserModel.update({ _id: req.session.loggedInUser._id }, { $pull: { favorites: req.params.recipeId }}) 
         .then(() => {
             res.redirect('/all-recipes')
         }).catch((err) => {
             console.log(err)    
         });
 });
+
+// Comments
+router.post('/all-recipes/:recipeId/comment', (req, res) => {
+    CommentModel.create({text: req.body.text, user: req.session.loggedInUser._id, recipe: req.params.recipeId})
+        .then(() => {
+            res.redirect('/all-recipes/' + req.params.recipeId)
+        })
+        .catch((err) => console.log(err))
+})
+
 
 module.exports = router;
