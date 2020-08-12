@@ -137,7 +137,7 @@ let dbRecipes = [
     purpose:["perfuming", "moisturizing", "refreshing"],
     time:15,
     cost: "low",
-    materials: "whip, bowl, measuring spoon/cup, container",
+    materials: "whisk, bowl, measuring spoon/cup, container",
     level: "medium",
     conservation: "3",
     steps: `Mix baking soda and arrowroot together.
@@ -262,7 +262,7 @@ let dbRecipes = [
     ingredients: ["honey", "cinnamon powder", "nutmeg powder"],
     rating: 5,
     user: "",
-    image: "/images/recipes/Honey-cinnamon-face-mask.bmp"
+    image: "/images/recipes/Honey-cinnamon-face-mask.jpg"
   },
 ]
 

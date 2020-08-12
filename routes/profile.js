@@ -49,12 +49,38 @@ router.get('/my-profile/:userId/my-recipes', (req, res) => {
 
 // My favorites
 router.get('/my-profile/:userId/my-favorites', (req, res) => {
-    UserModel.findById(req.params.userId) 
+    UserModel.findById(req.params.userId)
+        .populate('favorites')
         .then((currentUser) => {
             res.render('profile/my-favorites.hbs', {currentUser});
+            console.log(currentUser)
         })
         .catch((err) => console.log(err));
     });
+
+
+
+
+
+
+// // Unavorite button route (my-favorite page)
+// router.post('/my-profile/:userId/my-favorites/:recipeId/unfavorite', (req, res) => {
+//     UserModel.findByIdAndUpdate(req.params.userId, { $pull: { favorites: req.params.recipeId }}) 
+//         .then(() => {
+//             // variables have to be apart frm the string, hence use the "" and +
+//             res.redirect('/my-profile/'+ req.params.userId +'/my-favorites')
+//         }).catch((err) => {
+//             console.log(err)    
+//         });
+// });
+
+
+
+
+
+
+
+
 
 // My comments
 router.get('/my-profile/:userId/my-comments', (req, res) => {

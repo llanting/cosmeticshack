@@ -5,7 +5,7 @@ const bcryptjs = require('bcryptjs');
 const UserModel = require('../models/user.model')
 
 router.get('/signup', (req, res) => {
-    res.render('authentication/signup.hbs', {layout: false})
+    res.render('authentication/signup.hbs')
   })
 
 
@@ -38,7 +38,7 @@ router.post('/signup', (req, res) => {
               //can write only username, email (without double)
               UserModel.create({username, email, passwordHash: hashPass })
                 .then(() => {
-                    res.redirect('/')
+                    res.redirect('/login')
                 })
                 .catch((err) => {
                   console.log(err)
@@ -50,7 +50,7 @@ router.post('/signup', (req, res) => {
   
   
 router.get('/login', (req, res) => {
-    res.render('authentication/login.hbs', {layout: false})
+    res.render('authentication/login.hbs')
 })  
   //login is comparing with the  DB
   

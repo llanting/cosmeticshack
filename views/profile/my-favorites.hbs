@@ -3,16 +3,31 @@
 
   <h4>My favorite recipes</h4>
 
-  <div class="recipes-container">
-    {{#each currentUser.favorites}}        
-      <a href="/all-recipes/{{this._id}}" class="card-link">    
-        <div class="recipe-card" style="width: 14rem;">
+
+    <div class="recipes-container">
+
+    {{#each currentUser.favorites}}
+      <div class="recipe-card" >
+
+        <a href="/all-recipes/{{this._id}}">
           <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
-          <h6>{{this.name}}</h6>
-        </div>
-      </a>
+        </a>
+
+
+        {{!-- <form method="POST" action="/my-profile/{{_id}}/my-favorites/{{this._id}}/unfavorite" >
+          <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
+        </form>     --}}
+
+
+        <a href="/all-recipes/{{this._id}}">          
+          <h6>{{this.name}}</h6>                    
+        </a>
+
+      </div>
     {{/each}}
+
   </div>
+
 
 
 </div>

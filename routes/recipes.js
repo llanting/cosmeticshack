@@ -172,8 +172,11 @@ router.post('/my-profile/my-recipes/:recipeId/delete', (req, res) => {
         .catch((err) => console.log(err))
     });
 
-// Favorite button route
-router.post('/my-recipes/my-favorites/:recipeId', (req, res) => {
+
+
+
+// Favorite button route (all-recipes page)
+router.post('/all-recipes/:recipeId/favorite', (req, res) => {
     UserModel.update({ _id: req.session.loggedInUser._id }, { $push: { favorites: req.params.recipeId } }) 
         .then(() => {
             res.redirect('/all-recipes')
@@ -181,5 +184,17 @@ router.post('/my-recipes/my-favorites/:recipeId', (req, res) => {
             console.log(err)    
         });
 });
+
+// Unavorite button route (all-recipes page)
+router.post('/all-recipes/:recipeId/unfavorite', (req, res) => {
+    UserModel.update({ _id: req.session.loggedInUser._id }, { $pull: { favorites: req.params.recipeId }}) 
+        .then(() => {
+            res.redirect('/all-recipes')
+        }).catch((err) => {
+            console.log(err)    
+        });
+});
+
+
 
 module.exports = router;

@@ -1,13 +1,14 @@
 <div class="content-page">
 
   <h4>All recipes</h4>
+  <br>
 
 
   {{!-- Add the filter to search --}}
   <form method="GET" action="/all-recipes/search">
-    <div class="form-group">
+    <div class="form-group" class="search-label">
       <label for="category">Category</label>
-      <select class="form-control" name="category">
+      <select class="form-complete-field" name="category">
         <option value="empty"></option>
         <option value="hair">Hair</option>
         <option value="face">Face</option>
@@ -16,7 +17,7 @@
     </div>
     <div class="form-group">
       <label for="purpose">Purpose</label>
-      <select class="form-control" name="purpose">
+      <select class="form-complete-field" name="purpose">
         {{#each purpose}}
           <option value="{{this}}">{{this}}</option>
         {{/each}}
@@ -35,30 +36,31 @@
 {{!-- Recipes carts --}}
   
   <div class="recipes-container">
+
     {{#each recipe}}
-    <div class="recipe-card" >
-      <a href="/all-recipes/{{this._id}}">
-        <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
-        <h6>{{this.name}}</h6>
-      
-        <div>          
-          {{!-- <a href="/all-recipes/{{this._id}}" class="btn">See recipe</a> --}}
-          <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" >
-            {{#if this.alreadyFav}}
-              {{!-- <button type="submit" class="btn">Already added</button> --}}
-              <button type="submit" class="recipe-fav-btn"><img src="/images/favorite-added-btn.png"></button>
+      <div class="recipe-card" >
 
-            {{else}}
-              {{!-- <input type="img" src="/images/favorite-btn.png"> --}}
-              <button type="submit" class="recipe-fav-btn"><img src="/images/favorite-btn.png"></button>
+        <a href="/all-recipes/{{this._id}}">
+          <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
+        </a>
 
-            {{/if}}
+
+        {{#if this.alreadyFav}}
+          <form method="POST" action="/all-recipes/{{this._id}}/unfavorite" >
+            <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
           </form>
+        {{else}}
+          <form method="POST" action="/all-recipes/{{this._id}}/favorite" >
+            <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
+          </form>
+        {{/if}} 
 
-        </div>
 
-      </a>
-    </div>
+        <a href="/all-recipes/{{this._id}}">          
+          <h6>{{this.name}}</h6>                    
+        </a>
+
+      </div>
     {{/each}}
 
   </div>
