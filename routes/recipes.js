@@ -170,6 +170,8 @@ router.post('/create-recipe', uploader.single("imageUrl"), (req, res, next) => {
     console.log('file is: ', req.file)
     if (!req.body.imageUrl) {
         next(new Error("No image uploaded!"));
+        // req.file = 'https://res.cloudinary.com/dumj6yt5u/image/upload/v1597163060/defaultimg_wzf1v5.jpg'
+        // req.file.path = 'https://res.cloudinary.com/dumj6yt5u/image/upload/v1597163060/defaultimg_wzf1v5.jpg'
     }
 
     RecipesModel.create(req.body)
