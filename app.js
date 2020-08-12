@@ -71,6 +71,10 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon3.ico')));
 
+//Hbs helper to check if equal
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
 
 // default value for title local
 app.locals.title = 'Cosmeticshack';

@@ -103,21 +103,28 @@
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Rating </p>
-            {{recipe.rating}}
+            {{#ifEquals recipe.rating 0}}
+                <p><em>No rating yet</em></p>
+            {{else}}
+                {{recipe.rating}}
+            {{/ifEquals}}
         </div>     
 
     </div>
 
     <div>
         <h4>Comment-section</h4>
-        {{#each comment}}
-            <p>{{this.user.username}}</p>
-            <p><em>{{this.text}}</em></p>
-        {{/each}}
-        
-            <p>{{currentDate}}</p>
+        <div class="recipe-fields">
+            {{#each comment}}
+                <p>{{this.user.username}}</p>
+                <p><em>{{this.text}}</em></p>
+                <p>{{this.rating}}</p>
+            {{/each}}
+        </div>
+            {{!-- <p>{{currentDate}}</p> --}}
 
         <form method="POST" action="/all-recipes/{{recipe._id}}/comment">
+        
             <label for="user">Username</label>
             <input type="text" id="user" name="user" disabled value="{{currentUser.username}}">
 

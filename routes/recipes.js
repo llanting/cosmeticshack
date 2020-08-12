@@ -275,20 +275,24 @@ router.post('/all-recipes/:recipeId/unfavorite', (req, res) => {
 // Comments
 let ratingArr  = [];
 router.post('/all-recipes/:recipeId/comment', (req, res) => {
+    if (req.body.rating > 0 && req.body.rating < 6) {
     CommentModel.create({text: req.body.text, user: req.session.loggedInUser._id, recipe: req.params.recipeId, rating: req.body.rating})
         .then(() => {
             ratingArr.push(Number(req.body.rating))
-            let sum = ratingArr.reduce(function(a, b){
+            let sum = ratingArr.reduce((a, b) => {
                 return a + b;
             }, 0);
             let average  = Math.round(sum / ratingArr.length);
             RecipesModel.findByIdAndUpdate(req.params.recipeId, {$set: {rating: average}})
-                .then((result) => {
+                .then(() => {
                     res.redirect('/all-recipes/' + req.params.recipeId)
                 })
                 .catch((err) => console.log(err));
         })
         .catch(() => res.redirect('/all-recipes/' + req.params.recipeId))
+    } else {
+        // How to print errormessage on page here if number is outside 1 & 5? Same as with comments, how to print errormessage if comment is empty
+    }
 });
 
 
