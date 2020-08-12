@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const RecipesModel = require('../models/recipe.model')
-const UserModel = require('../models/user.model')
-const IngredientModel = require('../models/ingredient.model');
+const UserModel = require('../models/user.model');
+const CommentModel = require('../models/comment-model');
 
 
 // My-profile page
@@ -33,9 +33,15 @@ router.post('/my-profile/:userId/edit', (req, res) => {
         .catch((err) => console.log(err))
     });
 
-router.get('/my-profile/:userId/my-shoppinglist', (req, res) => {
-    res.render('profile/my-shoppinglist.hbs')
-    });
+
+// Delete user
+router.get('/my-profile/:userId/delete', (req, res) => {
+    UserModel.findByIdAndDelete(req.params.userId)
+      .then(() => {
+        req.session.destroy(() => res.redirect('/'))
+      })
+      .catch((err) => console.log(err));
+  })
     
 // My recipes
 router.get('/my-profile/:userId/my-recipes', (req, res) => {
@@ -50,6 +56,7 @@ router.get('/my-profile/:userId/my-recipes', (req, res) => {
 // My favorites
 router.get('/my-profile/:userId/my-favorites', (req, res) => {
     UserModel.findById(req.params.userId) 
+        .populate('favorites')
         .then((currentUser) => {
             res.render('profile/my-favorites.hbs', {currentUser});
         })
@@ -58,13 +65,16 @@ router.get('/my-profile/:userId/my-favorites', (req, res) => {
 
 // My comments
 router.get('/my-profile/:userId/my-comments', (req, res) => {
-    res.render('profile/my-comments.hbs');
+    let currentUser = req.params.userId
+    CommentModel.find({user: req.params.userId}) 
+        .populate('recipe')
+        .then((comment) => {
+            console.log(comment)
+            res.render('profile/my-comments.hbs', {comment, currentUser});
+        })
+        .catch((err) => console.log(err));
+    
     });
-
-// This route isn't necessary?! If the shoppinglist is an array, we can create a function that if a deletebutton is clicked for that item, it will remove that element of the array
-// router.post('/my-profile/my-shoppinglist/', (req, res) => {
-
-// })
 
 // Public profile
 router.get('/public-profile/:userId', (req, res) => {

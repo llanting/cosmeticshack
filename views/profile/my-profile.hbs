@@ -19,9 +19,12 @@
             <span>{{currentUser.usertype}}</span>
 
 
-            <button type="submit" class="btn btn-sm btn-outline-secondary" >Edit</button>
-
+            <button type="submit" class="btn btn-sm btn-outline-secondary" >Edit user</button>
         </form>
+    
+    <form method="GET" action="/my-profile/{{currentUser._id}}/delete">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">Delete user</button>
+    </form>
 
 
     <h4>Quick access</h4>
@@ -31,6 +34,7 @@
 
     <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn btn-sm btn-outline-secondary">My Favorites</a>
     <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn btn-sm btn-outline-secondary">My Recipes</a>
+    <a href= "/my-profile/{{currentUser._id}}/my-comments" class="btn btn-sm btn-outline-secondary">My Comments</a>
 
 
 </div>

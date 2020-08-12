@@ -9,7 +9,11 @@
   padding: 0;
 }
 
-
+.pdf {
+  margin-top: 100px;
+  width: 100px;
+  height: 100px;
+}
 
 header {
   position: fixed;

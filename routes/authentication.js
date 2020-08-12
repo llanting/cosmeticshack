@@ -33,26 +33,28 @@ router.post('/signup', (req, res) => {
     .then((salt) => {
         bcryptjs.hash(password, salt)
           .then((hashPass) => {
-              console.log(hashPass)
               // create that user in the db
-              //can write only username, email (without double)
-              UserModel.create({username, email, passwordHash: hashPass })
-                .then(() => {
-                    res.redirect('/')
-                })
-                .catch((err) => {
-                  console.log(err)
-                })
+                        UserModel.findOne({$or: [{username, email}]})
+              .then((result) => {
+                  res.status(500).render('authentication/signup.hbs', {errorMessage: 'Username or email already exists', layout: false})
+              }).catch((err) => {
+                UserModel.create({username, email, passwordHash: hashPass })
+                  .then(() => {
+                      res.redirect('/')
+                  })
+                  .catch((err) => {
+                    console.log(err)
+                  })
+              });
           })
     })
-  
   })
   
-  
+// Login
 router.get('/login', (req, res) => {
     res.render('authentication/login.hbs', {layout: false})
 })  
-  //login is comparing with the  DB
+  
   
 router.post('/login', (req, res) => {
     const {email, password} = req.body
@@ -92,9 +94,7 @@ router.post('/login', (req, res) => {
 
 // Log out & destroying session
 router.get('/logout', (req,res) => {
-  req.session.destroy(() => {
-      res.redirect('/')
-  })
+  req.session.destroy(() => res.redirect('/'))
 })
 
 

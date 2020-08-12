@@ -42,14 +42,14 @@
    
     <div class="card-body" id="card-btns">
       <a href="/all-recipes/{{this._id}}" class="card-link btn sign">See recipe</a>
-      {{!-- Image of star --}}
-      <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" >
-        {{#if this.alreadyFav}}
-          <button type="submit" class="card-link btn sign fav-btn">Already Favorite</button>
-        {{else}}
+
+      {{#if this.alreadyFav}}
+        <p class="card-link btn sign fav-btn">Already Favorite<p>
+      {{else}}
+        <form method="POST" action="/my-recipes/my-favorites/{{this._id}}" >
           <button type="submit" class="card-link btn sign fav-btn">Favorite</button>
-          {{/if}}
-      </form>
+        </form>
+      {{/if}}
     </div>
   </div>
   {{/each}}

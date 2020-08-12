@@ -13,6 +13,7 @@ const session      = require('express-session');
 const MongoStore   = require('connect-mongo')(session);
 const moment       = require('moment');
 
+
 moment().format(); 
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/cosmetichack';

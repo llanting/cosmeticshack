@@ -84,11 +84,27 @@
 
     </div>
 
+    <div>
+        <h2>Comment-section</h2>
+        {{#each comment}}
+            <p>{{this.user.username}}:</p>
+            <p><em>{{this.text}}</em></p>
+        {{/each}}
 
+        <form method="POST" action="/all-recipes/{{recipe._id}}/comment">
+            <label for="user">Username</label>
+            <input type="text" id="user" name="user" disabled value="{{currentUser.username}}">
 
-
+            <label for="text" class="form-label">Text</label>
+            <input name="text" type="text" id="text">
+            
+            <button type="sumbit">Post comment</button>
+        </form>
+    </div>
 
 </div>
+
+
 
 
 
