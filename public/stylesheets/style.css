@@ -16,7 +16,11 @@ a {
   /* background: linear-gradient(rgb(227, 218, 219, 0.3), rgb(227, 218, 219, 1) 100%); */
 }
 
-
+.pdf {
+  margin-top: 100px;
+  width: 100px;
+  height: 100px;
+}
 
 header {
   display: flex;

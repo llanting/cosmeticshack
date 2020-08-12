@@ -26,7 +26,7 @@ let RecipeSchema = new mongoose.Schema({
             required: true
         },
         materials: {
-            type: String,
+            type: mongoose.Schema.Types.Mixed,
             enum: ["whisk", "bowl", "measuring spoon/cup", "container", "spatula", "scale", "funnel", "mesh strainer", "pipette droppers"],
             required: true
         },
@@ -69,12 +69,6 @@ let RecipeSchema = new mongoose.Schema({
         timestamps: true
     }
 )
-
-
-
-
-
-
 
 
 

@@ -19,7 +19,10 @@
         <button type="submit" class="btn" >Edit</button>
 
     </form>
-
+    
+    <form method="GET" action="/my-profile/{{currentUser._id}}/delete">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">Delete user</button>
+    </form>
 
     <h6>Quick access</h6>
 
@@ -30,6 +33,7 @@
     <div id="profile-bottom-elem">
         <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn profile-btn">My Favorites</a>
         <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn profile-btn">My Recipes</a>
+        <a href= "/my-profile/{{currentUser._id}}/my-comments" class="btn profile-btn">My Comments</a>
     </div>
 
     <div id="profile-bottom-elem">

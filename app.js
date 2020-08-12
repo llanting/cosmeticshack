@@ -13,10 +13,13 @@ const session      = require('express-session');
 const MongoStore   = require('connect-mongo')(session);
 const moment       = require('moment');
 
+
 moment().format(); 
 
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/cosmetichack';
+
 mongoose
-  .connect('mongodb://localhost/cosmetichack', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+  .connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
