@@ -67,18 +67,16 @@ router.get('/my-profile/:userId/my-favorites', (req, res) => {
 
 
 
-
-
-// // Unavorite button route (my-favorite page)
-// router.post('/my-profile/:userId/my-favorites/:recipeId/unfavorite', (req, res) => {
-//     UserModel.findByIdAndUpdate(req.params.userId, { $pull: { favorites: req.params.recipeId }}) 
-//         .then(() => {
-//             // variables have to be apart frm the string, hence use the "" and +
-//             res.redirect('/my-profile/'+ req.params.userId +'/my-favorites')
-//         }).catch((err) => {
-//             console.log(err)    
-//         });
-// });
+// Unavorite button route (my-favorite page)
+router.post('/my-profile/:userId/my-favorites/:recipeId/unfavorite', (req, res) => {
+    UserModel.findByIdAndUpdate(req.params.userId, { $pull: { favorites: req.params.recipeId }}) 
+        .then(() => {
+            // in redirect, variables have to be apart frm the string, hence use the "" and +
+            res.redirect('/my-profile/'+ req.params.userId +'/my-favorites')
+        }).catch((err) => {
+            console.log(err)    
+        });
+});
 
 
 

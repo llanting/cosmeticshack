@@ -1,25 +1,3 @@
-{{!-- 
-<div class="recipes-container">
-{{#each recipes}}
-    <div class="recipe-card" style="width: 18rem;">
-    <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
-    <div>
-      <h6>{{this.name}}</h6>
-    </div>
-  
-    <div>
-      <a href="/all-recipes/{{this._id}}" class="btn">See recipe</a>
-      <a href="/my-profile/my-recipes/{{this._id}}/edit" class="btn">Edit</a>
-      <form action="/my-profile/my-recipes/{{this._id}}/delete" method="POST">
-        <button class="btn">Delete</button>   
-      </form>
-    </div>
-  </div>
-
-
-{{/each}}
-</div> --}}
-
 
 <div class="content-page">
 
@@ -41,30 +19,25 @@
     
       <div class="my-rec-btns-container">
 
-        <div class="my-rec-btns">
-          <a href="/all-recipes/{{this._id}}" class="btn my-rec-btns">
-            <img src="/images/btn-view.png" alt="icon">
+        <div id="my-rec-btns">
+          <a href="/all-recipes/{{this._id}}" class="btn">
+            <img src="/images/btn-view.png" class="icon-my-rec">
           </a>
         </div>
 
-        <div class="my-rec-btns">
-          <a href="/my-profile/my-recipes/{{this._id}}/edit" class="btn my-rec-btns">
-            <img src="/images/btn-edit.png" alt="icon">
+        <div id="my-rec-btns">
+          <a href="/my-profile/my-recipes/{{this._id}}/edit" class="btn">
+            <img src="/images/btn-edit.png" class="icon-my-rec">
           </a>
         </div>
 
-        <div class="my-rec-btns">
+        <div id="my-rec-btns">
           <form action="/my-profile/my-recipes/{{this._id}}/delete" method="POST">
-            <button class="btn my-rec-btns"><img src="/images/btn-delete.png" alt="icon"></button>  
+            <button class="btn"><img src="/images/btn-delete.png" class="icon-my-rec"></button>  
           </form>
         </div>
-        
                 
       </div>
-
-
-      
-
 
     </div>
     {{/each}}

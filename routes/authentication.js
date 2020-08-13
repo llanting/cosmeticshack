@@ -34,7 +34,7 @@ router.post('/signup', (req, res) => {
         bcryptjs.hash(password, salt)
           .then((hashPass) => {
               // create that user in the db
-                        UserModel.findOne({$or: [{username, email}]})
+              UserModel.findOne({$or: [{username, email}]})
               .then((result) => {
                   res.status(500).render('authentication/signup.hbs', {errorMessage: 'Username or email already exists'})
               }).catch((err) => {
