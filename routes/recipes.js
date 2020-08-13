@@ -72,406 +72,8 @@ router.get('/all-recipes/sort', (req, res) => {
     }
 })
 
-// Recipe-details
-router.get('/all-recipes/:recipeId', (req, res) => {
-    let currentUser = req.session.loggedInUser;
-    RecipesModel.findById(req.params.recipeId)
-        // To insert user-info, next to id
-        .populate('user')
-        .then((recipe) => {
-            // Changes recipe.date to a readable format
-            let newDate = moment(recipe.date).format("MMMM DD, YYYY");
 
-                if (recipe.level == "easy"){  
 
-                    if (recipe.cost == "low"){
-
-                        if (recipe.rating == 1){
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-1star.png'})
-                            })
-                            .catch((err) => console.log(err))
-                            
-
-                        } else if (recipe.rating == 2){
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-2star.png'})
-                            })
-                            .catch((err) => console.log(err))
-
-                        } else if (recipe.rating == 3){
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-3star.png'})
-                            })
-                            .catch((err) => console.log(err))
-
-                        } else if (recipe.rating == 4){
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-4star.png'})
-                            })
-                            .catch((err) => console.log(err))
-
-                        } else if (recipe.rating == 5){
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-5star.png'})
-                            })
-                            .catch((err) => console.log(err))
-
-                        }
-
-
-                         
-                    } 
-                    else if (recipe.cost == "medium"){
-                        if (recipe.rating == 1){
-
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-1star.png'})
-                            })
-                            .catch((err) => console.log(err))                            
-
-                        } else if (recipe.rating == 2){
-
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-2star.png'})
-                            })
-                            .catch((err) => console.log(err))
-
-                        } else if (recipe.rating == 3){
-
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-3star.png'})
-                            })
-                            .catch((err) => console.log(err))
-
-                        } else if (recipe.rating == 4){
-
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-4star.png'})
-                            })
-                            .catch((err) => console.log(err))
-
-                        } else if (recipe.rating == 5){
-
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-5star.png'})
-                            })
-                            .catch((err) => console.log(err))
-
-                        }
-
-
-                                             
-                    } else if (recipe.cost == "high"){
-
-                        if (recipe.rating == 1){
-
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-1star.png'})
-                            })
-                            .catch((err) => console.log(err)) 
-                            
-
-                        } else if (recipe.rating == 2){
-
-                            CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-1star.png'})
-                            })
-                            .catch((err) => console.log(err))  
-
-                        } else if (recipe.rating == 3){
-
-                        } else if (recipe.rating == 4){
-
-                        } else if (recipe.rating == 5){
-
-                        }
-
-                        
-                         
-                    }
-
-                } else if (recipe.level == "medium"){
-                    if (recipe.cost == "low"){
-
-                        if (recipe.rating == 1){
-                            
-
-                        } else if (recipe.rating == 2){
-
-                        } else if (recipe.rating == 3){
-
-                        } else if (recipe.rating == 4){
-
-                        } else if (recipe.rating == 5){
-
-                        }
-
-
-                        CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg'})
-                            })
-                            .catch((err) => console.log(err))                   
-                    } else if (recipe.cost == "medium"){
-
-                        if (recipe.rating == 1){
-                            
-
-                        } else if (recipe.rating == 2){
-
-                        } else if (recipe.rating == 3){
-
-                        } else if (recipe.rating == 4){
-
-                        } else if (recipe.rating == 5){
-
-                        }
-                        CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg'})
-                            })
-                            .catch((err) => console.log(err))                     
-                    } else if (recipe.cost == "high"){
-
-                        if (recipe.rating == 1){
-                            
-
-                        } else if (recipe.rating == 2){
-
-                        } else if (recipe.rating == 3){
-
-                        } else if (recipe.rating == 4){
-
-                        } else if (recipe.rating == 5){
-
-                        }
-                        CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg'})
-                            })
-                            .catch((err) => console.log(err))  
-                    }
-
-
-                } else if (recipe.level == "hard"){
-                    if (recipe.cost == "low"){
-
-                        if (recipe.rating == 1){
-                            
-
-                        } else if (recipe.rating == 2){
-
-                        } else if (recipe.rating == 3){
-
-                        } else if (recipe.rating == 4){
-
-                        } else if (recipe.rating == 5){
-
-                        }
-
-
-                        CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg'})
-                            })
-                            .catch((err) => console.log(err))                      
-                    } else if (recipe.cost == "medium"){
-
-                        if (recipe.rating == 1){
-                            
-
-                        } else if (recipe.rating == 2){
-
-                        } else if (recipe.rating == 3){
-
-                        } else if (recipe.rating == 4){
-
-                        } else if (recipe.rating == 5){
-
-                        }
-
-                        CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg'})
-                            })
-                            .catch((err) => console.log(err))                      
-                    } else if (recipe.cost == "high"){
-
-                        if (recipe.rating == 1){
-                            
-
-                        } else if (recipe.rating == 2){
-
-                        } else if (recipe.rating == 3){
-
-                        } else if (recipe.rating == 4){
-
-                        } else if (recipe.rating == 5){
-
-                        }
-
-                        CommentModel.find({recipe: req.params.recipeId})
-                            .populate('user')
-                            .then((comment) => {
-                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg'})
-                            })
-                            .catch((err) => console.log(err))  
-                    }
-                }  
-            })
-            .catch((err) => console.log(err))  
-        .catch((err) => console.log(err))
-});
-
-
-
-
-// // Recipe-details
-// router.get('/all-recipes/:recipeId', (req, res) => {
-//     let currentUser = req.session.loggedInUser;
-//     RecipesModel.findById(req.params.recipeId)
-//         // To insert user-info, next to id
-//         .populate('user')
-//         .then((recipe) => {
-//             // Changes recipe.date to a readable format
-//             let newDate = moment(recipe.date).format("MMMM DD, YYYY");
-
-//                 if (recipe.level == "easy"){  
-
-//                     if (recipe.cost == "low"){
-//                         CommentModel.find({recipe: req.params.recipeId})
-//                             .populate('user')
-//                             .then((comment) => {
-//                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-//                                 res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg'})
-//                             })
-//                             .catch((err) => console.log(err))  
-//                     } 
-//                     else if (recipe.cost == "medium"){
-//                         CommentModel.find({recipe: req.params.recipeId})
-//                             .populate('user')
-//                             .then((comment) => {
-//                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-//                                 res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg'})
-//                             })
-//                             .catch((err) => console.log(err))                     
-//                     } else if (recipe.cost == "high"){
-//                         CommentModel.find({recipe: req.params.recipeId})
-//                             .populate('user')
-//                             .then((comment) => {
-//                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-//                                 res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg'})
-//                             })
-//                             .catch((err) => console.log(err))  
-//                     }
-
-//                 } else if (recipe.level == "medium"){
-//                     if (recipe.cost == "low"){
-//                         CommentModel.find({recipe: req.params.recipeId})
-//                             .populate('user')
-//                             .then((comment) => {
-//                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-//                                 res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg'})
-//                             })
-//                             .catch((err) => console.log(err))                   
-//                     } else if (recipe.cost == "medium"){
-//                         CommentModel.find({recipe: req.params.recipeId})
-//                             .populate('user')
-//                             .then((comment) => {
-//                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-//                                 res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg'})
-//                             })
-//                             .catch((err) => console.log(err))                     
-//                     } else if (recipe.cost == "high"){
-//                         CommentModel.find({recipe: req.params.recipeId})
-//                             .populate('user')
-//                             .then((comment) => {
-//                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-//                                 res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg'})
-//                             })
-//                             .catch((err) => console.log(err))  
-//                     }
-
-
-//                 } else if (recipe.level == "hard"){
-//                     if (recipe.cost == "low"){
-//                         CommentModel.find({recipe: req.params.recipeId})
-//                             .populate('user')
-//                             .then((comment) => {
-//                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-//                                 res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg'})
-//                             })
-//                             .catch((err) => console.log(err))                      
-//                     } else if (recipe.cost == "medium"){
-//                         CommentModel.find({recipe: req.params.recipeId})
-//                             .populate('user')
-//                             .then((comment) => {
-//                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-//                                 res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg'})
-//                             })
-//                             .catch((err) => console.log(err))                      
-//                     } else if (recipe.cost == "high"){
-//                         CommentModel.find({recipe: req.params.recipeId})
-//                             .populate('user')
-//                             .then((comment) => {
-//                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-//                                 res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg'})
-//                             })
-//                             .catch((err) => console.log(err))  
-//                     }
-//                 }  
-//             })
-//             .catch((err) => console.log(err))  
-//         .catch((err) => console.log(err))
-// });
 
 // Creating recipe
 router.get('/create-recipe', (req, res) => {
@@ -610,6 +212,527 @@ router.post('/all-recipes/:recipeId/comment', (req, res) => {
         // How to print errormessage on page here if number is outside 1 & 5? Same as with comments, how to print errormessage if comment is empty
     }
 });
+
+
+
+
+// Recipe-details
+router.get('/all-recipes/:recipeId', (req, res) => {
+    let currentUser = req.session.loggedInUser;
+    RecipesModel.findById(req.params.recipeId)
+        // To insert user-info, next to id
+        .populate('user')
+        .then((recipe) => {
+            // Changes recipe.date to a readable format
+            let newDate = moment(recipe.date).format("MMMM DD, YYYY");
+
+                if (recipe.level == "easy"){  
+
+                    if (recipe.cost == "low"){
+
+                        if (recipe.rating == 1){
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-1star.png'})
+                            })
+                            .catch((err) => console.log(err))
+                            
+
+                        } else if (recipe.rating == 2){
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-2star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        } else if (recipe.rating == 3){
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-3star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        } else if (recipe.rating == 4){
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-4star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        } else if (recipe.rating == 5){
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-5star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        }
+
+                         
+                    } 
+                    else if (recipe.cost == "medium"){
+                        if (recipe.rating == 1){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-1star.png'})
+                            })
+                            .catch((err) => console.log(err))                            
+
+                        } else if (recipe.rating == 2){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-2star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        } else if (recipe.rating == 3){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-3star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        } else if (recipe.rating == 4){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-4star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        } else if (recipe.rating == 5){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-5star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        }
+
+
+                                             
+                    } else if (recipe.cost == "high"){
+
+                        if (recipe.rating == 1){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-1star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+                            
+
+                        } else if (recipe.rating == 2){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-2star.png'})
+                            })
+                            .catch((err) => console.log(err))  
+
+                        } else if (recipe.rating == 3){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-3star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 4){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-4star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 5){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-5star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+                        }                      
+                         
+                    }
+
+                } else if (recipe.level == "medium"){
+                    if (recipe.cost == "low"){
+
+                        if (recipe.rating == 1){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-1star.png'})
+                            })
+                            .catch((err) => console.log(err))  
+                            
+
+                        } else if (recipe.rating == 2){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-2star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 3){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-3star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 4){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-4star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 5){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-5star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+                        }
+
+                             
+                    } else if (recipe.cost == "medium"){
+
+                        if (recipe.rating == 1){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-1star.png'})
+                            })
+                            .catch((err) => console.log(err))                              
+
+                        } else if (recipe.rating == 2){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-2star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 3){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-3star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 4){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-4star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 5){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-5star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        }
+                                           
+                    } else if (recipe.cost == "high"){
+
+                        if (recipe.rating == 1){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-1star.png'})
+                            })
+                            .catch((err) => console.log(err))
+                            
+
+                        } else if (recipe.rating == 2){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-2star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        } else if (recipe.rating == 3){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-3star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        } else if (recipe.rating == 4){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-4star.png'})
+                            })
+                            .catch((err) => console.log(err))
+
+                        } else if (recipe.rating == 5){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/2-round.jpg', rating: '/images/btn-5star.png'})
+                            })
+                            .catch((err) => console.log(err))
+                        }                          
+                    }
+
+
+                } else if (recipe.level == "hard"){
+                    if (recipe.cost == "low"){
+
+                        if (recipe.rating == 1){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-1star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+                            
+
+                        } else if (recipe.rating == 2){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-2star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 3){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-3star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 4){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-4star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 5){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-5star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        }
+
+
+                                             
+                    } else if (recipe.cost == "medium"){
+
+                        if (recipe.rating == 1){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-1star.png'})
+                            })
+                            .catch((err) => console.log(err))                             
+
+                        } else if (recipe.rating == 2){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-2star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 3){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-3star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 4){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-4star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 5){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/2-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-5star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+                        }
+
+                                             
+                    } else if (recipe.cost == "high"){
+
+                        if (recipe.rating == 1){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-1star.png'})
+                            })
+                            .catch((err) => console.log(err))                              
+
+                        } else if (recipe.rating == 2){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-2star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 3){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-3star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 4){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-4star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        } else if (recipe.rating == 5){
+
+                            CommentModel.find({recipe: req.params.recipeId})
+                            .populate('user')
+                            .then((comment) => {
+                                let commentDate = moment(comment.date).format("MMMM DD, YYYY");
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/3-round.jpg', level: '/images/3-round.jpg', rating: '/images/btn-5star.png'})
+                            })
+                            .catch((err) => console.log(err)) 
+
+                        }
+                        
+                    }
+                }  
+            })
+            .catch((err) => console.log(err))  
+        .catch((err) => console.log(err))
+});
+
+
+
+
 
 
 module.exports = router;

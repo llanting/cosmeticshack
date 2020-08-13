@@ -3,50 +3,29 @@
     <h4>My comments</h4>
     <br>
 
-{{!-- {{#each comment}}
-            
-                <div class="com-left-sec">
-                    <img src={{this.recipe.image}} alt="">
-                    <h6>{{this.recipe.name}}</h6>            
-                </div>        
-                
-                <p>{{this.text}}</p>
-
-            {{/each}} --}}
-
-
     <div class="my-comments-section">
         
         {{#each comment}}
-            <div class="com-details">
-
-                <div class="comment-all-except-icon">
+            <div class="com-container">              
                 
-                    <div class="my-com-img-name">
-                        <img src={{this.recipe.image}} alt="picture" class="my-com-img">
-                        <h6>{{this.recipe.name}}</h6> 
-                    </div> 
+                <div class="mycom-left-section">
+                    <img src={{this.recipe.image}} alt="picture" class="my-com-img">
+                    <h6>{{this.recipe.name}}</h6> 
+                </div> 
 
-                    {{!-- <div class="my-com-middle-section"> --}}
-
+                <div class="mycom-middle-section">
                     <p>{{this.text}}</p>
-                        
-                    {{!-- </div> --}}
+                </div>                        
 
-                </div>
-
-                <div class="my-com-right-section">
+                <div class="mycom-right-section">
                     <a href="/all-recipes/{{this.recipe._id}}" class="fav-btn my-com-btn">
-                        <img src="/images/btn-view.png" >
+                        <img src="/images/btn-view.png" class="comment-icon-view">
                     </a>
                 </div>
-
-                    
                 
             </div>
         {{/each}}
 
     </div>
-   
 
 </div>

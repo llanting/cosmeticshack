@@ -9,22 +9,22 @@
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Cost</p>
-            <img src={{cost}} alt="cost">
+            <img src={{cost}} alt="cost" class="recipe-icon-dots">
         </div>
         
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Difficulty</p>
-            <img src={{level}} alt="level">
+            <img src={{level}} alt="level" class="recipe-icon-dots">
         </div>        
 
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Rating</p>
-            {{#ifEquals recipe.rating 0}}
+            {{#ifEquals rating 0}}
                 <p><em>No rating yet</em></p>
             {{else}}
-                {{recipe.rating}}
+            <img src={{rating}} alt="rating" id="recipe-icon-rating">
             {{/ifEquals}}
         </div> 
 
@@ -93,7 +93,7 @@
     
 
     <p class="recipe-field-name">Steps </p>
-    <p id="recipe-steps-text">{{recipe.steps}}  </p>
+    <p id="recipe-steps-text">{{recipe.steps}}</p>
     <br>
 
     <div class="recipe-fields">
@@ -121,18 +121,17 @@
 
         <div class="comments-list">
             {{#each comment}}
-                {{!-- <hr class="line-com">    --}}
                 <img src="/images/separate-line.png" class="separator-flower">
-                <p class="comment-field" >{{this.user.username}}: {{this.text}}</p> 
+                <p class="comment-field"><strong>{{this.user.username}}</strong> - <em>{{this.text}}</em></p> 
             {{/each}}
         </div>
         
         <div class="add-comment-section">
             <form method="POST" action="/all-recipes/{{recipe._id}}/comment">
-                <textarea name="text" type="text" id="text" rows="3" cols="33" placeholder="Write your comment here"></textarea>
+                <textarea name="text" type="text" id="text" rows="3" cols="33" placeholder="Write a review or a comment here"></textarea>
                 <label for="rating" class="form-label">Your rating</label>
                 <input name="rating" type="number" id="rating" max="5" min="1" required placeholder="Min is 1, max is 5">
-                <button type="sumbit" class="btn">Post your comment</button>
+                <button type="sumbit" class="btn btn-hover">Post your comment</button>
             </form>
         </div>
 
@@ -153,7 +152,7 @@
                     <option value="5">5</option>                    
                 </select>
 
-                <button type="sumbit" class="btn">Post your comment</button>
+                <button type="sumbit" class="btn btn-hover">Post your comment</button>
             </form>
         </div>  --}}
 
