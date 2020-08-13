@@ -1,4 +1,5 @@
 <div class="content-page">
+  {{> back}}
   <h4>Edit {{recipe.name}}</h4>
 
   <div id="create-recipe-element">
@@ -18,9 +19,9 @@
           {{#each purpose}}   
             <div "check-list">
               <div class="form-check">
-                <input class="form-check-input" name="purpose" type="checkbox" value="{{this}}" id="purpose">
+                <input class="form-check-input" name="purpose" type="checkbox" value="{{this.name}}" id="purpose" {{#if this.isChecked}}checked{{/if}}>
                 <label class="form-check-label" for="purpose">
-                  {{this}}
+                  {{this.name}}
                 </label>
               </div>      
             </div>
@@ -32,7 +33,7 @@
           {{#each ingredients}}   
             <div "check-list">
               <div class="form-check">
-                <input class="form-check-input" name="ingredients" type="checkbox" value="{{this.name}}" id="purpose">
+                <input class="form-check-input" name="ingredients" type="checkbox" value="{{this.name}}" id="purpose" {{#if this.isChecked}}checked{{/if}}>
                 <label class="form-check-label" for="ingredients">
                   {{this.name}}
                 </label>
@@ -56,9 +57,9 @@
           {{#each materials}}   
             <div "check-list">
               <div class="form-check">
-                <input class="form-check-input" name="materials" type="checkbox" value="{{this}}" id="purpose">
+                <input class="form-check-input" name="materials" type="checkbox" value="{{this.name}}" id="purpose" {{#if this.isChecked}}checked{{/if}}>
                 <label class="form-check-label" for="materials">
-                  {{this}}
+                  {{this.name}}
                 </label>
               </div>      
             </div>

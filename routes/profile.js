@@ -5,6 +5,7 @@ const RecipesModel = require('../models/recipe.model')
 const UserModel = require('../models/user.model');
 const CommentModel = require('../models/comment-model');
 
+
 // My-profile page
 router.get('/my-profile/:userId', (req, res) => {
     UserModel.findById(req.params.userId)
@@ -48,7 +49,7 @@ router.get('/my-profile/:userId/my-recipes', (req, res) => {
         .catch((err) => console.log(err));
 });
 
-    
+  
 
 // My favorites
 router.get('/my-profile/:userId/my-favorites', (req, res) => {
@@ -56,7 +57,9 @@ router.get('/my-profile/:userId/my-favorites', (req, res) => {
         .populate('favorites')
         .then((currentUser) => {
             res.render('profile/my-favorites.hbs', {currentUser});
-            console.log(currentUser)
+
+      
+
         })
         .catch((err) => console.log(err));
     });

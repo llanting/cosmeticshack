@@ -31,7 +31,7 @@ header {
   justify-content: space-between;
   align-items: baseline;
   background-color: #8E6C63;
-
+  z-index: 1;
 }
 
 
@@ -196,6 +196,7 @@ label {
 
 .navbar-nav{
   margin-top: 8px;
+
 }
 
 
@@ -297,7 +298,7 @@ label {
   display: flex;
   flex-direction: column;
   align-items: right;
-  margin-top: ;
+  margin-top: 0;
 }
 
 .form-group {
@@ -313,6 +314,8 @@ label {
   align-self: right;
 
 }
+
+
 
 /* 
 .form-check-label {
@@ -337,11 +340,11 @@ label {
   margin-top: 10px!important;
 } */
 
-/* 
+
 .form-check {
-} */
+  z-index: 0;
 
-
+}
 
 .form-complete-field {
   font-size: 13px;
@@ -727,12 +730,37 @@ a:hover {
   padding: 0;
 }
 
+.up-btn {
+  position: fixed; /* Fixed/sticky position */
+  bottom: 10px; /* Place the button at the bottom of the page */
+  right: 5px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  color: #8E6C63;
+  background-color: #fff2e4;
+  border: 1px solid #8E6C63;
+  border-radius: 5px;
+}
 
+.up-img {
+  width: 25px;
+  height: 20px;
+  padding: 4px;
+}
 
-
-
-
-
+.back-btn {
+  position: fixed; /* Fixed/sticky position */
+  top: 70px; /* Place the button at the bottom of the page */
+  left: 5px; /* Place the button 30px from the right */
+  color: #8E6C63;
+  background: url('../images/left-img.png') no-repeat #fff2e4;
+  background-size: 10px 15px;
+  background-position: center;
+  width: 20px;
+  height: 25px;
+  border: 1px solid #8E6C63;
+  border-radius: 5px;
+  z-index: 0;
+}
 
 
 

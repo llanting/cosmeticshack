@@ -8,6 +8,10 @@ const uploader      = require('../config/cloudinary.js');
 const app           = require('../app');
 const CommentModel = require('../models/comment-model');
 
+let ingredientsArr = ["almond oil", "aloe vera gel", "avocado oil", "baking soda", "beeswax pastilles", "brown sugar", "cinnamon powder", "coconut oil", "cornstarch", "cosher salt", "essential oils of choice (optional)", "fresh lemon", "ginger powder", "honey", "lavender essential oil", "lemon essential oil", "mango butter", "non-nano zinc oxide", "nutmeg powder", "olive oil", "palmarosa essential oil", "peppermint essential oil", "raspberry seed oil", "shea butter", "tea tree essential oil", "vanilla essential oil", "vitamin E oil", "witch hazel extract"];
+let purposeArr = ['anti-aging', 'exfoliating', 'moisturizing', 'perfuming', 'purifying', 'refreshing', 'repairing', 'sun protection'];
+let materialsArr = ["bowl", "container", "funnel", "measuring spoon/cup", "mesh strainer", "pipette droppers", "scale", "spatula", "whisk"];
+
 // All recipes
 router.get('/all-recipes', (req, res) => {
     let currentUser = req.session.loggedInUser;
@@ -25,13 +29,13 @@ router.get('/all-recipes', (req, res) => {
                             return elem;
                         }
                     })
-                    let purpose = ['', 'Moisturizing', 'Repairing', 'Sun protection', 'Refreshing', 'Anti-aging', 'Purifying', 'Perfuming', 'Exfoliating'];
-                    res.render('recipes/all-recipes.hbs', {recipe: newRecipes, currentUser, purpose})
+                    res.render('recipes/all-recipes.hbs', {recipe: newRecipes, ingredientsArr, currentUser, purposeArr})
                 })
                 .catch((err) => console.log(err));
         })
         .catch((err) => console.log(err));
 });
+
 
 
 // Search 
@@ -41,16 +45,15 @@ router.get('/all-recipes/search', (req,res) => {
     let search = {}
     search.purpose = purpose;
     search.category = category;
-    let purposeArr = ['anti-aging', 'exfoliating', 'moisturizing', 'perfuming', 'purifying', 'refreshing', 'repairing', 'sun protection'];
 
     // Find 'and' or 'or'
     RecipesModel.find({$or: [{category: search.category}, {purpose: search.purpose}]})
         .then((recipe) => {
             console.log(recipe)
             if (recipe.length === 0) {
-                res.render('recipes/all-recipes.hbs', {recipe, purposeArr, errorMessage: 'No matches found', currentUser})
+                res.render('recipes/all-recipes.hbs', {recipe, purposeArr, ingredientsArr, errorMessage: 'No matches found', currentUser})
             } else {
-                res.render('recipes/all-recipes.hbs', {recipe, purposeArr, currentUser})
+                res.render('recipes/all-recipes.hbs', {recipe, purposeArr, ingredientsArr, currentUser})
             }
         })
         .catch((err) => console.log(err));
@@ -58,17 +61,23 @@ router.get('/all-recipes/search', (req,res) => {
 
 // Sort -> doesn't work yet!
 router.get('/all-recipes/sort', (req, res) => {
-    console.log(req.query)
-    if (req.query === 'high-low') {
+    let currentUser = req.session.loggedInUser;
+    const {rating} = req.query
+   
+    if (rating === 'high-low') {
+        RecipesModel.find()
+            .sort({'rating': -1})
+            .then((recipe) => {
+                res.render('recipes/all-recipes.hbs', {recipe, purposeArr, currentUser})
+            })
+            .catch((err) => console.log(err));
+    } else {
         RecipesModel.find()
             .sort('rating')
-            .then((result) => {
-                console.log(result)
-            }).catch((err) => {
-                console.log(err)
-            });
-    } else {
-
+            .then((recipe) => {
+                res.render('recipes/all-recipes.hbs', {recipe, purposeArr, currentUser})
+            })
+            .catch((err) => console.log(err));
     }
 })
 
@@ -193,8 +202,7 @@ router.post('/create-recipe', uploader.single("imageUrl"), (req, res, next) => {
     }
 
     console.log('file is: ', req.file)
-    if (typeof req.file === "undefined") {
-        next(new Error("No image uploaded!"));
+    if (req.file === undefined) {
         req.file = {
             fieldname: 'imageUrl',
             originalname: 'default-img.jpg',
@@ -204,6 +212,7 @@ router.post('/create-recipe', uploader.single("imageUrl"), (req, res, next) => {
             size: 125913,
             filename: 'defaultimg'
         }
+        console.log(req.file)
     
         RecipesModel.create(req.body)
         .then((createdRecipe) => {
@@ -239,11 +248,37 @@ router.get('/my-profile/my-recipes/:recipeId/edit', (req, res) => {
     let currentUser = req.session.loggedInUser
     RecipesModel.findById(req.params.recipeId)
         .then((recipe) => {
-            let purpose = ['Moisturizing', 'Repairing', 'Sun protection', 'Refreshing', 'Anti-aging', 'Purifying', 'Perfuming', 'Exfoliating'];
-            let materials = ["whisk", "bowl", "measuring spoon/cup", "container", "spatula", "scale", "funnel", "mesh strainer", "pipette droppers"];
+
             IngredientModel.find()
                 .then((ingredients) => {
-                    res.render('recipes/edit-recipe.hbs', {recipe, ingredients, purpose, materials, currentUser})
+                    if (typeof recipe.purpose == 'string') {
+                        recipe.purpose = [recipe.purpose]
+                    }
+                    let newPurpose = purposeArr.map((p) => {
+                        return {
+                            name: p,
+                            isChecked : recipe.purpose.includes(p.toLowerCase())
+                        }
+                    })
+                    if (typeof recipe.ingredients == 'string') {
+                        recipe.ingredients = [recipe.ingredients]
+                    }
+                    let newIngredients = ingredientsArr.map((i) => {
+                        return {
+                            name: i,
+                            isChecked : recipe.ingredients.includes(i)
+                        }
+                    })
+                    if (typeof recipe.materials == 'string') {
+                        recipe.materials = [recipe.materials]
+                    }
+                    let newMaterials = materialsArr.map((m) => {
+                        return {
+                            name: m,
+                            isChecked : recipe.materials.includes(m)
+                        }
+                    })
+                    res.render('recipes/edit-recipe.hbs', {recipe, ingredients: newIngredients, purpose: newPurpose, materials: newMaterials, currentUser})
                 }) 
                 .catch((err) => console.log(err)) 
         })
@@ -289,9 +324,9 @@ router.post('/all-recipes/:recipeId/unfavorite', (req, res) => {
 // Comments
 let ratingArr  = [];
 router.post('/all-recipes/:recipeId/comment', (req, res) => {
-    if (req.body.rating > 0 && req.body.rating < 6) {
+    if (Number(req.body.rating) > 0 && Number(req.body.rating) < 6) {
     CommentModel.create({text: req.body.text, user: req.session.loggedInUser._id, recipe: req.params.recipeId, rating: req.body.rating})
-        .then(() => {
+        .then((result) => {
             ratingArr.push(Number(req.body.rating))
             let sum = ratingArr.reduce((a, b) => {
                 return a + b;
@@ -304,9 +339,13 @@ router.post('/all-recipes/:recipeId/comment', (req, res) => {
                 .catch((err) => console.log(err));
         })
         .catch(() => res.redirect('/all-recipes/' + req.params.recipeId))
-    } else {
-        // How to print errormessage on page here if number is outside 1 & 5? Same as with comments, how to print errormessage if comment is empty
-    }
+    } else if (req.body.rating === '') {
+        CommentModel.create({text: req.body.text, user: req.session.loggedInUser._id, recipe: req.params.recipeId})
+        .then(() => {
+            res.redirect('/all-recipes/' + req.params.recipeId)
+        })
+        .catch(() => res.redirect('/all-recipes/' + req.params.recipeId))
+    } 
 });
 
 

@@ -1,5 +1,7 @@
 <div class="content-page">
     
+    {{> back}}
+
     <h4>Welcome {{currentUser.username}}</h4>
 
 
@@ -17,16 +19,12 @@
         
         <div class="profile-del-edit-btns">
             <button type="submit" class="btn prof-edit-btn" >Edit</button>
-            <form method="GET" action="/my-profile/{{currentUser._id}}/delete">
-            <button type="submit" class="btn prof-del-btn">Delete user</button>
+           
+            <a href="/delete-user" class="btn prof-del-btn">Delete user</a>
+           
         </div>
-
-        
-    </form>
-
-    </form>
-    
    
+    </form>
 
     <h6>Quick access</h6>
 
