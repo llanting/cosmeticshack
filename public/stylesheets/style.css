@@ -776,16 +776,93 @@ a:hover {
 
 /* Media query for laptop */
 @media screen 
-  and (min-device-width: 1200px) 
+  and (min-device-width: 500px) 
   and (-webkit-min-device-pixel-ratio: 1) { 
 
   /* Add styles here */
 
   /* Sign up & Log In */
-  .logo-signup {
-    margin-top: 30px;
-    margin-bottom: 90px;
-    width: 29em;
+  #index-intro {
+    width: 85vw;
+    margin-top: 10px;
+    background-size: 100vw 50vh;
+  }
+
+  .navbar-nav {
+    margin-left: 10px;
+    
+  }
+  .navbar-collapse {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-text {
+    font-size: 21px;
+  } 
+
+  .ul-nav-bar {
+    display: flex;
+    flex-direction: row;
+  }
+
+  h4 {
+    font-size: 50px;
+  }
+
+  h6 {
+    font-size: 23px;
+  }
+
+  .label-profile-detail {
+    font-size: 20px;
+  }
+
+  .btn {
+    font-size: 18px;
+    width: 230px;
+  }
+
+  .navbar-class .btn {
+    width: 100px;
+  }
+
+  .profile-del-edit-btns > .prof-edit-btn, .profile-del-edit-btns > .prof-del-btn {
+    width: 120px;
+    font-size: 15px;
+  }
+
+  #index-intro > h6 {
+    font-size: 25px;
+  }
+
+  .content-page {
+    margin-top: 80px;
+  }
+  
+  .up-img {
+    width: 50px;
+    height: 45px;
+    padding: 4px;
+  }
+
+  .back-btn {
+    top: 90px; /* Place the button at the bottom of the page */
+    background-size: 30px 35px;
+    width: 40px;
+    height: 45px;
+  }
+
+  .form-label {
+    font-size: 19px;
+  }
+
+  .form-complete-field {
+    font-size: 16px;
+  }
+
+  .form-check-label {
+    font-size: 16px;
   }
 
 }
