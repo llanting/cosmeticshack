@@ -19,6 +19,16 @@
             <img src={{level}} alt="level">
         </div>        
 
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Rating</p>
+            {{#ifEquals recipe.rating 0}}
+                <p><em>No rating yet</em></p>
+            {{else}}
+                {{recipe.rating}}
+            {{/ifEquals}}
+        </div> 
+
     </div>
 
 
@@ -53,7 +63,7 @@
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Conservation </p>
-            <p> {{recipe.conservation}} months</p>
+            <p> {{recipe.conservation}}</p>
         </div>        
 
     </div>
@@ -87,8 +97,6 @@
     <p id="recipe-steps-text">{{recipe.steps}}  </p>
     <br>
 
-   
-
     <div class="recipe-fields">
 
         <div class="recipe-field-inside">
@@ -104,16 +112,7 @@
         <div class="recipe-field-inside">
             <p class="recipe-field-name">On </p>
             {{date}}
-        </div>     
-
-        <div class="recipe-field-inside">
-            <p class="recipe-field-name">Rating </p>
-            {{#ifEquals recipe.rating 0}}
-                <p><em>No rating yet</em></p>
-            {{else}}
-                {{recipe.rating}}
-            {{/ifEquals}}
-        </div>     
+        </div>         
 
     </div>
 
@@ -123,8 +122,9 @@
 
         <div class="comments-list">
             {{#each comment}}
-                <hr class="line-com">    
-                <p class="comment">{{this.user.username}}: {{this.text}}</p>
+                {{!-- <hr class="line-com">    --}}
+                <img src="/images/separate-line.png" class="separator-flower">
+                <p class="comment-field" >{{this.user.username}}: {{this.text}}</p> 
             {{/each}}
         </div>
         
@@ -138,13 +138,30 @@
             </form>
         </div>
 
-        <a href="whatsapp://send?text=Hello%20World!">Share recipe on Whatsapp</a>
+
+
+        {{!-- <div class="add-comment-section">
+            <form method="POST" action="/all-recipes/{{recipe._id}}/comment" enctype="multipart/form-data">
+                <textarea name="text" type="text" id="text" rows="3" cols="33" placeholder="Write your comment here"></textarea>
+                <label for="rating" class="form-label">Your rating</label> 
+               <input name="rating" type="number" id="rating" max="5" min="1"  placeholder="Min is 1, max is 5">
+
+                <select class="form-complete-field" id="rating" name="rating">
+                    <option value="Rating">Rating</option>                    
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>                    
+                </select>
+
+                <button type="sumbit" class="btn">Post your comment</button>
+            </form>
+        </div>  --}}
 
     </div>
 
 </div>
-
-
 
 
 

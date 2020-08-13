@@ -36,9 +36,10 @@ header {
 
 
 h4 {
+  font-family: 'Grand Hotel', cursive;
   margin-top:14px;
   margin-bottom: 10px;
-  font-size: 19px;
+  font-size: 30px;
   text-align: center;
   color: #e3ad9f;
 }
@@ -140,6 +141,7 @@ label {
   padding: 0px;
   display: flex;
   justify-content: space-evenly;
+  box-shadow: 0px 2px #e3ab9f41;
 }
 
 .sign-log {
@@ -192,7 +194,7 @@ label {
   padding: 10px 15px;
   background-color: #e3ad9f;
   border: #8E6C63;
-}
+  box-shadow: 0px 2px #e3ab9f41;}
 
 .navbar-nav{
   margin-top: 8px;
@@ -298,7 +300,7 @@ label {
   display: flex;
   flex-direction: column;
   align-items: right;
-  margin-top: 0;
+  margin-top: 0px;
 }
 
 .form-group {
@@ -306,14 +308,29 @@ label {
   flex-direction: column;
   align-items: right;
   margin: 0px;
-  min-height: 90px;
-  
+  margin-bottom: 20px;
 }
+
+.form-check {
+  font-size: 12px;
+}
+
 
 .form-label {
   align-self: right;
 
 }
+
+
+.form-complete-field {
+  font-size: 12px;
+}
+
+.form-complete-field > option{
+background-color: #fff2e4;}
+
+
+
 
 
 
@@ -327,8 +344,6 @@ label {
 .cost {
   width: 130px;
 }
-
-
 
 
 .mb-3 {
@@ -345,11 +360,6 @@ label {
   z-index: 0;
 
 }
-
-.form-complete-field {
-  font-size: 13px;
-}
-
 
 
 .error-create {
@@ -416,21 +426,7 @@ label {
 
 
 
-/* Media query for laptop */
-@media screen 
-  and (min-device-width: 1200px) 
-  and (-webkit-min-device-pixel-ratio: 1) { 
 
-  /* Add styles here */
-
-  /* Sign up & Log In */
-  .logo-signup {
-    margin-top: 30px;
-    margin-bottom: 90px;
-    width: 29em;
-  }
-
-}
 
 /* .recipe-add: hover {
   opacity: 0.5;
@@ -466,7 +462,7 @@ label {
 /* Recipe details page */
 
 .recipe-fields {
-  margin: 10px;
+  margin: 5px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -498,6 +494,8 @@ label {
 #recipe-steps-text {
   margin: 0px 20px;;
   text-align: justify;
+  white-space: pre;
+  text-align: left;
 }
 
 
@@ -505,7 +503,56 @@ label {
   width: 300px;
   height: 200px;
   border-radius: 10%;
+  margin-bottom: 15px;
 }
+
+/* Comment section */
+
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 85%;
+  margin: 25px;
+  border-color: #8E6C63;
+  font-size: 14px;
+}
+
+.comment-section > h4 {
+  margin-bottom: 25px;
+}
+
+.comments-list {
+  white-space: pre;
+  display: inline;
+}
+
+.separator-flower {
+  margin: 0;
+  width: 250px;
+  align-self: center;
+}
+
+/* .comments-list > hr {
+  width: 200px;
+} */
+
+.comments-list > p {
+  margin: 0px;
+}
+
+
+.comment-field {
+  word-break: break-all !important;
+  white-space: pre-wrap;
+}
+
+.add-comment-field {
+  height: 50px;
+  border-color: #e3ad9f;
+}
+
 
 
 
@@ -583,44 +630,7 @@ a:hover {
 
 
 
-/* Comment section */
-
-
-.comment-section {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  align-items: center;
-  max-width: 85%;
-  margin: 25px;
-  border-color: #8E6C63;
-  border-width: 5px;
-  font-size: 14px;
-}
-
-.comment-section > h4 {
-  margin-bottom: 25px;
-}
-
-.line-com {
-  margin-top: -12px;
-  margin-bottom: 5px;
-}
-
-.comments-list {
-  width: 100%;
-}
-
-.comments-list > p {
-  display: flex ;
-  justify-content: flex-start;
-
-}
-
-.add-comment-field {
-  height: 50px;
-  border-color: #e3ad9f;
-}
+/* My recipes page */
 
 .my-rec-btns-container {
   display: flex;
@@ -761,6 +771,35 @@ a:hover {
   border-radius: 5px;
   z-index: 0;
 }
+
+/* Media query for laptop */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+  /* Add styles here */
+
+  /* Sign up & Log In */
+  .logo-signup {
+    margin-top: 30px;
+    margin-bottom: 90px;
+    width: 29em;
+  }
+
+}
+
+
+/* social media sharing */
+
+
+
+
+
+
+
+
+
+
 
 
 
