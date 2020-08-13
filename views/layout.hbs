@@ -30,17 +30,39 @@
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
+
+
           <div class="navbar-nav">
             {{#if currentUser}}
             <a class="nav-link nav-text" href="/">Home</a>
             <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
             <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
+            <ul class="ul-nav-bar">
+              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
+</li>
+              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
+</li>
+              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-comments">My Comments</a>
+</li>
+            </ul>
+            <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
+            {{/if}}
+          </div>
+
+
+          
+          {{!-- <div class="navbar-nav">
+            {{#if currentUser}}
+            <a class="nav-link nav-text" href="/">Home</a>
+            <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
+            
             <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
             <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
             <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-comments">My Comments</a>
             <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
             {{/if}}
-          </div>
+          </div> --}}
 
         
           {{#if currentUser}}

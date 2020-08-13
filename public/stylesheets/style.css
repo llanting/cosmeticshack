@@ -721,9 +721,20 @@ a:hover {
   color: white;
 }
 
-.prof-edit-btn {
-
+.ul-nav-bar {
+  list-style-type: none;
+  margin: 0; 
+  margin-left: 15px; 
+  padding: 0;
 }
+
+
+
+
+
+
+
+
 
 
 /*# sourceMappingURL=style.css.map */
