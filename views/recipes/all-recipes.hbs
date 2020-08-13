@@ -81,7 +81,18 @@
     {{/each}}
 
   </div>
-  <a href="#top" class="up-btn"><img class="up-img" src="/images/up-img.png"></a>
+
+  <a href="#top" id="arrowTop" class="up-btn" hidden><img class="up-img" src="/images/up-img.png"></a>
 </div>
+
+ <script>
+    arrowTop.onclick = function() {
+      window.scrollTo(pageXOffset, 0);
+    };
+
+    window.addEventListener('scroll', function() {
+      arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight);
+    });
+</script>
 
 

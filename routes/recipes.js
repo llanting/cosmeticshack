@@ -11,6 +11,9 @@ const CommentModel = require('../models/comment-model');
 let ingredientsArr = ["almond oil", "aloe vera gel", "avocado oil", "baking soda", "beeswax pastilles", "brown sugar", "cinnamon powder", "coconut oil", "cornstarch", "cosher salt", "essential oils of choice (optional)", "fresh lemon", "ginger powder", "honey", "lavender essential oil", "lemon essential oil", "mango butter", "non-nano zinc oxide", "nutmeg powder", "olive oil", "palmarosa essential oil", "peppermint essential oil", "raspberry seed oil", "shea butter", "tea tree essential oil", "vanilla essential oil", "vitamin E oil", "witch hazel extract"];
 let purposeArr = ['anti-aging', 'exfoliating', 'moisturizing', 'perfuming', 'purifying', 'refreshing', 'repairing', 'sun protection'];
 let materialsArr = ["bowl", "container", "funnel", "measuring spoon/cup", "mesh strainer", "pipette droppers", "scale", "spatula", "whisk"];
+let categoryArr = ['body', 'face', 'hair'];
+let costArr= ['low', 'medium', 'high'];
+let levelArr = ['easy', 'medium', 'hard'];
 
 // All recipes
 router.get('/all-recipes', (req, res) => {
@@ -19,7 +22,6 @@ router.get('/all-recipes', (req, res) => {
         .then((recipe) => {
             UserModel.findById(currentUser._id)
                 .then((result) => {
-                    console.log(result.favorites)
                     let newRecipes = recipe.map((elem) => {
                         if (result.favorites.includes(elem._id)) {
                             let newElem = JSON.parse(JSON.stringify(elem))
@@ -41,13 +43,14 @@ router.get('/all-recipes', (req, res) => {
 // Search 
 router.get('/all-recipes/search', (req,res) => {
     let currentUser = req.session.loggedInUser;
-    let {category, purpose} = req.query;
+    let {category, purpose, ingredients} = req.query;
     let search = {}
     search.purpose = purpose;
     search.category = category;
+    search.ingredients = ingredients;
 
     // Find 'and' or 'or'
-    RecipesModel.find({$or: [{category: search.category}, {purpose: search.purpose}]})
+    RecipesModel.find({$or: [{category: search.category}, {purpose: search.purpose}, {ingredients: search.ingredients}]})
         .then((recipe) => {
             console.log(recipe)
             if (recipe.length === 0) {
@@ -390,6 +393,7 @@ router.get('/all-recipes/:recipeId', (req, res) => {
         // To insert user-info, next to id
         .populate('user')
         .then((recipe) => {
+            console.log(recipe)
             // Changes recipe.date to a readable format
             let newDate = moment(recipe.date).format("MMMM DD, YYYY");
 
@@ -580,7 +584,25 @@ router.get('/my-profile/my-recipes/:recipeId/edit', (req, res) => {
                             isChecked : recipe.materials.includes(m)
                         }
                     })
-                    res.render('recipes/edit-recipe.hbs', {recipe, ingredients: newIngredients, purpose: newPurpose, materials: newMaterials, currentUser})
+                    let newCategory = categoryArr.map((c) => {
+                        return {
+                            name: c,
+                            isChecked : recipe.category.includes(c)
+                        }
+                    })
+                    let newCost = costArr.map((c) => {
+                        return {
+                            name: c,
+                            isChecked : recipe.cost.includes(c)
+                        }
+                    })
+                    let newLevel = levelArr.map((l) => {
+                        return {
+                            name: l,
+                            isChecked : recipe.level.includes(l)
+                        }
+                    })
+                    res.render('recipes/edit-recipe.hbs', {recipe, category: newCategory, ingredients: newIngredients, purpose: newPurpose, materials: newMaterials, cost: newCost, level: newLevel, currentUser})
                 }) 
                 .catch((err) => console.log(err)) 
         })
