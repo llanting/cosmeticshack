@@ -1,7 +1,10 @@
 <div class="content-page">
 
+        {{> back}}
+        
     <h4>{{recipe.name}}</h4>
     <img src="{{recipe.image}}" alt="image" class="recipe-img">
+
 
     <div class="recipe-fields">
 
@@ -15,6 +18,16 @@
             <p class="recipe-field-name">Difficulty</p>
             <img src={{level}} alt="level">
         </div>        
+
+
+        <div class="recipe-field-inside">
+            <p class="recipe-field-name">Rating</p>
+            {{#ifEquals recipe.rating 0}}
+                <p><em>No rating yet</em></p>
+            {{else}}
+                {{recipe.rating}}
+            {{/ifEquals}}
+        </div> 
 
     </div>
 
@@ -44,22 +57,19 @@
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Preparation time</p>
-            <p> {{recipe.time}} min</p>
+            <p> {{recipe.preparation}} min</p>
         </div>
         
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Conservation </p>
-            <p> {{recipe.conservation}} mois</p>
+            <p> {{recipe.conservation}}</p>
         </div>        
 
     </div>
 
 
-
-
-
-  <div class="recipe-fields">
+    <div class="recipe-fields">
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Materials</p> 
@@ -81,57 +91,77 @@
         </div>        
 
     </div>
-
-
-
-
-
     
 
-        <p class="recipe-field-name">Steps </p>
-        <p id="recipe-steps-text">{{recipe.steps}}  </p>
-        <br>
-
-   
-
-
+    <p class="recipe-field-name">Steps </p>
+    <p id="recipe-steps-text">{{recipe.steps}}  </p>
+    <br>
 
     <div class="recipe-fields">
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Created by</p>
-            <a href="/public-profile/{{recipe.user._id}}">{{recipe.user.username}}</a>
+            {{#ifEquals recipe.user null}}
+                <p><em>User123</em></p>
+            {{else}}
+                <a href="/public-profile/{{recipe.user._id}}">{{recipe.user.username}}</a>
+            {{/ifEquals}}
         </div>
         
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">On </p>
             {{date}}
-        </div>        
+        </div>         
 
     </div>
 
-    <div>
-        <h2>Comment-section</h2>
-        {{#each comment}}
-            <p>{{this.user.username}}:</p>
-            <p><em>{{this.text}}</em></p>
-        {{/each}}
+    <div class="comment-section">
 
-        <form method="POST" action="/all-recipes/{{recipe._id}}/comment">
-            <label for="user">Username</label>
-            <input type="text" id="user" name="user" disabled value="{{currentUser.username}}">
+        <h4>Comments</h4>
 
-            <label for="text" class="form-label">Text</label>
-            <input name="text" type="text" id="text">
-            
-            <button type="sumbit">Post comment</button>
-        </form>
+        <div class="comments-list">
+            {{#each comment}}
+                {{!-- <hr class="line-com">    --}}
+                <img src="/images/separate-line.png" class="separator-flower">
+                <p class="comment-field" >{{this.user.username}}: {{this.text}}</p> 
+            {{/each}}
+        </div>
+        
+        <div class="add-comment-section">
+            <form method="POST" action="/all-recipes/{{recipe._id}}/comment">
+                <textarea name="text" type="text" id="text" rows="3" cols="33" required placeholder="Write your comment here"></textarea>
+                <label for="rating" class="form-label">Your rating</label>
+                <input name="rating" type="number" id="rating" min='1' max='5'  placeholder="Min is 1, max is 5">
+                
+                <button type="sumbit" class="btn">Post your comment</button>
+            </form>
+        </div>
+
+
+
+        {{!-- <div class="add-comment-section">
+            <form method="POST" action="/all-recipes/{{recipe._id}}/comment" enctype="multipart/form-data">
+                <textarea name="text" type="text" id="text" rows="3" cols="33" placeholder="Write your comment here"></textarea>
+                <label for="rating" class="form-label">Your rating</label> 
+               <input name="rating" type="number" id="rating" max="5" min="1"  placeholder="Min is 1, max is 5">
+
+                <select class="form-complete-field" id="rating" name="rating">
+                    <option value="Rating">Rating</option>                    
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>                    
+                </select>
+
+                <button type="sumbit" class="btn">Post your comment</button>
+            </form>
+        </div>  --}}
+
     </div>
 
 </div>
-
-
 
 
 

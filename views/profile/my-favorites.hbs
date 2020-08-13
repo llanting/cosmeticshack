@@ -1,5 +1,6 @@
 <div class="content-page">
 
+    {{> back}}
 
   <h4>My favorite recipes</h4>
 
@@ -14,9 +15,9 @@
         </a>
 
 
-        {{!-- <form method="POST" action="/my-profile/{{_id}}/my-favorites/{{this._id}}/unfavorite" >
-          <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
-        </form>     --}}
+        <form method="POST" action="/my-profile/{{_id}}/my-favorites/{{this._id}}/unfavorite" >
+          <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
+        </form>    
 
 
         <a href="/all-recipes/{{this._id}}">          
@@ -31,6 +32,8 @@
 
 
 </div>
+
+
 
 
 

@@ -5,15 +5,21 @@ let CommentSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Recipe' 
         },
-        text: String,
+        text: {
+            type: String,
+            required: true
+        },
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         },
-        // date: {
-        //     type: Date, 
-        //     default: Date.now
-        // }
+        date: {
+            type: Date, 
+            default: Date.now
+        },
+        rating: {
+            type: Number,
+        }
     }, 
     {
         timestamps: true

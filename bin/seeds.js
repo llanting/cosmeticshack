@@ -3,8 +3,8 @@ let RecipeModel = require('../models/recipe.model');
 const mongoose = require('mongoose')
 require('../app');
 
-
-const MONGODB_URI = "mongodb+srv://admin-user:12345@cluster0.siybg.mongodb.net/cosmeticshack?retryWrites=true&w=majority";
+// Insert MONGODB_URI here!
+// const MONGODB_URI = ;
 
 mongoose
   .connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
@@ -67,7 +67,7 @@ let dbRecipes = [
    name: "Lemon Coconut Oil Body Scrub", 
    category: "body",  
    purpose:"exfoliating",
-   time: 10,
+   preparation: 10,
    cost: "low",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "easy",
@@ -85,7 +85,7 @@ let dbRecipes = [
    name: "Vanilla Sugar Scrub", 
    category: "body",  
    purpose:"exfoliating",
-   time:10,
+   preparation:10,
    cost: "low",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "easy",
@@ -103,7 +103,7 @@ let dbRecipes = [
    name: "Whipped gingerbread body butter", 
    category: "body",  
    purpose:["moisturizing", "repairing"],
-   time:10,
+   preparation:10,
    cost: "low",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "easy",
@@ -123,7 +123,7 @@ let dbRecipes = [
    name: "Honey butter bars", 
    category: "body",  
    purpose:["moisturizing", "repairing"],
-   time:10,
+   preparation:10,
    cost: "low",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "medium",
@@ -140,7 +140,7 @@ let dbRecipes = [
    name: "Solid perfume", 
    category: "body",  
    purpose:["perfuming", "moisturizing", "refreshing"],
-   time:10,
+   preparation:10,
    cost: "low",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "medium",
@@ -159,7 +159,7 @@ let dbRecipes = [
    name: "Natural deodorant", 
    category: "body",  
    purpose:["perfuming", "moisturizing", "refreshing"],
-   time:15,
+   preparation:15,
    cost: "low",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "medium",
@@ -177,7 +177,7 @@ let dbRecipes = [
    name: "Natural sun screen", 
    category: "body",  
    purpose:["sun protection", "moisturizing", "perfuming"],
-   time:30,
+   preparation:30,
    cost: "medium",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "hard",
@@ -197,7 +197,7 @@ let dbRecipes = [
    name: "Lemon sugar hand scrub", 
    category: "body",  
    purpose:["exfoliating", "moisturizing"],
-   time:10,
+   preparation:10,
    cost: "low",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "easy",
@@ -219,7 +219,7 @@ let dbRecipes = [
    name: "Honey hand balm", 
    category: "body",  
    purpose:["moisturizing", "perfuming", "repairing"],
-   time:10,
+   preparation:10,
    cost: "medium",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "easy",
@@ -239,7 +239,7 @@ let dbRecipes = [
    name: "Tea tree oil lip balm", 
    category: "face",  
    purpose:["moisturizing", "repairing", "perfuming"],
-   time:10,
+   preparation:10,
    cost: "low",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "easy",
@@ -257,7 +257,7 @@ let dbRecipes = [
    name: "Aloe hand sanitizer", 
    category: "body",  
    purpose:["purifying", "refreshing"],
-   time:10,
+   preparation:10,
    cost: "medium",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "easy",
@@ -276,7 +276,7 @@ let dbRecipes = [
    name: "Honey face mask", 
    category: "face",  
    purpose:["moisturizing", "purifying", "refreshing"],
-   time:10,
+   preparation:10,
    cost: "low",
    materials: ["whisk", "bowl", "measuring spoon/cup", "container"],
    level: "easy",
@@ -286,7 +286,7 @@ let dbRecipes = [
    ingredients: ["honey", "cinnamon powder", "nutmeg powder"],
    rating: 5,
    user: "5f33c95ff854210017f1684b",
-   image: "/images/recipes/Honey-cinnamon-face-mask.bmp"
+   image: "/images/recipes/Honey-cinnamon-face-mask.jpg"
  },
 ]
 

@@ -8,7 +8,7 @@
     <title>{{title}}</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
 
     <script src="Select7/select7.js"></script>
 
@@ -25,22 +25,44 @@
         <a href="/"><img src="/images/logo.png" alt="logo" id="header-logo"></a>
 
         <button class="navbar-toggler hamburger" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon">MENU</span>
+          <span class="navbar-toggler-icon">|||</span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+
 
           <div class="navbar-nav">
             {{#if currentUser}}
             <a class="nav-link nav-text" href="/">Home</a>
             <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
             <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
-            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
-            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
+            <ul class="ul-nav-bar">
+              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
+</li>
+              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
+</li>
+              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-comments">My Comments</a>
+</li>
+            </ul>
             <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
             {{/if}}
           </div>
 
+
+          
+          {{!-- <div class="navbar-nav">
+            {{#if currentUser}}
+            <a class="nav-link nav-text" href="/">Home</a>
+            <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
+            
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-comments">My Comments</a>
+            <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
+            {{/if}}
+          </div> --}}
         
           {{#if currentUser}}
           <a href="/logout" class="btn">Log Out</a>
@@ -60,13 +82,28 @@
       
     </nav>
 
+
+    <button class="button" data-sharer="facebook" data-hashtag="hashtag" data-url="https://ellisonleao.github.io/sharer.js/">Share on Facebook</button>
+
+
+
+
+
+
+
+
+
+
+
+
     {{{body}}}
 
     <script src="/javascripts/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+    
+    
   </body>
 
 </html>
