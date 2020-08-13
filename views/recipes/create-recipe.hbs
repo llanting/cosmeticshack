@@ -24,7 +24,7 @@
           </select>
       </div>
 
-      <div class="form-group ">
+      <div class="form-group">
         <label for="purpose" class="form-label">Purpose</label>
         {{#each purpose}}   
           <div "check-list">
@@ -57,9 +57,13 @@
 
       <div class="form-group">
         <label for="steps" class="form-label">Steps</label>
-        <input name="steps" type="text" class="form-complete-field" id="steps" placeholder="Describe the different steps">
+        {{!-- <input name="steps" type="text" class="form-complete-field" id="steps" placeholder="Describe the different steps"> --}}
+        <textarea name="steps" type="text" id="steps" rows="3" cols="33" placeholder="Describe the different steps" class="form-complete-field"></textarea>
       </div>
-      
+
+
+
+
       <div class="form-group">
         <label for="preparation" class="form-label">Preparation time</label>
         <input name="preparation" type="number" class="form-complete-field" id="preparation" placeholder="In minutes">
@@ -81,7 +85,7 @@
     
       <div class="form-group">
         <label for="conservation" class="form-label">Conservation</label>
-        <input name="conservation" type="text" class="form-complete-field" id="conservation" placeholder="In months">
+        <input name="conservation" type="text" class="form-complete-field" id="conservation" placeholder="In months, in the fridge/in a dry place">
       </div>
       
       <div class="form-row">
@@ -104,7 +108,7 @@
       </div>
       <div class="form-group">
         <label for="imageUrl" class="form-label">Image</label>
-        <input name="imageUrl" type="file" class="form-complete-field" class="custom-file-upload" id="imageUrl">
+        <input name="imageUrl" type="file" class="form-complete-field custom-file-upload" id="imageUrl">
       </div>
 
       {{#if errorMessage}}
