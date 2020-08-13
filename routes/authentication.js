@@ -33,17 +33,18 @@ router.post('/signup', (req, res) => {
     .then((salt) => {
         bcryptjs.hash(password, salt)
           .then((hashPass) => {
-              // create that user in the db
-                        UserModel.findOne({$or: [{username, email}]})
-              .then((result) => {
-                  res.status(500).render('authentication/signup.hbs', {errorMessage: 'Username or email already exists'})
-              }).catch((err) => {
-                UserModel.create({username, email, passwordHash: hashPass })
-                  .then(() => {
-                      res.redirect('/')
-                  })
-                  .catch((err) => console.log(err))
-              });
+              UserModel.findOne({$or: [{username, email}]})
+                .then((result) => {
+                  console.log('result', result)
+                  if (result === null) {
+                    UserModel.create({username, email, passwordHash: hashPass })
+                    .then(() => res.redirect('/'))
+                    .catch((err) => console.log(err))
+                  } else {
+                    res.status(500).render('authentication/signup.hbs', {errorMessage: 'Username or email already exists'})
+                  }
+                })
+                .catch((err) => console.log(err))
           })
     })
   })

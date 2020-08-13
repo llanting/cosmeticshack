@@ -1,36 +1,46 @@
-<div>
+<div class="content-page">
 
-    <h4>Hi, I am {{currentUser.username}}</h4>
+  <div>
 
-</div>
+      <h4>Hi, I am {{username}}</h4>
 
-
-<div>
-
-    <h4>These are my recipes</h4>
-        
-    <div class="recipes-container">
-{{#each currentUser.recipes}}
-    <div class="recipe-card">
-    <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
-    <div>
-      <h6>{{this.name}}</h6>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Category: {{this.category}}</li>
-      <li class="list-group-item">Purpose: {{this.purpose}}</li>
-      {{!-- Image of level --}}
-      <li class="list-group-item">Difficulty: {{this.level}}</li>
-      {{!-- Image of cost --}}
-      <li class="list-group-item">Cost: {{this.cost}}</li>
-    </ul>
-    <div>
-      <a href="/all-recipes/{{this._id}}" class="card-link">See recipe</a>
-    </div>
   </div>
 
 
-{{/each}}
-</div>
+  <div>
+
+      <h4>These are my recipes</h4>
+          
+      <div class="recipes-container">
+
+      {{#each recipe}}
+        <div class="recipe-card" >
+
+          <a href="/all-recipes/{{this._id}}">
+            <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
+          </a>
+
+
+          {{#if this.alreadyFav}}
+            <form method="POST" action="/all-recipes/{{this._id}}/unfavorite" >
+              <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
+            </form>
+          {{else}}
+            <form method="POST" action="/all-recipes/{{this._id}}/favorite" >
+              <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
+            </form>
+          {{/if}} 
+
+
+          <a href="/all-recipes/{{this._id}}">          
+            <h6>{{this.name}}</h6>                    
+          </a>
+
+        </div>
+      {{/each}}
+
+    </div>
+
+  </div>
 
 </div>

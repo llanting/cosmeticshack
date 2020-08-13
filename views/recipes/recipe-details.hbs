@@ -44,20 +44,16 @@
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Preparation time</p>
-            <p> {{recipe.time}} min</p>
+            <p> {{recipe.preparation}} min</p>
         </div>
         
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Conservation </p>
-            <p> {{recipe.conservation}} mois</p>
+            <p> {{recipe.conservation}} months</p>
         </div>        
 
     </div>
-
-
-
-
 
   <div class="recipe-fields">
 
@@ -92,7 +88,11 @@
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Created by</p>
-            <a href="/public-profile/{{recipe.user._id}}">{{recipe.user.username}}</a>
+            {{#ifEquals recipe.user null}}
+                <p><em>User123</em></p>
+            {{else}}
+                <a href="/public-profile/{{recipe.user._id}}">{{recipe.user.username}}</a>
+            {{/ifEquals}}
         </div>
         
 

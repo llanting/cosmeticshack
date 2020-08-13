@@ -3,71 +3,73 @@
   <h4>All recipes</h4>
   <br>
 
-
   {{!-- Add the filter to search --}}
   <form method="GET" action="/all-recipes/search">
-    <div class="form-group" class="search-label">
-      <label for="category">Category</label>
-      <select class="form-complete-field" name="category">
-        <option value="empty"></option>
-        <option value="hair">Hair</option>
-        <option value="face">Face</option>
+    <h4>Search</h4>
+    <div >
+      <select name="category">
+        <option value="empty">Category</option>
         <option value="body">Body</option>
+        <option value="face">Face</option>
+        <option value="hair">Hair</option>
       </select>
     </div>
-    <div class="form-group">
-      <label for="purpose">Purpose</label>
-      <select class="form-complete-field" name="purpose">
-        {{#each purpose}}
+    <div >
+      <select name="purpose">
+        <option value="empty">Purpose</option>
+        {{#each purposeArr}}
           <option value="{{this}}">{{this}}</option>
         {{/each}}
       </select>
     </div>
     <button type="submit" class="btn">Search</button>
+
+    {{#if errorMessage}}
+      <p>{{errorMessage}}</p>
+    {{/if}}
   </form>
 
-  {{#if errorMessage}}
-    <p>{{errorMessage}}</p>
-  {{/if}}
+  <form method="GET" action="/all-recipes/sort">
+    <h4>Sort</h4>
+    <div >
+        <select name="rating">
+          <option value="empty">Rating</option>
+            <option value="high-low">High to low</option>
+            <option value="low-high">Low to high</option>
+        </select>
+    </div>
+     <button type="submit" class="btn">Sort</button>
+  </form>
 
 
 
 
 {{!-- Recipes carts --}}
   
-  <div class="recipes-container">
+<div class="recipes-container">
 
     {{#each recipe}}
       <div class="recipe-card" >
 
         <a href="/all-recipes/{{this._id}}">
           <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
-        </a>
-
-
-        {{#if this.alreadyFav}}
-          <form method="POST" action="/all-recipes/{{this._id}}/unfavorite" >
-            <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
-          </form>
-        {{else}}
-          <form method="POST" action="/all-recipes/{{this._id}}/favorite" >
-            <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
-          </form>
-        {{/if}} 
-
-
-        <a href="/all-recipes/{{this._id}}">          
           <h6>{{this.name}}</h6>                    
         </a>
 
+        {{#if this.alreadyFav}}
+          <form method="POST" action="/all-recipes/{{this._id}}/unfavorite" >
+            <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
+          </form>
+        {{else}}
+          <form method="POST" action="/all-recipes/{{this._id}}/favorite" >
+            <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
+          </form>
+        {{/if}} 
       </div>
     {{/each}}
 
   </div>
-  
- 
-
-  
 
 </div>
+
 

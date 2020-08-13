@@ -15,6 +15,7 @@ router.get('/all-recipes', (req, res) => {
         .then((recipe) => {
             UserModel.findById(currentUser._id)
                 .then((result) => {
+                    console.log(result.favorites)
                     let newRecipes = recipe.map((elem) => {
                         if (result.favorites.includes(elem._id)) {
                             let newElem = JSON.parse(JSON.stringify(elem))
@@ -35,28 +36,41 @@ router.get('/all-recipes', (req, res) => {
 
 // Search 
 router.get('/all-recipes/search', (req,res) => {
-    let {category, purposeQ} = req.query;
-    let search = {}
-    if (purposeQ != undefined) {
-        search.purpose = purposeQ;
-    }
-    if (category != undefined) {
-        search.category = category;
-    }
-
     let currentUser = req.session.loggedInUser;
-    let purpose = ['', 'Moisturizing', 'Repairing', 'Sun protection', 'Refreshing', 'Anti-aging', 'Purifying', 'Perfuming', 'Exfoliating'];
+    let {category, purpose} = req.query;
+    let search = {}
+    search.purpose = purpose;
+    search.category = category;
+    let purposeArr = ['anti-aging', 'exfoliating', 'moisturizing', 'perfuming', 'purifying', 'refreshing', 'repairing', 'sun protection'];
 
-    RecipesModel.find({$or: [{category: search.category}, {purpose: search.purposeQ}]})
+    // Find 'and' or 'or'
+    RecipesModel.find({$or: [{category: search.category}, {purpose: search.purpose}]})
         .then((recipe) => {
+            console.log(recipe)
             if (recipe.length === 0) {
-                res.render('recipes/all-recipes.hbs', {recipe, purpose, errorMessage: 'No matches found', currentUser})
+                res.render('recipes/all-recipes.hbs', {recipe, purposeArr, errorMessage: 'No matches found', currentUser})
             } else {
-                res.render('recipes/all-recipes.hbs', {recipe, purpose, currentUser})
+                res.render('recipes/all-recipes.hbs', {recipe, purposeArr, currentUser})
             }
         })
         .catch((err) => console.log(err));
 });
+
+// Sort -> doesn't work yet!
+router.get('/all-recipes/sort', (req, res) => {
+    console.log(req.query)
+    if (req.query === 'high-low') {
+        RecipesModel.find()
+            .sort('rating')
+            .then((result) => {
+                console.log(result)
+            }).catch((err) => {
+                console.log(err)
+            });
+    } else {
+
+    }
+})
 
 // Recipe-details
 router.get('/all-recipes/:recipeId', (req, res) => {
@@ -162,7 +176,7 @@ router.get('/create-recipe', (req, res) => {
     let currentUser = req.session.loggedInUser;
     IngredientModel.find()
     .then((ingredients) => {
-        let purpose = ['Moisturizing', 'Repairing', 'Sun protection', 'Refreshing', 'Anti-aging', 'Purifying', 'Perfuming', 'Exfoliating'];
+        let purpose = ['anti-aging', 'exfoliating', 'moisturizing', 'perfuming', 'purifying', 'refreshing', 'repairing', 'sun protection'];
         let materials = ["whisk", "bowl", "measuring spoon/cup", "container", "spatula", "scale", "funnel", "mesh strainer", "pipette droppers"];
         res.render('recipes/create-recipe.hbs', {ingredients, purpose, materials, currentUser})
     })
@@ -171,9 +185,9 @@ router.get('/create-recipe', (req, res) => {
 
 
 router.post('/create-recipe', uploader.single("imageUrl"), (req, res, next) => {
-    const {name, category, time, cost, materials, level, purpose, conservation, steps, imageUrl, ingredients} = req.body;
+    const {name, category, preparation, cost, materials, level, purpose, conservation, steps, imageUrl, ingredients} = req.body;
     
-    if(!name || !category || !purpose || !time || !cost || !materials || !level || !conservation || !steps || !ingredients){
+    if(!name || !category || !purpose || !preparation || !cost || !materials || !level || !conservation || !steps || !ingredients){
         res.status(500).render('recipes/create-recipe.hbs', {errorMessage: 'Please fill in all fields'})
         return;
     }
@@ -183,13 +197,13 @@ router.post('/create-recipe', uploader.single("imageUrl"), (req, res, next) => {
         next(new Error("No image uploaded!"));
         req.file = {
             fieldname: 'imageUrl',
-            originalname: 'defaultimg.jpg',
+            originalname: 'default-img.jpg',
             encoding: '7bit',
             mimetype: 'image/jpeg',
-            path: 'https://res.cloudinary.com/dumj6yt5u/image/upload/v1597163060/defaultimg_wzf1v5.jpg',
+            path: 'https://res.cloudinary.com/dumj6yt5u/image/upload/v1597302744/default-img_avmif5.jpg', 
             size: 125913,
             filename: 'defaultimg'
-          }
+        }
     
         RecipesModel.create(req.body)
         .then((createdRecipe) => {

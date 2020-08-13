@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose')
 const RecipesModel = require('../models/recipe.model')
 const UserModel = require('../models/user.model');
 const CommentModel = require('../models/comment-model');
@@ -51,20 +52,25 @@ router.get('/my-profile/:userId/my-recipes', (req, res) => {
 router.get('/my-profile/:userId/my-favorites', (req, res) => {
     UserModel.findById(req.params.userId)
         .populate('favorites')
-        .then((currentUser) => res.render('profile/my-favorites.hbs', {currentUser}))
+        .then((currentUser) => {
+            res.render('profile/my-favorites.hbs', {currentUser});
+            console.log(currentUser)
+        })
+        .catch((err) => console.log(err));
+    });
+
+// Unavorite button route (my-favorite page)
+router.post('/my-profile/:userId/my-favorites/:recipeId/unfavorite', (req, res) => {
+    UserModel.findByIdAndUpdate(req.session.loggedInUser._id, { $pull: { favorites: mongoose.Types.ObjectId(req.params.recipeId) }}) 
+        .then(() => {
+            UserModel.findById(req.session.loggedInUser._id)
+             .then(() => {
+                res.redirect('/my-profile/'+ req.session.loggedInUser._id +'/my-favorites')
+             })
+             .catch((err) => console.log(err));
+        })
         .catch((err) => console.log(err));
 });
-
-// // Unavorite button route (my-favorite page)
-// router.post('/my-profile/:userId/my-favorites/:recipeId/unfavorite', (req, res) => {
-//     UserModel.findByIdAndUpdate(req.params.userId, { $pull: { favorites: req.params.recipeId }}) 
-//         .then(() => {
-//             // variables have to be apart frm the string, hence use the "" and +
-//             res.redirect('/my-profile/'+ req.params.userId +'/my-favorites')
-//         }).catch((err) => {
-//             console.log(err)    
-//         });
-// });
 
 // My comments
 router.get('/my-profile/:userId/my-comments', (req, res) => {
@@ -77,9 +83,13 @@ router.get('/my-profile/:userId/my-comments', (req, res) => {
 
 // Public profile
 router.get('/public-profile/:userId', (req, res) => {
-    UserModel.findById(req.params.userId)
-        .then((currentUser) => res.render('profile/public-profile.hbs', {currentUser}))
-        .catch((err) => console.log(err));
+    let currentUser = req.params.userId
+    RecipesModel.find({user: req.params.userId})
+        .populate('user')
+        .then((recipe) => {
+            let username = recipe[0].user.username;
+            res.render('profile/public-profile.hbs', {currentUser, username, recipe})
+        }).catch((err) => console.log(err));
 });
 
 

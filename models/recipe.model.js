@@ -16,7 +16,7 @@ let RecipeSchema = new mongoose.Schema({
             enum: ['moisturizing', 'repairing', 'sun protection', 'refreshing', 'anti-aging', 'purifying', 'perfuming', 'exfoliating'],
             required: true
         },
-        time: {
+        preparation: {
             type: Number,
             required: true
         },
