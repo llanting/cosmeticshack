@@ -25,21 +25,44 @@
         <a href="/"><img src="/images/logo.png" alt="logo" id="header-logo"></a>
 
         <button class="navbar-toggler hamburger" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <img src="/images/hamburger-menu-512.webp" class="navbar-toggler-icon hamburger">
+          <span class="navbar-toggler-icon">|||</span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+
 
           <div class="navbar-nav">
             {{#if currentUser}}
             <a class="nav-link nav-text" href="/">Home</a>
             <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
             <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
-            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
-            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
+            <ul class="ul-nav-bar">
+              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
+</li>
+              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
+</li>
+              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-comments">My Comments</a>
+</li>
+            </ul>
             <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
             {{/if}}
           </div>
+
+
+          
+          {{!-- <div class="navbar-nav">
+            {{#if currentUser}}
+            <a class="nav-link nav-text" href="/">Home</a>
+            <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
+            
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
+            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-comments">My Comments</a>
+            <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
+            {{/if}}
+          </div> --}}
 
         
           {{#if currentUser}}

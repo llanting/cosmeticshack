@@ -38,7 +38,7 @@ router.post('/signup', (req, res) => {
                   console.log('result', result)
                   if (result === null) {
                     UserModel.create({username, email, passwordHash: hashPass })
-                    .then(() => res.redirect('/'))
+                    .then(() => res.redirect('/login'))
                     .catch((err) => console.log(err))
                   } else {
                     res.status(500).render('authentication/signup.hbs', {errorMessage: 'Username or email already exists'})

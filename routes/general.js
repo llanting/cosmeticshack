@@ -6,6 +6,7 @@ const RecipeModel = require('../models/recipe.model')
 router.get('/', (req, res, next) => {
   let currentUser = req.session.loggedInUser
   RecipeModel.find()
+  // limit of items in the loop
   .limit(3)
   .then((recipe) => {
     res.render('general/index.hbs', {recipe, currentUser})

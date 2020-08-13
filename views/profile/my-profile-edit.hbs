@@ -1,28 +1,26 @@
 <div class="content-page">
 
+    <h4>Modify your personal details</h4>
 
-    <div id="perso-details">
+        <div class="log-sign-form">
 
-        <h4>Hey {{currentUser.username}}, welcome to your profile page!</h4>
-        <h6>You can modify your personal details:</h6>
 
-        <form method="POST" action="/my-profile/{{currentUser._id}}/edit">
+            <form method="POST" action="/my-profile/{{currentUser._id}}/edit">
 
-            <label for="username">Username</label>
-            <input id="username" type="text" name="username" value={{currentUser.username}}>
+                <label for="username">Username</label>
+                <input id="username" type="text" name="username" value={{currentUser.username}} class="input-signup">
 
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" value={{currentUser.email}}>
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" value={{currentUser.email}} class="input-signup">
 
             {{!-- <label for="password">Password</label>
             <figcaption>Min 6 characters, containing at least one letter and one number.</figcaption>
             <input id="password" type="password" name="password" placeholder="Enter a new password"> --}}
 
-            <button type="submit">Submit</button>
+                <button type="submit" class='btn'>Submit</button>
 
-        </form>
+            </form>
 
-    </div>
-
+        </div>
 
 </div>

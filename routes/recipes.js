@@ -257,7 +257,7 @@ router.post('/my-profile/my-recipes/:recipeId/edit', (req, res) => {
         .catch((err) => console.log(err))  
 });
 
-router.post('/my-profile/my-recipes/:recipeId/delete', (req, res) => {
+router.get('/my-profile/my-recipes/:recipeId/delete', (req, res) => {
     RecipesModel.findByIdAndDelete(req.params.recipeId)
         .then(() => {
             res.redirect('/my-profile/' + req.session.loggedInUser._id + '/my-recipes')

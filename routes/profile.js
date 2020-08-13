@@ -48,6 +48,8 @@ router.get('/my-profile/:userId/my-recipes', (req, res) => {
         .catch((err) => console.log(err));
 });
 
+    
+
 // My favorites
 router.get('/my-profile/:userId/my-favorites', (req, res) => {
     UserModel.findById(req.params.userId)
