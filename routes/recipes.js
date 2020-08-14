@@ -255,6 +255,7 @@ router.post('/all-recipes/:recipeId/public/unfavorite', (req, res) => {
 // Comments
 let ratingArr  = [];
 router.post('/all-recipes/:recipeId/comment', (req, res) => {
+
     if (Number(req.body.rating) > 0 && Number(req.body.rating) < 6) {
     CommentModel.create({text: req.body.text, user: req.session.loggedInUser._id, recipe: req.params.recipeId, rating: req.body.rating})
         .then(() => {
@@ -263,15 +264,20 @@ router.post('/all-recipes/:recipeId/comment', (req, res) => {
             let sum = ratingArr.reduce((a, b) => {
                 return a + b;
             }, 0);
-            
+
             let average  = Math.round(sum / ratingArr.length);
+            
             RecipesModel.findByIdAndUpdate(req.params.recipeId, {$set: {rating: average}})
                 .then(() => {
                     res.redirect('/all-recipes/' + req.params.recipeId)
                 })
                 .catch((err) => console.log(err));
         })
-        .catch(() => res.redirect('/all-recipes/' + req.params.recipeId))
+        // It goes here!
+        .catch(() => {
+            res.redirect('/all-recipes/' + req.params.recipeId)
+        })
+       
     } else {
         CommentModel.create({text: req.body.text, user: req.session.loggedInUser._id, recipe: req.params.recipeId})
         .then(() => {
@@ -291,12 +297,12 @@ router.get('/all-recipes/:recipeId', (req, res) => {
         .then((recipe) => {
             // Changes recipe.date to a readable format
             let newDate = moment(recipe.date).format("MMMM DD, YYYY");
-
+            
                 if (recipe.level == "easy"){  
 
                     if (recipe.cost == "low"){
 
-                        if (recipe.rating == 0){
+                        if (recipe.rating == '0'){
                             CommentModel.find({recipe: req.params.recipeId})
                             .populate('user')
                             .then((comment) => {
@@ -306,16 +312,16 @@ router.get('/all-recipes/:recipeId', (req, res) => {
                             })
                             .catch((err) => console.log(err))
                             
-                        } else if (recipe.rating == 1){
+                        } else if (recipe.rating == '1'){
                             CommentModel.find({recipe: req.params.recipeId})
                             .populate('user')
                             .then((comment) => {
                                 let commentDate = moment(comment.date).format("MMMM DD, YYYY");
-                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-2star.png'})
+                                res.render('recipes/recipe-details.hbs', {recipe, comment, date: newDate, commentDate, currentUser, cost: '/images/1-round.jpg', level: '/images/1-round.jpg', rating: '/images/btn-1star.png'})
                             })
                             .catch((err) => console.log(err))
                         
-                        } else if (recipe.rating == 2){
+                        } else if (recipe.rating == '2'){
                             CommentModel.find({recipe: req.params.recipeId})
                             .populate('user')
                             .then((comment) => {
@@ -324,7 +330,7 @@ router.get('/all-recipes/:recipeId', (req, res) => {
                             })
                             .catch((err) => console.log(err))
 
-                        } else if (recipe.rating == 3){
+                        } else if (recipe.rating == '3'){
                             CommentModel.find({recipe: req.params.recipeId})
                             .populate('user')
                             .then((comment) => {
@@ -333,7 +339,7 @@ router.get('/all-recipes/:recipeId', (req, res) => {
                             })
                             .catch((err) => console.log(err))
 
-                        } else if (recipe.rating == 4){
+                        } else if (recipe.rating == '4'){
                             CommentModel.find({recipe: req.params.recipeId})
                             .populate('user')
                             .then((comment) => {
@@ -342,7 +348,7 @@ router.get('/all-recipes/:recipeId', (req, res) => {
                             })
                             .catch((err) => console.log(err))
 
-                        } else if (recipe.rating == 5){
+                        } else if (recipe.rating == '5'){
                             CommentModel.find({recipe: req.params.recipeId})
                             .populate('user')
                             .then((comment) => {
