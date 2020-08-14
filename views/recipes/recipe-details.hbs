@@ -21,7 +21,7 @@
 
         <div class="recipe-field-inside">
             <p class="recipe-field-name">Rating</p>
-            {{#ifEquals rating 0}}
+            {{#ifEquals rating '0'}}
                 <p><em>No rating yet</em></p>
             {{else}}
             <img src={{rating}} alt="rating" id="recipe-icon-rating">
