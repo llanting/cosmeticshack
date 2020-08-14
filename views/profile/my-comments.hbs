@@ -1,5 +1,7 @@
 <div class="content-page">
   
+    {{> back}}
+    
     <h4>My comments</h4>
     <br>
 
@@ -20,6 +22,9 @@
                 <div class="mycom-right-section">
                     <a href="/all-recipes/{{this.recipe._id}}" class="fav-btn my-com-btn">
                         <img src="/images/btn-view.png" class="comment-icon-view">
+                    </a>
+                    <a href="/my-profile/my-comments/{{this._id}}/delete" class="fav-btn my-com-btn">
+                        <img src="/images/btn-delete.png" >
                     </a>
                 </div>
                 

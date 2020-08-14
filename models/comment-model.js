@@ -19,7 +19,6 @@ let CommentSchema = new mongoose.Schema({
         },
         rating: {
             type: Number,
-            required: true
         }
     }, 
     {

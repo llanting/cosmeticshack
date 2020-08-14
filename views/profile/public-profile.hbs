@@ -1,5 +1,7 @@
 <div class="content-page">
 
+  {{> back}}
+
   <h4>Hi, I am {{username}}</h4>
 
   <div>
@@ -18,11 +20,11 @@
 
           {{#if this.alreadyFav}}
             <form method="POST" action="/all-recipes/{{this._id}}/unfavorite" >
-              <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
+              <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
             </form>
           {{else}}
             <form method="POST" action="/all-recipes/{{this._id}}/favorite" >
-              <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
+              <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
             </form>
           {{/if}} 
 

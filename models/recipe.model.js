@@ -47,7 +47,6 @@ let RecipeSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.String,
             required: true
         }],
-
         rating: {
             type: Number,
             default: 0
