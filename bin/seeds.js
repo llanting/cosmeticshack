@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 require('../app');
 
 // Insert MONGODB_URI here!
-// const MONGODB_URI = ;
 
 mongoose
   .connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})

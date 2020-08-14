@@ -11,18 +11,16 @@
       <div class="recipe-card" >
 
         <a href="/all-recipes/{{this._id}}">
-          <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
+          <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">      
+          <h6>{{this.name}}</h6>                    
         </a>
-
 
         <form method="POST" action="/my-profile/{{_id}}/my-favorites/{{this._id}}/unfavorite" >
           <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
         </form>    
 
 
-        <a href="/all-recipes/{{this._id}}">          
-          <h6>{{this.name}}</h6>                    
-        </a>
+        
 
       </div>
     {{/each}}

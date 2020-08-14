@@ -1,19 +1,16 @@
 <div class="content-page">
   
   {{!-- <article id="index-intro" class="index-odd content-page"> --}}
-  <article id="index-intro">
+  {{!-- <article id="index-intro">
 
-      <h4>Welcome</h4>
-      <h6>Find, create and save many recipes to create your own natural cosmetic and beauty products.</h6>
+      <h4 class="intro-h4">Make your own cosmetics with natural products and home made!</h4>
 
-  </article>
+  </article> --}}
 
   
   <article id="index-recipes">
 
-    <h4>Discover the recipes</h4>
-       
-
+    <h4>Join our community, <br> discover natural cosmetics recipes <br> and share yours!</h4>     
 
     <div class="recipes-container">
       {{#each recipe}}          
@@ -38,7 +35,7 @@
         </a>
       {{/each}} --}}
     
-      <a href= "/all-recipes" class="btn">See more recipes</a>
+      <a href= "/all-recipes" class="btn btn-hover">See more recipes</a>
 
     </div>
   
@@ -50,10 +47,8 @@
 
   {{else}}
   <div id = "log-sign-bar">
-          {{!-- <a href= "/signup" class="btn  ">Sign Up</a> --}}
-
-          <a href= "/signup" class="btn">Sign Up</a>
-          <a href= "/login" class="btn">Log In</a>
+          <a href= "/signup" class="btn btn-hover">Sign Up</a>
+          <a href= "/login" class="btn btn-hover">Log In</a>
   {{/if}} 
   </div>
 

@@ -1,3 +1,4 @@
+<a name="top"></a>
 <div class="content-page">
 
   {{> back}}
@@ -14,9 +15,7 @@
       </a>
 
       
-      <div>
-        <h6>{{this.name}}</h6>
-      </div>
+      <h6>{{this.name}}</h6>
     
       <div class="my-rec-btns-container">
 
@@ -38,12 +37,6 @@
             <img src="/images/btn-delete.png" class="icon-my-rec">
           </a>
         </div>
-
-        {{!-- <div id="my-rec-btns">
-          <form action="/my-profile/my-recipes/{{this._id}}/delete" method="POST">
-            <button class="btn"><img src="/images/btn-delete.png" class="icon-my-rec"></button>  
-          </form>
-        </div> --}}
                 
       </div>
 
@@ -51,5 +44,16 @@
     {{/each}}
 
   </div>
-
+  <a href="#top" id="arrowTop" class="up-btn"><img class="up-img" src="/images/up-img.png"></a>
 </div>
+
+
+ <script>
+    arrowTop.onclick = function() {
+      window.scrollTo(pageXOffset, 0);
+    };
+
+    window.addEventListener('scroll', function() {
+      arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight);
+    });
+</script>

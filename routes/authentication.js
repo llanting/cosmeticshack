@@ -33,26 +33,22 @@ router.post('/signup', (req, res) => {
     .then((salt) => {
         bcryptjs.hash(password, salt)
           .then((hashPass) => {
-              UserModel.findOne({$or: [{username, email}]})
-                .then((result) => {
-                  console.log('result', result)
-                  if (result === null) {
-                    UserModel.create({username, email, passwordHash: hashPass })
-                    .then(() => res.redirect('/login'))
-                    .catch((err) => console.log(err))
-                  } else {
-                    res.status(500).render('authentication/signup.hbs', {errorMessage: 'Username or email already exists'})
-                  }
-                })
-                .catch((err) => console.log(err))
+              UserModel.create({username, email, passwordHash: hashPass })
+                .then(() => res.redirect('/login'))
+                .catch((err) => {
+                  res.status(500).render('authentication/signup.hbs', {errorMessage: 'Username or email already exists'})
+                  console.log('error1', err)
+                })  
           })
+          .catch((err) => console.log('error', err))
     })
-  })
+});
+  
   
 // Login
 router.get('/login', (req, res) => {
     res.render('authentication/login.hbs')
-})  
+});  
   
   
 router.post('/login', (req, res) => {
@@ -80,21 +76,21 @@ router.post('/login', (req, res) => {
             let doesItMatch = bcryptjs.compareSync(password, userData.passwordHash); 
             if (doesItMatch){
                 req.session.loggedInUser = userData
-                res.redirect('/my-profile/' + req.session.loggedInUser._id)
+                res.redirect('/')
             } else {
                 res.status(500).render('authentication/login.hbs', {errorMessage: 'Password incorrect'})
             }
         }) 
         .catch((err) => {
             console.log('Error is', err)
-            res.render('general/error.hbs', {errorMessage: 'Wrong email or password'})
+            res.status(500).render('authentication/login.hbs', {errorMessage: 'Wrong email or password'})
         })
-})
+});
 
 // Log out & destroying session
 router.get('/logout', (req,res) => {
   req.session.destroy(() => res.redirect('/'))
-})
+});
 
 
 //This for making sure the private routes are only available when logged in! Pay attention to order of routes in app.js
@@ -105,7 +101,7 @@ router.use((req, res, next) => {
   else {
       res.redirect('/login')
   }
-})
+});
 
 
 module.exports = router;

@@ -2,16 +2,10 @@
 
   {{> back}}
 
-  <div>
-
-      <h4>Hi, I am {{username}}</h4>
-
-  </div>
-
+  <h4>Hi, I am {{username}}</h4>
 
   <div>
-
-      <h4>These are my recipes</h4>
+      <h6>These are my recipes</h6>
           
       <div class="recipes-container">
 
@@ -20,23 +14,19 @@
 
           <a href="/all-recipes/{{this._id}}">
             <img class="recipe-card-img" src="{{this.image}}" alt="Recipe icon img">
+            <h6>{{this.name}}</h6>                    
           </a>
 
 
           {{#if this.alreadyFav}}
-            <form method="POST" action="/all-recipes/{{this._id}}/unfavorite" >
-              <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
+            <form method="POST" action="/all-recipes/{{this._id}}/public/unfavorite" >
+              <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
             </form>
           {{else}}
             <form method="POST" action="/all-recipes/{{this._id}}/favorite" >
-              <button type="submit" class="fav-btn"><img src="/images/unfavorite-btn.png"></button>
+              <button type="submit" class="fav-btn"><img src="/images/favorite-btn.png"></button>
             </form>
           {{/if}} 
-
-
-          <a href="/all-recipes/{{this._id}}">          
-            <h6>{{this.name}}</h6>                    
-          </a>
 
         </div>
       {{/each}}
