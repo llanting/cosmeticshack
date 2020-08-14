@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 require('../app');
 
 
-const MONGODB_URI = "mongodb+srv://admin-user:12345@cluster0.siybg.mongodb.net/cosmeticshack?retryWrites=true&w=majority";
+const MONGODB_URI
 
 mongoose
   .connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
