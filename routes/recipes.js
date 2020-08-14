@@ -52,7 +52,6 @@ router.get('/all-recipes/search', (req,res) => {
     // Find 'and' or 'or'
     RecipesModel.find({$or: [{category: search.category}, {purpose: search.purpose}, {ingredients: search.ingredients}]})
         .then((recipe) => {
-            console.log(recipe)
             if (recipe.length === 0) {
                 res.render('recipes/all-recipes.hbs', {recipe, purposeArr, ingredientsArr, errorMessage: 'No matches found', currentUser})
             } else {
@@ -383,9 +382,6 @@ router.get('/all-recipes/sort', (req, res) => {
 //         .catch((err) => console.log(err))
 // });
 
-
-
-
 // Recipe-details
 router.get('/all-recipes/:recipeId', (req, res) => {
     let currentUser = req.session.loggedInUser;
@@ -652,9 +648,11 @@ router.post('/all-recipes/:recipeId/comment', (req, res) => {
     CommentModel.create({text: req.body.text, user: req.session.loggedInUser._id, recipe: req.params.recipeId, rating: req.body.rating})
         .then((result) => {
             ratingArr.push(Number(req.body.rating))
+       
             let sum = ratingArr.reduce((a, b) => {
                 return a + b;
             }, 0);
+            
             let average  = Math.round(sum / ratingArr.length);
             RecipesModel.findByIdAndUpdate(req.params.recipeId, {$set: {rating: average}})
                 .then(() => {
@@ -663,7 +661,7 @@ router.post('/all-recipes/:recipeId/comment', (req, res) => {
                 .catch((err) => console.log(err));
         })
         .catch(() => res.redirect('/all-recipes/' + req.params.recipeId))
-    } else if (req.body.rating === '') {
+    } else {
         CommentModel.create({text: req.body.text, user: req.session.loggedInUser._id, recipe: req.params.recipeId})
         .then(() => {
             res.redirect('/all-recipes/' + req.params.recipeId)

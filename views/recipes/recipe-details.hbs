@@ -156,11 +156,11 @@
         <div class="add-comment-section">
             <form method="POST" action="/all-recipes/{{recipe._id}}/comment">
                 <textarea name="text" type="text" id="text" rows="3" cols="33" required placeholder="Write your comment here"></textarea>
-                <label for="rating" class="form-label">Your rating</label>
+                {{!-- <label for="rating" class="form-label">Your rating</label> --}}
 
                 <div class="form-group">
-                    <label for="category">Category</label>
-                    <select class="form-complete-field" id="category" name="category">
+                    <label for="rating">rating</label>
+                    <select class="form-complete-field" id="rating" name="rating">
                         <option value='0'>No rating</option>
                         <option value='1'>1</option>
                         <option value='2'>2</option>

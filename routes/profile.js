@@ -82,6 +82,19 @@ router.get('/my-profile/:userId/my-comments', (req, res) => {
         .catch((err) => console.log(err));
 });
 
+//Delete comment
+router.get('/my-profile/my-comments/:commentId/delete', (req, res) => {
+    let currentUser = req.session.loggedInUser;
+    CommentModel.findByIdAndDelete(req.params.commentId) 
+        .then((result) => {
+            CommentModel.find({user: currentUser._id})
+            .populate('recipe')
+            .then((comment) => res.render('profile/my-comments.hbs', {comment, currentUser}))
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+});
+
 // Public profile
 router.get('/public-profile/:userId', (req, res) => {
     let currentUser = req.session.loggedInUser;
