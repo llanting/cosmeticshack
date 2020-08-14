@@ -1,3 +1,6 @@
+body {
+}
+
 .content-page {
   display: flex;
   flex-direction: column;
@@ -11,7 +14,6 @@
   font-size: 13px;
   color: #64463d;
   ;
-  /* background-color: #FDD7CE; */
   /* background: linear-gradient(rgb(227, 218, 219, 0.3), rgb(227, 218, 219, 1) 100%); */
 }
 
@@ -31,13 +33,14 @@ a:hover {
 
 .nav-text:hover {
   color: #8E6C63;
-  text-shadow: 1px 1px 4px #64463d;
+  text-shadow: 1px 1px 3px #fff2e4;
 } 
 
 
 .btn-hover:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 } 
+
 
 
 .recipe-card:hover {
@@ -192,7 +195,7 @@ label {
 }
 
 .nav-text {
-  color: #fff2e4;
+  color: #8E6C63;
 }
 
 .hamburger {
@@ -396,9 +399,7 @@ label {
   align-items: center;
   flex-direction: column;
   text-align: justify;
-
   width: 40%;
-
 }
 
 .recipe-field-inside > img {
@@ -480,8 +481,31 @@ label {
   border-color: #e3ad9f;
 }
 
+.add-comment-section > form {
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.com-left {
+  margin-left: 10px;
+
+}
 
 
+.com-field-blank {
+  height: 140px;
+}
+
+
+
+.btn-com {
+  font-size: 10px;
+  width: 100%;
+  height: 50px;
+}
 
 
 /* favorite and my recipes btns */
@@ -721,7 +745,8 @@ label {
 select {
   background-color: #fff2e4;
   color: #8E6C63;
-  width: 120px;
+  width: 90px;
+  height: 35px;
 
 }
 
@@ -731,9 +756,10 @@ option{
 }
 
 .search-sort-container {
-  display: flex;  
-  flex-direction: column;
-  /* align-items: flex-end; */
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+   /* align-items: flex-end; */
   /* justify-content: center; */
 }
 
@@ -741,23 +767,34 @@ option{
   width: 100%;
   display: flex;  
   flex-direction: row;
-  width: 150px;
-  align-items: center;
-
+  justify-content: center;
 }
+
+.search-container, .sort-container {
+  margin: 0px;
+  padding: 0px;
+  display: flex;  
+}
+
 
 .search-container > form {
   width: 100%;
   display: flex;  
   flex-direction: row;
-  /* align-items: stretch; */
-  width: 150px;
-  align-self: center;
 }
 
+.btn-filters {
+  font-size: 10px;
+  height: 25px;
+  padding: 0px;
+  margin: 5px 2px;
 
+  /* height: 20px; */
+}
 
-
+.search-sort-btn {
+  background-color: #ffd5ca ;
+}
 
 
 
@@ -1010,21 +1047,6 @@ option{
   stroke: none
 }
 
-.resp-sharing-button--twitter {
-  background-color: #55acee
-}
-
-.resp-sharing-button--twitter:hover {
-  background-color: #2795e9
-}
-
-.resp-sharing-button--pinterest {
-  background-color: #bd081c
-}
-
-.resp-sharing-button--pinterest:hover {
-  background-color: #8c0615
-}
 
 .resp-sharing-button--facebook {
   background-color: #3b5998
@@ -1034,37 +1056,6 @@ option{
   background-color: #2d4373
 }
 
-.resp-sharing-button--tumblr {
-  background-color: #35465C
-}
-
-.resp-sharing-button--tumblr:hover {
-  background-color: #222d3c
-}
-
-.resp-sharing-button--reddit {
-  background-color: #5f99cf
-}
-
-.resp-sharing-button--reddit:hover {
-  background-color: #3a80c1
-}
-
-.resp-sharing-button--google {
-  background-color: #dd4b39
-}
-
-.resp-sharing-button--google:hover {
-  background-color: #c23321
-}
-
-.resp-sharing-button--linkedin {
-  background-color: #0077b5
-}
-
-.resp-sharing-button--linkedin:hover {
-  background-color: #046293
-}
 
 .resp-sharing-button--email {
   background-color: #777
@@ -1074,13 +1065,6 @@ option{
   background-color: #5e5e5e
 }
 
-.resp-sharing-button--xing {
-  background-color: #1a7576
-}
-
-.resp-sharing-button--xing:hover {
-  background-color: #114c4c
-}
 
 .resp-sharing-button--whatsapp {
   background-color: #25D366
@@ -1090,18 +1074,6 @@ option{
   background-color: #1da851
 }
 
-.resp-sharing-button--hackernews {
-background-color: #FF6600
-}
-.resp-sharing-button--hackernews:hover, .resp-sharing-button--hackernews:focus {   background-color: #FB6200 }
-
-.resp-sharing-button--vk {
-  background-color: #507299
-}
-
-.resp-sharing-button--vk:hover {
-  background-color: #43648c
-}
 
 .resp-sharing-button--facebook {
   background-color: #3b5998;

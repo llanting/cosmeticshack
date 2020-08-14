@@ -5,41 +5,41 @@
     <h4>Welcome {{currentUser.username}}</h4>
 
 
-       <h6>Quick access bar</h6>
+       <h6>Quick access</h6>
        <br>
 
     
         <div id="quick-access-bar">
 
-        <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn-hover">
+        <a href= "/my-profile/{{currentUser._id}}/my-favorites">
             <div class="quick-access-btn">
                 <img src="/images/btn-my-favorites.png" alt="icon" class="profile-icon">
                 <p class="quick-access-text">My Favorites</p>
             </div>
         </a>
 
-        <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn-hover">
+        <a href= "/my-profile/{{currentUser._id}}/my-recipes">
             <div class="quick-access-btn">
                 <img src="/images/btn-my-recipes.png" alt="icon" class="profile-icon">
                 <p class="quick-access-text">My Recipes</p>
             </div>
         </a>
 
-        <a href= "/my-profile/{{currentUser._id}}/my-comments" class="btn-hover">
+        <a href= "/my-profile/{{currentUser._id}}/my-comments">
             <div class="quick-access-btn">
                 <img src="/images/btn-my-comments.png" alt="icon" class="profile-icon">
                 <p class="quick-access-text">My Comments</p>
             </div>
         </a>
 
-        <a href= "/create-recipe" class="btn-hover">
+        <a href= "/create-recipe">
             <div class="quick-access-btn">
                 <img src="/images/btn-create-recipe.png" alt="icon" class="profile-icon">
                 <p class="quick-access-text">Add Recipe</p>
             </div>
         </a>
 
-        <a href= "/all-recipes" class="btn-hover">
+        <a href= "/all-recipes">
             <div class="quick-access-btn">
                 <img src="/images/btn-all-recipes.png" alt="icon" class="profile-icon">
                 <p class="quick-access-text">All Recipes</p>
@@ -53,7 +53,7 @@
 
 
     <form method="GET" action="/my-profile/{{currentUser._id}}/edit" id="profile-detail" class="perso-details">
-        <h6>Personal details:</h6>
+        <h6>Personal details</h6>
 
         <label for="username" class="label-profile-detail">Username</label>
         <span>{{currentUser.username}}</span>
