@@ -154,23 +154,26 @@
         
         <div class="add-comment-section">
             <form method="POST" action="/all-recipes/{{recipe._id}}/comment">
-                <textarea name="text" type="text" id="text" rows="3" cols="33" required placeholder="Write your comment here"></textarea>
+
+                <textarea class="com-field-blank" name="text" type="text" id="text" rows="3" cols="30" placeholder="Write your review/comment here"></textarea>
                 {{!-- <label for="rating" class="form-label">Your rating</label> --}}
 
-                <div class="form-group">
-                    <label for="rating">rating</label>
-                    <select class="form-complete-field" id="rating" name="rating">
-                        <option value='0'>No rating</option>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                    </select>
-                </div>
-                {{!-- <input name="rating" type="number" id="rating" min='1' max='5'  placeholder="Min is 1, max is 5"> --}}
+                <div class="com-left">
+
+                    <div class="com-form">
+                        <select class="btn btn-com" id="rating" name="rating">
+                            <option value='0'>Rating</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                        </select>
+                    </div>
                           
-                <button type="sumbit" class="btn">Post your comment</button>
+                    <button type="sumbit" class="btn btn-com">Submit</button>
+
+                </div>              
 
             </form>
         </div>
