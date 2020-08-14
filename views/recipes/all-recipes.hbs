@@ -6,55 +6,70 @@
   <h4>All recipes</h4>
   <br>
 
-  {{!-- Add the filter to search --}}
-  <form method="GET" action="/all-recipes/search">
-    <h6>Search</h6>
-    <div >
-      <select name="category">
-        <option value="empty">Category</option>
-        <option value="body">Body</option>
-        <option value="face">Face</option>
-        <option value="hair">Hair</option>
-      </select>
-    </div>
-    <div >
-      <select name="purpose">
-        <option value="empty">Purpose</option>
-        {{#each purposeArr}}
-          <option value="{{this}}">{{this}}</option>
-        {{/each}}
-      </select>
-    </div>
-      <div >
-      <select name="ingredients">
-        <option value="empty">Ingredients</option>
-        {{#each ingredientsArr}}
-          <option value="{{this}}">{{this}}</option>
-        {{/each}}
-      </select>
-    </div>
-    
-    <button type="submit" class="btn">Search</button>
 
-    {{#if errorMessage}}
-      <p>{{errorMessage}}</p>
-    {{/if}}
-  </form>
+  <div class="search-sort-container">
 
-  <form method="GET" action="/all-recipes/sort">
-    <h6>Sort</h6>
-    <div >
+    <div class="search-container">
+      <form method="GET" action="/all-recipes/search">
+
+         <select name="category">
+            <option value="empty">Category</option>
+            <option value="body">Body</option>
+            <option value="face">Face</option>
+            <option value="hair">Hair</option>
+          </select>
+
+          <select name="purpose">
+            <option value="empty">Purpose</option>
+            {{#each purposeArr}}
+              <option value="{{this}}">{{this}}</option>
+            {{/each}}
+          </select>
+          
+          
+          <div>
+
+
+             <select name="ingredients">
+            <option value="empty">Ingredients</option>
+            {{#each ingredientsArr}}
+              <option value="{{this}}">{{this}}</option>
+            {{/each}}
+          </select>        
+
+        <button type="submit" class="btn btn-hover search-sort-btn">Search</button>
+
+        {{#if errorMessage}}
+          <p>{{errorMessage}}</p>
+        {{/if}}
+
+
+
+
+          </div>
+
+
+         
+
+      </form>
+    </div>
+
+
+    <div class="sort-container">
+      <form method="GET" action="/all-recipes/sort">
         <select name="rating">
           <option value="empty">Rating</option>
-            <option value="high-low">High to low</option>
-            <option value="low-high">Low to high</option>
+          <option value="high-low">High to low</option>
+          <option value="low-high">Low to high</option>
         </select>
+        <button type="submit" class="btn btn-hover">Sort</button>
+      </form>      
     </div>
-     <button type="submit" class="btn">Sort</button>
-  </form>
 
+  
+  </div>
 
-
+    
 
 {{!-- Recipes carts --}}
   
@@ -85,7 +100,7 @@
   <a href="#top" id="arrowTop" class="up-btn" hidden><img class="up-img" src="/images/up-img.png"></a>
 </div>
 
- <script>
+<script>
     arrowTop.onclick = function() {
       window.scrollTo(pageXOffset, 0);
     };

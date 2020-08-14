@@ -5,6 +5,53 @@
     <h4>Welcome {{currentUser.username}}</h4>
 
 
+       <h6>Quick access bar</h6>
+       <br>
+
+    
+        <div id="quick-access-bar">
+
+        <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn-hover">
+            <div class="quick-access-btn">
+                <img src="/images/btn-my-favorites.png" alt="icon" class="profile-icon">
+                <p class="quick-access-text">My Favorites</p>
+            </div>
+        </a>
+
+        <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn-hover">
+            <div class="quick-access-btn">
+                <img src="/images/btn-my-recipes.png" alt="icon" class="profile-icon">
+                <p class="quick-access-text">My Recipes</p>
+            </div>
+        </a>
+
+        <a href= "/my-profile/{{currentUser._id}}/my-comments" class="btn-hover">
+            <div class="quick-access-btn">
+                <img src="/images/btn-my-comments.png" alt="icon" class="profile-icon">
+                <p class="quick-access-text">My Comments</p>
+            </div>
+        </a>
+
+        <a href= "/create-recipe" class="btn-hover">
+            <div class="quick-access-btn">
+                <img src="/images/btn-create-recipe.png" alt="icon" class="profile-icon">
+                <p class="quick-access-text">Add Recipe</p>
+            </div>
+        </a>
+
+        <a href= "/all-recipes" class="btn-hover">
+            <div class="quick-access-btn">
+                <img src="/images/btn-all-recipes.png" alt="icon" class="profile-icon">
+                <p class="quick-access-text">All Recipes</p>
+            </div>
+        </a>
+
+    </div>
+    
+
+
+
+
     <form method="GET" action="/my-profile/{{currentUser._id}}/edit" id="profile-detail" class="perso-details">
         <h6>Personal details:</h6>
 
@@ -18,26 +65,25 @@
         <span>**********</span> --}}
         
        <div class="profile-del-edit-btns">
-            <button type="submit" class="btn prof-edit-btn" >Edit</button>
-            <a href="/delete-user" class="btn prof-del-btn">Delete user</a>           
+            <button type="submit" class="btn btn-hover prof-edit-btn" >Edit</button>
+            <a href="/delete-user" class="btn btn-hover prof-del-btn">Delete account</a>           
         </div>
         
     </form>
 
 
-    <h6>Quick access</h6>
+ 
 
-    
-    <div id="profile-bottom-elem">
-        <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn profile-btn">My Favorites</a>
-        <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn profile-btn">My Recipes</a>
-        <a href= "/my-profile/{{currentUser._id}}/my-comments" class="btn profile-btn">My Comments</a>
+     {{!-- <div id="quick-access-bar">
+        <a href= "/my-profile/{{currentUser._id}}/my-favorites" class="btn btn-hover profile-btn">My Favorites</a>
+        <a href= "/my-profile/{{currentUser._id}}/my-recipes" class="btn btn-hover profile-btn">My Recipes</a>
+        <a href= "/my-profile/{{currentUser._id}}/my-comments" class="btn btn-hover profile-btn">My Comments</a>
     </div>
 
-    <div id="profile-bottom-elem">
-        <a href= "/create-recipe" class="btn profile-btn">Create a new recipe</a>
-        <a href= "/all-recipes" class="btn profile-btn">All recipes</a>
-    </div>
+    <div id="quick-access-bar">
+        <a href= "/create-recipe" class="btn btn-hover profile-btn">Create a new recipe</a>
+        <a href= "/all-recipes" class="btn btn-hover profile-btn">All recipes</a>
+    </div> --}}
     
 
 </div>

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 
     <script src="Select7/select7.js"></script>
 
@@ -36,24 +37,22 @@
             {{#if currentUser}}
             <a class="nav-link nav-text" href="/">Home</a>
             <a class="nav-link nav-text" href="/all-recipes">All Recipes</a>
+            <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
             <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}">My Profile</a>
             <ul class="ul-nav-bar">
-              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a>
-</li>
-              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a>
-</li>
-              <li>            <a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-comments">My Comments</a>
-</li>
+              <li><a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-favorites">My Favorites</a></li>
+              <li><a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-recipes">My Recipes</a></li>
+              <li><a class="nav-link nav-text" href="/my-profile/{{currentUser._id}}/my-comments">My Comments</a></li>
             </ul>
-            <a class="nav-link nav-text" href="/create-recipe">Create a recipe</a>
             {{/if}}
           </div>
-        
+
+           
           {{#if currentUser}}
-          <a href="/logout" class="btn">Log Out</a>
+          <a href="/logout" class="btn btn-hover">Log Out</a>
           {{else}}
-          <a href="/signup" class="btn">Sign Up</a>
-          <a href="/login" class="btn">Log In</a>
+          <a href="/signup" class="btn btn-hover">Sign Up</a>
+          <a href="/login" class="btn btn-hover">Log In</a>
           {{/if}}
 
         </div>

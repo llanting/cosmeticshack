@@ -50,7 +50,7 @@ router.get('/my-profile/:userId/my-recipes', (req, res) => {
 
   
 
-// My favorites
+// Favorite button route (my-favorite page)
 router.get('/my-profile/:userId/my-favorites', (req, res) => {
     UserModel.findById(req.params.userId)
         .populate('favorites')
@@ -60,7 +60,7 @@ router.get('/my-profile/:userId/my-favorites', (req, res) => {
         .catch((err) => console.log(err));
     });
 
-// Unavorite button route (my-favorite page)
+// Unfavorite button route (my-favorite page)
 router.post('/my-profile/:userId/my-favorites/:recipeId/unfavorite', (req, res) => {
     UserModel.findByIdAndUpdate(req.session.loggedInUser._id, { $pull: { favorites: mongoose.Types.ObjectId(req.params.recipeId) }}) 
         .then(() => {
@@ -72,6 +72,7 @@ router.post('/my-profile/:userId/my-favorites/:recipeId/unfavorite', (req, res) 
         })
         .catch((err) => console.log(err));
 });
+
 
 // My comments
 router.get('/my-profile/:userId/my-comments', (req, res) => {

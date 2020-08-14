@@ -1,12 +1,18 @@
 <div class="content-page">
     
-    <h4>Are you sure you want to delete your profile?</h4>
+    <h4>Are you sure you want <br> to delete your profile <br> permanently?</h4>
+    
 
-    <form method="GET" action="/my-profile/{{currentUser._id}}/delete" id="profile-detail">
-
-        <button type="submit" class="btn" >Yes, delete</button>
+    <div class="del-page-btns">
         
-    </form>
-        <a href="/my-profile/{{currentUser._id}}" class="btn">No, take me back</a>
+        <a href="/my-profile/{{currentUser._id}}/delete" class="btn btn-hover prof-del-btn" id="profile-detail">Yes, delete</a>
+
+        {{!-- <form method="GET" action="/my-profile/{{currentUser._id}}/delete" id="profile-detail">
+            <button type="submit" class="btn btn-hover">Yes, delete</button>
+        </form> --}}
+
+        <a href="/my-profile/{{currentUser._id}}" class="btn btn-hover">No, take me back</a>
+
+    </div>
 
 </div>
